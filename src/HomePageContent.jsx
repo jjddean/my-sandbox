@@ -1,0 +1,381 @@
+import React from 'react';
+import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+const HomePageContent = () => {
+  const navigate = useNavigate();
+
+  const newsCardsData = [
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+1',
+      headline: 'Dame Prue Leith sets record on Great British Bake Off exit after quitting celebrity...',
+      source: 'Mirror',
+      time: '20h ago',
+      likes: 6,
+      comments: 3,
+      shares: 0,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+2',
+      headline: 'Josie Gibson lands primetime ITV series with dream home makeover',
+      source: 'Prima UK',
+      time: '18h ago',
+      likes: 1,
+      comments: 0,
+      shares: 0,
+    },
+    {
+      type: 'sponsored',
+      image: 'https://placehold.co/400x250/FFD700/000000?text=LV+Ring',
+      headline: 'Pre-loved Louis Vuitton Gold Louis Vuitton Monogram Ring - AB',
+      source: 'BrandAlley.co.uk',
+      time: 'Sponsored',
+      likes: 0,
+      comments: 0,
+      shares: 0,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+4',
+      headline: 'Trump calls Fed chair \'a numbskull\' who \'makes it difficult for people to buy a...',
+      source: 'The Guardian',
+      time: '19h ago',
+      likes: 8,
+      comments: 11,
+      shares: 0,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/B22222/FFFFFF?text=Stock+Market',
+      headline: 'Get ready for a US stock market crash?',
+      source: 'The Motley Fool',
+      time: '48m ago',
+      likes: 0,
+      comments: 0,
+      shares: 0,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+6',
+      headline: 'End Of Season Sale Now Live - Up To 50% Off Selected Lines',
+      source: 'crewclothing.co.uk',
+      time: 'Sponsored',
+      likes: 0,
+      comments: 0,
+      shares: 0,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+7',
+      headline: '\'Still not sure\': Shane Lowry casts doubt over two-shot penalty decision at Open',
+      source: 'The Guardian',
+      time: '9h ago',
+      likes: 0,
+      comments: 0,
+      shares: 0,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+8',
+      headline: 'Call the Midwife icon recalls \'uncomfortable\' experience on BBC Strictly',
+      source: 'Daily Express',
+      time: '5h ago',
+      likes: 0,
+      comments: 0,
+      shares: 0,
+    },
+  ];
+
+  const newMediaCardsData = [
+    {
+      type: 'article',
+      image: 'https://placehold.co/800x300/4CAF50/FFFFFF?text=New+Section+Card+1',
+      headline: 'Sustainable Innovations Driving Future Growth in Tech Sector',
+      source: 'GreenTech Daily',
+      time: '1h ago',
+      likes: 15,
+      comments: 5,
+      shares: 2,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/800x300/2196F3/FFFFFF?text=New+Section+Card+2',
+      headline: 'Exploring the Deep Sea: New Discoveries in Marine Biology',
+      source: 'Oceanic Explorers',
+      time: '3h ago',
+      likes: 22,
+      comments: 8,
+      shares: 4,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/FF9800/FFFFFF?text=New+Section+Card+3',
+      headline: 'Culinary Trends: What\'s Hot in the World of Food',
+      source: 'Foodie Magazine',
+      time: '6h ago',
+      likes: 10,
+      comments: 3,
+      shares: 1,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/9C27B0/FFFFFF?text=New+Section+Card+4',
+      headline: 'The Art of Photography: Capturing Moments in Time',
+      source: 'Lens Master',
+      time: '9h ago',
+      likes: 18,
+      comments: 7,
+      shares: 3,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/F44336/FFFFFF?text=New+Section+Card+5',
+      headline: 'Fitness Revolution: New Workouts for a Healthier You',
+      source: 'FitLife Daily',
+      time: '12h ago',
+      likes: 25,
+      comments: 10,
+      shares: 5,
+    },
+    {
+      type: 'article',
+      image: 'https://placehold.co/400x250/607D8B/FFFFFF?text=New+Section+Card+6',
+      headline: 'Space Exploration: Missions Beyond Our Solar System',
+      source: 'Cosmic News',
+      time: '15h ago',
+      likes: 30,
+      comments: 12,
+      shares: 6,
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-100 font-sans text-gray-800"
+         style={{ transform: 'scale(0.8)', transformOrigin: 'top center', width: '125%', height: '125%' }}>
+      {/* Top Bar - Search and Icons (Header Part 1) */}
+      <div className="bg-white py-3 px-4 md:px-6 flex items-center justify-between border-b border-gray-200">
+        <div className="flex items-center space-x-4">
+          <img
+            src="https://placehold.co/24x24/0078D4/FFFFFF?text=M"
+            alt="MLN Icon"
+            className="h-6 w-auto cursor-pointer"
+            onClick={() => navigate('/')} // Navigate to home page on click
+            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/24x24/CCCCCC/555555?text=Icon"; }}
+          />
+          <div className="relative flex items-center bg-gray-100 rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96">
+            <Search size={16} className="mr-2 text-gray-500" />
+            <span>Search or enter web address</span>
+          </div>
+        </div>
+        <div className="flex items-center space-x-4">
+          {/* New Top Bar Navigation Links - Always visible (no 'hidden sm:flex') */}
+          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
+            <Cloud size={16} className="mr-1" /> Weather
+          </a>
+          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
+            <Briefcase size={16} className="mr-1" /> Marketplace
+          </a>
+          <a href="#" onClick={() => navigate('/dashboard')} className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
+            <Newspaper size={16} className="mr-1" /> Headlines
+          </a>
+          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
+            <SlidersHorizontal size={16} className="mr-1" /> Solutions
+          </a>
+          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
+            <ShoppingCart size={16} className="mr-1" /> Shopping
+          </a>
+          <Settings size={20} className="text-gray-600 hover:text-gray-900 cursor-pointer" />
+          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+            JD
+          </div>
+        </div>
+      </div>
+
+      {/* Full-width Header Image (Header Part 2 - Large Tab Header) */}
+      <div className="bg-gray-200 py-6">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="relative h-64 md:h-96 bg-cover bg-center rounded-lg overflow-hidden"
+               style={{ backgroundImage: "url('https://placehold.co/1200x400/A0A0A0/FFFFFF?text=Your+Main+Header+Image+Here')" }}>
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-white text-center drop-shadow-lg">
+                Featured Content
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Area */}
+      <div className="container mx-auto px-4 md:px-6 py-6">
+        {/* First Media Cards Section (8 cards: 4x2 grid with overlay text) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-8">
+          {newsCardsData.map((card, i) => (
+            <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200">
+              {card.image && (
+                <img
+                  src={card.image}
+                  alt={card.headline}
+                  className="w-full h-64 object-cover"
+                  onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x250/CCCCCC/555555?text=Image+Error"; }}
+                />
+              )}
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                <h3 className="text-lg font-bold mb-2 leading-snug">
+                  {card.headline}
+                </h3>
+                <div className="flex items-center justify-between text-xs text-gray-300">
+                  <div className="flex items-center space-x-1">
+                    {card.source && <span className="font-medium">{card.source}</span>}
+                    {card.time && <span className="text-gray-400">• {card.time}</span>}
+                    {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    {card.likes > 0 && (
+                      <div className="flex items-center space-x-1">
+                        <ThumbsUp size={14} className="text-gray-300" />
+                        <span>{card.likes}</span>
+                      </div>
+                    )}
+                    {card.comments > 0 && (
+                      <div className="flex items-center space-x-1">
+                        <MessageSquare size={14} className="text-gray-300" />
+                        <span>{card.comments}</span>
+                      </div>
+                    )}
+                    {card.shares > 0 && (
+                      <div className="flex items-center space-x-1">
+                        <Share2 size={14} className="text-gray-300" />
+                        <span>{card.shares}</span>
+                      </div>
+                    )}
+                    <Bookmark size={14} className="text-gray-300 cursor-pointer hover:text-blue-300" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* New Section: 6 Media Cards (2 long on top, 4 standard under) */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">More Top Stories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+            {newMediaCardsData.slice(0, 2).map((card, i) => (
+              <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 col-span-1 md:col-span-2">
+                {card.image && (
+                  <img
+                    src={card.image}
+                    alt={card.headline}
+                    className="w-full h-64 object-cover"
+                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/800x300/CCCCCC/555555?text=Image+Error"; }}
+                  />
+                )}
+                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h3 className="text-lg font-bold mb-2 leading-snug">
+                    {card.headline}
+                  </h3>
+                  <div className="flex items-center justify-between text-xs text-gray-300">
+                    <div className="flex items-center space-x-1">
+                      {card.source && <span className="font-medium">{card.source}</span>}
+                      {card.time && <span className="text-gray-400">• {card.time}</span>}
+                      {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {card.likes > 0 && (
+                        <div className="flex items-center space-x-1">
+                          <ThumbsUp size={14} className="text-gray-300" />
+                          <span>{card.likes}</span>
+                        </div>
+                      )}
+                      {card.comments > 0 && (
+                        <div className="flex items-center space-x-1">
+                          <MessageSquare size={14} className="text-gray-300" />
+                          <span>{card.comments}</span>
+                        </div>
+                      )}
+                      {card.shares > 0 && (
+                        <div className="flex items-center space-x-1">
+                          <Share2 size={14} className="text-gray-300" />
+                          <span>{card.shares}</span>
+                        </div>
+                      )}
+                      <Bookmark size={14} className="text-gray-300 cursor-pointer hover:text-blue-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {newMediaCardsData.slice(2, 6).map((card, i) => (
+              <div key={i + 2} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 col-span-1">
+                {card.image && (
+                  <img
+                    src={card.image}
+                    alt={card.headline}
+                    className="w-full h-64 object-cover"
+                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x250/CCCCCC/555555?text=Image+Error"; }}
+                  />
+                )}
+                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h3 className="text-lg font-bold mb-2 leading-snug">
+                    {card.headline}
+                  </h3>
+                  <div className="flex items-center justify-between text-xs text-gray-300">
+                    <div className="flex items-center space-x-1">
+                      {card.source && <span className="font-medium">{card.source}</span>}
+                      {card.time && <span className="text-gray-400">• {card.time}</span>}
+                      {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {card.likes > 0 && (
+                        <div className="flex items-center space-x-1">
+                          <ThumbsUp size={14} className="text-gray-300" />
+                          <span>{card.likes}</span>
+                        </div>
+                      )}
+                      {card.comments > 0 && (
+                        <div className="flex items-center space-x-1">
+                          <MessageSquare size={14} className="text-gray-300" />
+                          <span>{card.comments}</span>
+                        </div>
+                      )}
+                      {card.shares > 0 && (
+                        <div className="flex items-center space-x-1">
+                          <Share2 size={14} className="text-gray-300" />
+                          <span>{card.shares}</span>
+                        </div>
+                      )}
+                      <Bookmark size={14} className="text-gray-300 cursor-pointer hover:text-blue-300" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Section */}
+      <div className="bg-white border-t border-gray-200 py-4 px-4 md:px-6 flex flex-wrap justify-between items-center text-gray-500 text-xs">
+          <p>© 2025 MLN</p>
+          <div className="flex space-x-3 md:space-x-4 mt-2 md:mt-0">
+            <a href="#" className="hover:underline">Privacy & Cookies</a>
+            <a href="#" className="hover:underline">Terms of Use</a>
+            <a href="#" className="hover:underline">Advertise</a>
+            <a href="#" className="hover://www.google.com/search?q=Advertise&oq=Advertise&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRhA0gEIMzU4OWowajE1qAIAsAIA&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">Advertise</a>
+            <a href="#" className="hover:underline">Data Providers</a>
+            <div className="flex items-center cursor-pointer hover:underline">
+              <img src="https://placehold.co/16x16/E0E0E0/555555?text=FB" alt="Feedback Icon" className="mr-1" />
+              Feedback
+            </div>
+          </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePageContent; 
