@@ -109,13 +109,17 @@ const ExplorePageContent = () => {
   return <div className="p-6 text-center text-gray-500">Explore & Invest Content Here</div>;
 };
 
+const FinancePageContent = () => {
+  return <div className="p-6 text-center text-gray-500">Finance Content Here</div>;
+};
+
 // --- Component: Sidebar ---
 // This component now only handles its internal rendering and state based on props
 const Sidebar = ({ isOpen, toggleSidebar, activePage, setActivePage }) => {
   const navigate = useNavigate(); // Hook to change routes
 
   const navItems = [
-    { name: 'Dashboard', icon: <LayoutDashboard size={20} />, id: 'dashboard', path: '/' }, // Default path for Dashboard
+    { name: 'Finance', icon: <BarChart size={20} />, id: 'finance', path: '/finance' },
     { name: 'Stocks', icon: <TrendingUp size={20} />, id: 'stocks', path: '/stocks' },
     { name: 'Markets', icon: <BarChart size={20} />, id: 'markets', path: '/markets' },
     { name: 'Currencies', icon: <DollarSign size={20} />, id: 'currencies', path: '/currencies' },
@@ -123,7 +127,6 @@ const Sidebar = ({ isOpen, toggleSidebar, activePage, setActivePage }) => {
     { name: 'Portfolio', icon: <Briefcase size={20} />, id: 'portfolio', path: '/portfolio' },
     { name: 'Performance', icon: <Activity size={20} />, id: 'performance', path: '/performance' },
     { name: 'Analysis', icon: <LineChart size={20} />, id: 'analysis', path: '/analysis' },
-    { name: 'Headlines', icon: <Newspaper size={20} />, id: 'headlines', path: '/dashboard' }, // News button now goes to dashboard
     { name: 'Explore & Invest', icon: <SlidersHorizontal size={20} />, id: 'explore', path: '/explore' },
     { name: 'Weather', icon: <Cloud size={20} />, id: 'weather', path: '/weather' },
     { name: 'Shopping', icon: <ShoppingCart size={20} />, id: 'shopping', path: '/shopping' },
@@ -227,8 +230,8 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <a href="#" onClick={() => navigate('/weather')} className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
                             <Cloud size={16} className="mr-1" /> Weather
                         </a>
-                        <a href="#" onClick={() => navigate('/dashboard')} className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
-                            <Newspaper size={16} className="mr-1" /> Headlines
+                        <a href="#" onClick={() => navigate('/finance')} className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
+                            <Newspaper size={16} className="mr-1" /> Finance
                         </a>
                         <a href="#" onClick={() => navigate('/shopping')} className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
                             <ShoppingCart size={16} className="mr-1" /> Shopping
@@ -290,6 +293,7 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/weather" element={<WeatherPageContent />} />
                         <Route path="/shopping" element={<ShoppingPageContent />} />
                         <Route path="/explore" element={<ExplorePageContent />} />
+                        <Route path="/finance" element={<FinancePageContent />} />
                         {/* Add a fallback route for unmatched paths */}
                         <Route path="*" element={<HomePageContent />} />
                     </Routes>
@@ -317,5 +321,11 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
 // The actual App component that main.jsx renders
 // This component simply wraps MainAppLayout inside a Router context
 export default function App() {
+    const location = useLocation();
+    if (location.pathname === '/') {
+        // Render home page with no sidebar
+        return <HomePageContent />;
+    }
+    // Render internal app layout (with sidebar) for all other routes
     return <MainAppLayout />;
 }
