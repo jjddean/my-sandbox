@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const HomePageContent = () => {
   const navigate = useNavigate();
+  const [modalCard, setModalCard] = useState(null);
 
   const newsCardsData = [
     {
@@ -152,212 +153,193 @@ const HomePageContent = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 font-sans text-gray-800"
-         style={{ transform: 'scale(0.8)', transformOrigin: 'top center', width: '125%', height: '125%' }}>
-      {/* Top Bar - Search and Icons (Header Part 1) */}
-      <div className="bg-white py-3 px-4 md:px-6 flex items-center justify-between border-b border-gray-200">
-        <div className="flex items-center space-x-4">
-          <img
-            src="https://placehold.co/24x24/0078D4/FFFFFF?text=M"
-            alt="MLN Icon"
-            className="h-6 w-auto cursor-pointer"
-            onClick={() => navigate('/')} // Navigate to home page on click
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/24x24/CCCCCC/555555?text=Icon"; }}
-          />
-          <div className="relative flex items-center bg-gray-100 rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96">
-            <Search size={16} className="mr-2 text-gray-500" />
-            <span>Search or enter web address</span>
-          </div>
+    <div className="min-h-screen bg-gray-100 font-sans text-gray-800">
+      {/* Top Navigation Bar */}
+      <nav className="w-full bg-white border-b border-gray-200 py-3 flex items-center justify-between">
+        <div className="flex items-center space-x-2 ml-0">
+          {/* World/Globe SVG Icon */}
+          <span className="h-8 w-8 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-8 w-8 text-black">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" fill="#fff" />
+              <path stroke="currentColor" strokeWidth="1.5" d="M2 12h20M12 2c2.5 3.5 2.5 16.5 0 20M12 2c-2.5 3.5-2.5 16.5 0 20" />
+            </svg>
+          </span>
+          <span className="font-bold text-xl text-black">1MarketLive®</span>
         </div>
-        <div className="flex items-center space-x-4">
-          {/* New Top Bar Navigation Links - Always visible (no 'hidden sm:flex') */}
-          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
-            <Cloud size={16} className="mr-1" /> Weather
-          </a>
-          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
-            <Briefcase size={16} className="mr-1" /> Marketplace
-          </a>
-          <a href="#" onClick={() => navigate('/dashboard')} className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
-            <Newspaper size={16} className="mr-1" /> Headlines
-          </a>
-          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
-            <SlidersHorizontal size={16} className="mr-1" /> Solutions
-          </a>
-          <a href="#" className="text-gray-700 hover:text-blue-600 text-sm flex items-center">
-            <ShoppingCart size={16} className="mr-1" /> Shopping
-          </a>
-          <Settings size={20} className="text-gray-600 hover:text-gray-900 cursor-pointer" />
-          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-            JD
-          </div>
+        <div className="flex items-center space-x-6 text-gray-700 text-base font-medium">
+          <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">📖</span> Resources</a>
+          <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">⚙️</span> Solutions</a>
+          <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">🛍️</span> Marketplace</a>
+          <a href="#" onClick={() => navigate('/finance')} className="flex items-center hover:text-blue-600"><span className="mr-1">💸</span> Finance</a>
+          <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">ℹ️</span> About</a>
+        </div>
+      </nav>
+
+      {/* Full-width Video Hero/Header Section */}
+      <div className="w-full bg-black relative">
+        <video
+          src="https://www.w3schools.com/html/mov_bbb.mp4" // Replace with your hero video URL
+          className="w-full h-[400px] md:h-[600px] object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white text-center drop-shadow-lg">
+            Featured Content
+          </h1>
         </div>
       </div>
 
-      {/* Full-width Header Image (Header Part 2 - Large Tab Header) */}
-      <div className="bg-gray-200 py-6">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="relative h-64 md:h-96 bg-cover bg-center rounded-lg overflow-hidden"
-               style={{ backgroundImage: "url('https://placehold.co/1200x400/A0A0A0/FFFFFF?text=Your+Main+Header+Image+Here')" }}>
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-white text-center drop-shadow-lg">
-                Featured Content
-              </h1>
+      {/* Full-width 4-Card Row with Modal Expand */}
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-0 mt-8">
+        {newsCardsData.map((card, i) => (
+          <div
+            key={i}
+            className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 cursor-pointer h-72 flex flex-col justify-end"
+            onClick={() => setModalCard(card)}
+          >
+            {card.type === 'video' ? (
+              <video src={card.video} className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted />
+            ) : (
+              <img
+                src={card.image}
+                alt={card.headline}
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x250/CCCCCC/555555?text=Image+Error"; }}
+              />
+            )}
+            <div className="absolute inset-0 bg-black/40"></div>
+            <div className="relative p-4 text-white z-10">
+              <h3 className="text-lg font-bold mb-2 leading-snug">{card.headline}</h3>
+              <div className="flex items-center justify-between text-xs text-gray-300">
+                <div className="flex items-center space-x-1">
+                  {card.source && <span className="font-medium">{card.source}</span>}
+                  {card.time && <span className="text-gray-400">• {card.time}</span>}
+                  {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal for Expanded Card */}
+      {modalCard && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalCard(null)}>
+          <div className="bg-white/40 rounded-lg shadow-lg max-w-2xl w-full p-6 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-modalIn" onClick={e => e.stopPropagation()}>
+            <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl" onClick={() => setModalCard(null)}>&times;</button>
+            {modalCard.type === 'video' ? (
+              <video src={modalCard.video} className="w-full rounded mb-4" controls autoPlay />
+            ) : (
+              <img src={modalCard.image} alt={modalCard.headline} className="w-full rounded mb-4" />
+            )}
+            <h2 className="text-2xl font-bold mb-2">{modalCard.headline}</h2>
+            <p className="text-gray-700 mb-2">{modalCard.description || ''}</p>
+            <div className="flex items-center space-x-2 text-xs text-gray-500">
+              {modalCard.source && <span>{modalCard.source}</span>}
+              {modalCard.time && <span>• {modalCard.time}</span>}
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Main Content Area */}
-      <div className="container mx-auto px-4 md:px-6 py-6">
-        {/* First Media Cards Section (8 cards: 4x2 grid with overlay text) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-8">
-          {newsCardsData.map((card, i) => (
-            <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200">
-              {card.image && (
-                <img
-                  src={card.image}
-                  alt={card.headline}
-                  className="w-full h-64 object-cover"
-                  onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x250/CCCCCC/555555?text=Image+Error"; }}
-                />
-              )}
+      {/* More Top Stories Section */}
+      <div className="w-full mt-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4 px-4">More Top Stories</h2>
+        {/* First row: 2 large cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 px-0">
+          {newMediaCardsData.slice(0, 2).map((card, i) => (
+            <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 h-64 cursor-pointer flex flex-col justify-end">
+              <img
+                src={card.image}
+                alt={card.headline}
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/800x300/CCCCCC/555555?text=Image+Error'; }}
+              />
               <div className="absolute inset-0 bg-black/40"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                <h3 className="text-lg font-bold mb-2 leading-snug">
-                  {card.headline}
-                </h3>
+              <div className="relative p-6 text-white z-10">
+                <h3 className="text-2xl font-bold mb-2 leading-snug">{card.headline}</h3>
                 <div className="flex items-center justify-between text-xs text-gray-300">
                   <div className="flex items-center space-x-1">
                     {card.source && <span className="font-medium">{card.source}</span>}
                     {card.time && <span className="text-gray-400">• {card.time}</span>}
-                    {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    {card.likes > 0 && (
-                      <div className="flex items-center space-x-1">
-                        <ThumbsUp size={14} className="text-gray-300" />
-                        <span>{card.likes}</span>
-                      </div>
-                    )}
-                    {card.comments > 0 && (
-                      <div className="flex items-center space-x-1">
-                        <MessageSquare size={14} className="text-gray-300" />
-                        <span>{card.comments}</span>
-                      </div>
-                    )}
-                    {card.shares > 0 && (
-                      <div className="flex items-center space-x-1">
-                        <Share2 size={14} className="text-gray-300" />
-                        <span>{card.shares}</span>
-                      </div>
-                    )}
-                    <Bookmark size={14} className="text-gray-300 cursor-pointer hover:text-blue-300" />
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* New Section: 6 Media Cards (2 long on top, 4 standard under) */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">More Top Stories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-            {newMediaCardsData.slice(0, 2).map((card, i) => (
-              <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 col-span-1 md:col-span-2">
-                {card.image && (
-                  <img
-                    src={card.image}
-                    alt={card.headline}
-                    className="w-full h-64 object-cover"
-                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/800x300/CCCCCC/555555?text=Image+Error"; }}
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/40"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <h3 className="text-lg font-bold mb-2 leading-snug">
-                    {card.headline}
-                  </h3>
-                  <div className="flex items-center justify-between text-xs text-gray-300">
-                    <div className="flex items-center space-x-1">
-                      {card.source && <span className="font-medium">{card.source}</span>}
-                      {card.time && <span className="text-gray-400">• {card.time}</span>}
-                      {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      {card.likes > 0 && (
-                        <div className="flex items-center space-x-1">
-                          <ThumbsUp size={14} className="text-gray-300" />
-                          <span>{card.likes}</span>
-                        </div>
-                      )}
-                      {card.comments > 0 && (
-                        <div className="flex items-center space-x-1">
-                          <MessageSquare size={14} className="text-gray-300" />
-                          <span>{card.comments}</span>
-                        </div>
-                      )}
-                      {card.shares > 0 && (
-                        <div className="flex items-center space-x-1">
-                          <Share2 size={14} className="text-gray-300" />
-                          <span>{card.shares}</span>
-                        </div>
-                      )}
-                      <Bookmark size={14} className="text-gray-300 cursor-pointer hover:text-blue-300" />
-                    </div>
+        {/* Second row: 4 smaller cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-0">
+          {newMediaCardsData.slice(2, 6).map((card, i) => (
+            <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 h-48 cursor-pointer flex flex-col justify-end">
+              <img
+                src={card.image}
+                alt={card.headline}
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x250/CCCCCC/555555?text=Image+Error'; }}
+              />
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="relative p-4 text-white z-10">
+                <h3 className="text-lg font-bold mb-2 leading-snug">{card.headline}</h3>
+                <div className="flex items-center justify-between text-xs text-gray-300">
+                  <div className="flex items-center space-x-1">
+                    {card.source && <span className="font-medium">{card.source}</span>}
+                    {card.time && <span className="text-gray-400">• {card.time}</span>}
                   </div>
                 </div>
               </div>
-            ))}
-            {newMediaCardsData.slice(2, 6).map((card, i) => (
-              <div key={i + 2} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 col-span-1">
-                {card.image && (
-                  <img
-                    src={card.image}
-                    alt={card.headline}
-                    className="w-full h-64 object-cover"
-                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x250/CCCCCC/555555?text=Image+Error"; }}
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/40"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <h3 className="text-lg font-bold mb-2 leading-snug">
-                    {card.headline}
-                  </h3>
-                  <div className="flex items-center justify-between text-xs text-gray-300">
-                    <div className="flex items-center space-x-1">
-                      {card.source && <span className="font-medium">{card.source}</span>}
-                      {card.time && <span className="text-gray-400">• {card.time}</span>}
-                      {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      {card.likes > 0 && (
-                        <div className="flex items-center space-x-1">
-                          <ThumbsUp size={14} className="text-gray-300" />
-                          <span>{card.likes}</span>
-                        </div>
-                      )}
-                      {card.comments > 0 && (
-                        <div className="flex items-center space-x-1">
-                          <MessageSquare size={14} className="text-gray-300" />
-                          <span>{card.comments}</span>
-                        </div>
-                      )}
-                      {card.shares > 0 && (
-                        <div className="flex items-center space-x-1">
-                          <Share2 size={14} className="text-gray-300" />
-                          <span>{card.shares}</span>
-                        </div>
-                      )}
-                      <Bookmark size={14} className="text-gray-300 cursor-pointer hover:text-blue-300" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Expanded Company Footer */}
+      <footer className="w-full bg-gradient-to-b from-gray-900 to-gray-800 text-gray-200 pt-10 pb-4 mt-12">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div>
+            <div className="flex items-center mb-2">
+              <span className="font-bold text-xl text-purple-400">MLN</span>
+            </div>
+            <p className="text-sm mb-4">Smart Finance Starts Here. Discover the best products, news, and tools for your financial journey.</p>
+          </div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-semibold mb-2">Quick Links</h3>
+            <ul className="space-y-1 text-sm">
+              <li><a href="#" className="hover:underline">Reviews</a></li>
+              <li><a href="#" className="hover:underline">Deals</a></li>
+              <li><a href="#" className="hover:underline">AI Tools</a></li>
+              <li><a href="#" className="hover:underline">Solutions</a></li>
+            </ul>
+          </div>
+          {/* Categories */}
+          <div>
+            <h3 className="font-semibold mb-2">Categories</h3>
+            <ul className="space-y-1 text-sm">
+              <li><a href="#" className="hover:underline">Tech</a></li>
+              <li><a href="#" className="hover:underline">Home</a></li>
+              <li><a href="#" className="hover:underline">Fashion</a></li>
+              <li><a href="#" className="hover:underline">Coupons</a></li>
+            </ul>
+          </div>
+          {/* Contact */}
+          <div>
+            <h3 className="font-semibold mb-2">Contact</h3>
+            <ul className="space-y-1 text-sm">
+              <li><a href="mailto:hello@mln.app" className="hover:underline">hello@mln.app</a></li>
+              <li><a href="tel:+15551234567" className="hover:underline">+1 (555) 123-4567</a></li>
+              <li>London, UK</li>
+            </ul>
+          </div>
+        </div>
+        <div className="container mx-auto px-4 mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+          <div>&copy; {new Date().getFullYear()} MLN. All rights reserved. Smart Finance Starts Here.</div>
+        </div>
+      </footer>
 
       {/* Footer Section */}
       <div className="bg-white border-t border-gray-200 py-4 px-4 md:px-6 flex flex-wrap justify-between items-center text-gray-500 text-xs">
@@ -374,6 +356,15 @@ const HomePageContent = () => {
             </div>
           </div>
       </div>
+      <style jsx>{`
+@keyframes modalIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-modalIn {
+  animation: modalIn 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+`}</style>
     </div>
   );
 };
