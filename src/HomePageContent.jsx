@@ -113,77 +113,53 @@ const HomePageContent = () => {
         <div className="flex items-center space-x-6 text-gray-700 text-sm font-medium">
           <a href="#" className="hover:text-blue-600">Resources</a>
           <a href="#" className="hover:text-blue-600">Solutions</a>
-          <div className="relative">
-            <button
-              className="hover:text-blue-600 focus:outline-none"
-              onClick={() => {
-                setMarketplaceOpen((open) => !open);
-                setFinanceOpen(false);
-              }}
-              onBlur={() => setTimeout(() => setMarketplaceOpen(false), 150)}
-            >
-              Marketplace
-            </button>
-            {marketplaceOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
-                <ul className="py-2">
-                  {categories.map((cat, idx) => (
-                    <li key={cat}>
-                      <button
-                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => {
-                          setMarketplaceOpen(false);
-                          navigate(`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`);
-                        }}
-                      >
-                        {cat}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div className="relative group">
+            <button className="hover:text-blue-600 focus:outline-none">Marketplace</button>
+            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+              <ul className="py-2">
+                {categories.map((cat, idx) => (
+                  <li key={cat}>
+                    <button
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => navigate(`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`)}
+                    >
+                      {cat}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="relative">
-            <button
-              className="hover:text-blue-600 focus:outline-none"
-              onClick={() => {
-                setFinanceOpen((open) => !open);
-                setMarketplaceOpen(false);
-              }}
-              onBlur={() => setTimeout(() => setFinanceOpen(false), 150)}
-            >
-              Finance
-            </button>
-            {financeOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
-                <ul className="py-2">
-                  {[
-                    { name: 'Stocks', route: '/stocks' },
-                    { name: 'Currencies', route: '/currencies' },
-                    { name: 'Markets', route: '/markets' },
-                    { name: 'Crypto', route: '/crypto' },
-                    { name: 'Portfolio', route: '/portfolio' },
-                    { name: 'Performance', route: '/performance' },
-                    { name: 'Analysis', route: '/analysis' },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <button
-                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => {
-                          setFinanceOpen(false);
-                          navigate(item.route);
-                        }}
-                      >
-                        {item.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div className="relative group">
+            <button className="hover:text-blue-600 focus:outline-none">Finance</button>
+            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+              <ul className="py-2">
+                {[
+                  { name: 'Stocks', route: '/stocks' },
+                  { name: 'Currencies', route: '/currencies' },
+                  { name: 'Markets', route: '/markets' },
+                  { name: 'Crypto', route: '/crypto' },
+                  { name: 'Portfolio', route: '/portfolio' },
+                  { name: 'Performance', route: '/performance' },
+                  { name: 'Analysis', route: '/analysis' },
+                ].map((item) => (
+                  <li key={item.name}>
+                    <button
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => navigate(item.route)}
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <a href="#" className="hover:text-blue-600">About</a>
+          <a href="#" className="hover:text-blue-600">Aviator</a>
+          <button className="hover:text-blue-600 p-1" aria-label="Search">
+            <Search size={18} />
+          </button>
         </div>
       </nav>
 
