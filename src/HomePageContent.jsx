@@ -218,7 +218,11 @@ const HomePageContent = () => {
       {/* Modal for Expanded Card */}
       {modalCard && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalCard(null)}>
-          <div className="bg-white/40 rounded-lg shadow-lg max-w-2xl w-full p-6 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-modalIn" onClick={e => e.stopPropagation()}>
+          <div
+            className="rounded-lg shadow-lg max-w-2xl w-full p-6 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-modalIn"
+            style={{ background: 'rgba(243,243,243,0.85)', backdropFilter: 'blur(16px)' }}
+            onClick={e => e.stopPropagation()}
+          >
             <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl" onClick={() => setModalCard(null)}>&times;</button>
             {modalCard.type === 'video' ? (
               <video src={modalCard.video} className="w-full rounded mb-4" controls autoPlay />
