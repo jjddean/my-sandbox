@@ -118,6 +118,8 @@ const HomePageContent = () => {
   const [modalCard, setModalCard] = useState(null);
   const [marketplaceOpen, setMarketplaceOpen] = useState(false);
   const [financeOpen, setFinanceOpen] = useState(false);
+  let marketplaceTimeout = null;
+  let financeTimeout = null;
 
   const categories = [
     'Electronics',
@@ -224,47 +226,59 @@ const HomePageContent = () => {
         <div className="flex items-center space-x-6 text-gray-700 text-sm font-medium">
           <a href="#" className="hover:text-blue-600">Resources</a>
           <a href="#" className="hover:text-blue-600">Solutions</a>
-          <div className="relative group">
+          <div className="relative"
+            onMouseEnter={() => { clearTimeout(marketplaceTimeout); setMarketplaceOpen(true); }}
+            onMouseLeave={() => { marketplaceTimeout = setTimeout(() => setMarketplaceOpen(false), 150); }}
+          >
             <button className="hover:text-blue-600 focus:outline-none">Marketplace</button>
-            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
-              <ul className="py-2">
-                {categories.map((cat, idx) => (
-                  <li key={cat}>
-                    <Link
-                      to={`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`}
-                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                    >
-                      {cat}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {marketplaceOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
+                <ul className="py-2">
+                  {categories.map((cat, idx) => (
+                    <li key={cat}>
+                      <Link
+                        to={`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`}
+                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => setMarketplaceOpen(false)}
+                      >
+                        {cat}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-          <div className="relative group">
+          <div className="relative"
+            onMouseEnter={() => { clearTimeout(financeTimeout); setFinanceOpen(true); }}
+            onMouseLeave={() => { financeTimeout = setTimeout(() => setFinanceOpen(false), 150); }}
+          >
             <button className="hover:text-blue-600 focus:outline-none">Finance</button>
-            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
-              <ul className="py-2">
-                {[
-                  { name: 'Stocks', route: '/stocks' },
-                  { name: 'Currencies', route: '/currencies' },
-                  { name: 'Markets', route: '/markets' },
-                  { name: 'Crypto', route: '/crypto' },
-                  { name: 'Portfolio', route: '/portfolio' },
-                  { name: 'Performance', route: '/performance' },
-                  { name: 'Analysis', route: '/analysis' },
-                ].map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      to={item.route}
-                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {financeOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
+                <ul className="py-2">
+                  {[
+                    { name: 'Stocks', route: '/stocks' },
+                    { name: 'Currencies', route: '/currencies' },
+                    { name: 'Markets', route: '/markets' },
+                    { name: 'Crypto', route: '/crypto' },
+                    { name: 'Portfolio', route: '/portfolio' },
+                    { name: 'Performance', route: '/performance' },
+                    { name: 'Analysis', route: '/analysis' },
+                  ].map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        to={item.route}
+                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => setFinanceOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <a href="#" className="hover:text-blue-600">About</a>
           <button className="hover:text-blue-600 p-1" aria-label="Account" onClick={() => navigate('/login')}>
