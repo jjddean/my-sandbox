@@ -36,6 +36,8 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'; // Import routing hooks and components
 import { Search, Bell, Settings, ChevronDown, ChevronRight, Star, Plus, Menu, LayoutDashboard, TrendingUp, BarChart, DollarSign, Globe, Briefcase, Activity, LineChart, SlidersHorizontal, Cloud, Newspaper, ShoppingCart, Sun, CloudRain, Wind, Droplet, Thermometer, Eye, Gauge, Sunrise, Sunset } from 'lucide-react'; // All necessary icons
 import HomePageContent from './HomePageContent';
+// Import HealthWellbeingProducts from HomePageContent
+import { HealthWellbeingProducts } from './HomePageContent';
 
 // --- PAGE COMPONENTS ---
 
@@ -294,6 +296,7 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/shopping" element={<ShoppingPageContent />} />
                         <Route path="/explore" element={<ExplorePageContent />} />
                         <Route path="/finance" element={<FinancePageContent />} />
+                        <Route path="/category/health-wellbeing" element={<HealthWellbeingProducts />} />
                         {/* Add a fallback route for unmatched paths */}
                         <Route path="*" element={<HomePageContent />} />
                     </Routes>
