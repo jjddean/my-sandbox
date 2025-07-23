@@ -113,11 +113,16 @@ const HomePageContent = () => {
           <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">⚙️</span> Solutions</a>
           <div className="relative group">
             <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">🛍️</span> Marketplace</a>
-            <div className="absolute left-0 mt-2 w-48 max-h-64 overflow-y-auto bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-opacity duration-200 z-50">
+            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-opacity duration-200 z-50">
               <ul className="py-2">
                 {categories.map((cat, idx) => (
                   <li key={cat}>
-                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">{cat}</a>
+                    <button
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => navigate(`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`)}
+                    >
+                      {cat}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -127,11 +132,24 @@ const HomePageContent = () => {
             <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">💸</span> Finance</a>
             <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-opacity duration-200 z-50">
               <ul className="py-2">
-                <li><a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Overview</a></li>
-                <li><a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Investments</a></li>
-                <li><a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Loans</a></li>
-                <li><a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Tools</a></li>
-                <li><a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Reports</a></li>
+                {[
+                  { name: 'Stocks', route: '/stocks' },
+                  { name: 'Currencies', route: '/currencies' },
+                  { name: 'Markets', route: '/markets' },
+                  { name: 'Crypto', route: '/crypto' },
+                  { name: 'Portfolio', route: '/portfolio' },
+                  { name: 'Performance', route: '/performance' },
+                  { name: 'Analysis', route: '/analysis' },
+                ].map((item) => (
+                  <li key={item.name}>
+                    <button
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => navigate(item.route)}
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
