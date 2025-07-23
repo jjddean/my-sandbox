@@ -212,16 +212,17 @@ const HomePageContent = () => {
           <a href="#" className="hover:text-blue-600">Solutions</a>
           <div className="relative group">
             <button className="hover:text-blue-600 focus:outline-none">Marketplace</button>
-            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
               <ul className="py-2">
                 {categories.map((cat, idx) => (
                   <li key={cat}>
-                    <button
+                    <a
+                      href="#"
                       className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => navigate(`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`)}
+                      onClick={e => {e.preventDefault(); navigate(`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`);}}
                     >
                       {cat}
-                    </button>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -229,7 +230,7 @@ const HomePageContent = () => {
           </div>
           <div className="relative group">
             <button className="hover:text-blue-600 focus:outline-none">Finance</button>
-            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
               <ul className="py-2">
                 {[
                   { name: 'Stocks', route: '/stocks' },
@@ -241,12 +242,13 @@ const HomePageContent = () => {
                   { name: 'Analysis', route: '/analysis' },
                 ].map((item) => (
                   <li key={item.name}>
-                    <button
+                    <a
+                      href="#"
                       className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => navigate(item.route)}
+                      onClick={e => {e.preventDefault(); navigate(item.route);}}
                     >
                       {item.name}
-                    </button>
+                    </a>
                   </li>
                 ))}
               </ul>
