@@ -1,6 +1,117 @@
 import React, { useState } from 'react';
 import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal, User } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+
+// Health & Wellbeing Products Data
+const healthProducts = [
+  {
+    name: "Ashwagandha & Magnesium",
+    url: "https://www.amazon.com/New-Chapter-Ashwagandha-Supplement-Absorption/dp/B085V62B83?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Vb6FQwQwL._AC_SL1500_.jpg",
+    description: "High-absorption ashwagandha and magnesium for stress relief and relaxation."
+  },
+  {
+    name: "Mushroom Coffee Blend",
+    url: "https://www.amazon.com/RYZE-Mushroom-Adaptogenic-Mushrooms-Digestion/dp/B0DJWV4BQ1?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "Adaptogenic mushroom coffee blend for energy and digestion."
+  },
+  {
+    name: "Adaptogenic Energy Supplement",
+    url: "https://www.amazon.com/plnt-Adaptogen-Ingredients-Vitality-Vegetarian/dp/B01N9H8KY6?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "Plant-based adaptogen supplement for vitality and energy."
+  },
+  {
+    name: "Stress Relief Herbal Tea",
+    url: "https://www.amazon.com/Yogi-Tea-Tension-Promotes-Relaxation/dp/B0009F3QKW?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "Herbal tea blend to promote relaxation and relieve tension."
+  },
+  {
+    name: "Sleep Support Melatonin",
+    url: "https://www.amazon.com/Natrol-Melatonin-10Mg-Gummy-Count/dp/B079TD7HG2?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "Melatonin gummies for natural sleep support."
+  },
+  {
+    name: "CBD-Infused Massage Oil",
+    url: "https://www.amazon.com/Provocatife-Infused-Massage-fl-oz-Bottle/dp/B0D2PH1GVB?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "CBD-infused massage oil for relaxation and muscle relief."
+  },
+  {
+    name: "Infrared Sauna Blanket",
+    url: "https://www.amazon.com/infrared-sauna-blanket/s?k=infrared+sauna+blanket&tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "Infrared sauna blanket for detox and wellness."
+  },
+  {
+    name: "CBD Gummies for Stress",
+    url: "https://www.amazon.com/Gummies-Stress-Relaxation-Anxiety-Relaxing/dp/B08CKF6DQC?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "CBD gummies to help with stress and relaxation."
+  },
+  {
+    name: "Essential Oil Diffuser",
+    url: "https://www.amazon.com/Ultimate-Aromatherapy-Diffuser-Essential-Oil/dp/B07JD2GDKN?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "Aromatherapy essential oil diffuser for home wellness."
+  },
+  {
+    name: "Aromatherapy Massage Set",
+    url: "https://www.amazon.com/Massage-Oil-Kit-Set-Eucalyptus/dp/B0D2XHCYJ5?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
+    description: "Aromatherapy massage oil kit for relaxation and stress relief."
+  }
+];
+
+function HealthWellbeingProducts() {
+  const [modalProduct, setModalProduct] = useState(null);
+  return (
+    <div className="min-h-screen bg-gray-100 py-8">
+      <h1 className="text-3xl font-bold text-center mb-8">Health & Wellbeing Products</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {healthProducts.map((product, i) => (
+          <div key={i} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center cursor-pointer hover:shadow-lg transition" onClick={() => setModalProduct(product)}>
+            <img src={product.image} alt={product.name} className="w-full h-40 object-cover rounded mb-3" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
+            <h2 className="text-lg font-semibold mb-2 text-center">{product.name}</h2>
+            <button className="mt-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={e => {e.stopPropagation(); window.open(product.url, '_blank');}}>Buy on Amazon</button>
+          </div>
+        ))}
+      </div>
+      {modalProduct && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalProduct(null)}>
+          <div
+            className="rounded-lg shadow-lg max-w-md w-full p-6 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-modalIn"
+            style={{ background: 'rgba(243,243,243,0.85)', backdropFilter: 'blur(16px)' }}
+            onClick={e => e.stopPropagation()}
+          >
+            <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl" onClick={() => setModalProduct(null)}>&times;</button>
+            <img src={modalProduct.image} alt={modalProduct.name} className="w-full rounded mb-4" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
+            <h2 className="text-2xl font-bold mb-2">{modalProduct.name}</h2>
+            <p className="text-gray-700 mb-4">{modalProduct.description}</p>
+            <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 w-full" onClick={() => window.open(modalProduct.url, '_blank')}>Buy on Amazon</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CategoryPlaceholder() {
+  const { category } = useParams();
+  // Format category name for display
+  const displayName = category
+    ? category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+    : 'Category';
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <h1 className="text-3xl font-bold mb-4">{displayName}</h1>
+      <p className="text-lg text-gray-600">This page is under construction. Coming soon!</p>
+    </div>
+  );
+}
 
 const HomePageContent = () => {
   const navigate = useNavigate();
@@ -96,118 +207,6 @@ const HomePageContent = () => {
     },
   ];
 
-  // Health & Wellbeing Products Data
-  const healthProducts = [
-    {
-      name: "Ashwagandha & Magnesium",
-      url: "https://www.amazon.com/New-Chapter-Ashwagandha-Supplement-Absorption/dp/B085V62B83?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Vb6FQwQwL._AC_SL1500_.jpg",
-      description: "High-absorption ashwagandha and magnesium for stress relief and relaxation."
-    },
-    {
-      name: "Mushroom Coffee Blend",
-      url: "https://www.amazon.com/RYZE-Mushroom-Adaptogenic-Mushrooms-Digestion/dp/B0DJWV4BQ1?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/71Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "Adaptogenic mushroom coffee blend for energy and digestion."
-    },
-    {
-      name: "Adaptogenic Energy Supplement",
-      url: "https://www.amazon.com/plnt-Adaptogen-Ingredients-Vitality-Vegetarian/dp/B01N9H8KY6?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/71Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "Plant-based adaptogen supplement for vitality and energy."
-    },
-    {
-      name: "Stress Relief Herbal Tea",
-      url: "https://www.amazon.com/Yogi-Tea-Tension-Promotes-Relaxation/dp/B0009F3QKW?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "Herbal tea blend to promote relaxation and relieve tension."
-    },
-    {
-      name: "Sleep Support Melatonin",
-      url: "https://www.amazon.com/Natrol-Melatonin-10Mg-Gummy-Count/dp/B079TD7HG2?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "Melatonin gummies for natural sleep support."
-    },
-    {
-      name: "CBD-Infused Massage Oil",
-      url: "https://www.amazon.com/Provocatife-Infused-Massage-fl-oz-Bottle/dp/B0D2PH1GVB?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "CBD-infused massage oil for relaxation and muscle relief."
-    },
-    {
-      name: "Infrared Sauna Blanket",
-      url: "https://www.amazon.com/infrared-sauna-blanket/s?k=infrared+sauna+blanket&tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "Infrared sauna blanket for detox and wellness."
-    },
-    {
-      name: "CBD Gummies for Stress",
-      url: "https://www.amazon.com/Gummies-Stress-Relaxation-Anxiety-Relaxing/dp/B08CKF6DQC?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "CBD gummies to help with stress and relaxation."
-    },
-    {
-      name: "Essential Oil Diffuser",
-      url: "https://www.amazon.com/Ultimate-Aromatherapy-Diffuser-Essential-Oil/dp/B07JD2GDKN?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "Aromatherapy essential oil diffuser for home wellness."
-    },
-    {
-      name: "Aromatherapy Massage Set",
-      url: "https://www.amazon.com/Massage-Oil-Kit-Set-Eucalyptus/dp/B0D2XHCYJ5?tag=1mlaffiliates-20",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-      description: "Aromatherapy massage oil kit for relaxation and stress relief."
-    }
-  ];
-
-  function HealthWellbeingProducts() {
-    const [modalProduct, setModalProduct] = useState(null);
-    return (
-      <div className="min-h-screen bg-gray-100 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Health & Wellbeing Products</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {healthProducts.map((product, i) => (
-            <div key={i} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center cursor-pointer hover:shadow-lg transition" onClick={() => setModalProduct(product)}>
-              <img src={product.image} alt={product.name} className="w-full h-40 object-cover rounded mb-3" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
-              <h2 className="text-lg font-semibold mb-2 text-center">{product.name}</h2>
-              <button className="mt-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={e => {e.stopPropagation(); window.open(product.url, '_blank');}}>Buy on Amazon</button>
-            </div>
-          ))}
-        </div>
-        {modalProduct && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalProduct(null)}>
-            <div
-              className="rounded-lg shadow-lg max-w-md w-full p-6 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-modalIn"
-              style={{ background: 'rgba(243,243,243,0.85)', backdropFilter: 'blur(16px)' }}
-              onClick={e => e.stopPropagation()}
-            >
-              <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl" onClick={() => setModalProduct(null)}>&times;</button>
-              <img src={modalProduct.image} alt={modalProduct.name} className="w-full rounded mb-4" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
-              <h2 className="text-2xl font-bold mb-2">{modalProduct.name}</h2>
-              <p className="text-gray-700 mb-4">{modalProduct.description}</p>
-              <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 w-full" onClick={() => window.open(modalProduct.url, '_blank')}>Buy on Amazon</button>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  // Category Placeholder for unbuilt category pages
-  function CategoryPlaceholder() {
-    const { category } = useParams();
-    // Format category name for display
-    const displayName = category
-      ? category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
-      : 'Category';
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-        <h1 className="text-3xl font-bold mb-4">{displayName}</h1>
-        <p className="text-lg text-gray-600">This page is under construction. Coming soon!</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-gray-100 font-sans text-gray-800">
       {/* Top Navigation Bar */}
@@ -231,13 +230,12 @@ const HomePageContent = () => {
               <ul className="py-2">
                 {categories.map((cat, idx) => (
                   <li key={cat}>
-                    <a
-                      href="#"
+                    <Link
+                      to={`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`}
                       className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                      onClick={e => {e.preventDefault(); navigate(`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`);}}
                     >
                       {cat}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -257,13 +255,12 @@ const HomePageContent = () => {
                   { name: 'Analysis', route: '/analysis' },
                 ].map((item) => (
                   <li key={item.name}>
-                    <a
-                      href="#"
+                    <Link
+                      to={item.route}
                       className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                      onClick={e => {e.preventDefault(); navigate(item.route);}}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
