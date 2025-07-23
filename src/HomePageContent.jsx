@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal } from 'lucide-react';
+import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const HomePageContent = () => {
@@ -156,7 +156,9 @@ const HomePageContent = () => {
             </div>
           </div>
           <a href="#" className="hover:text-blue-600">About</a>
-          <a href="#" className="hover:text-blue-600">Aviator</a>
+          <button className="hover:text-blue-600 p-1" aria-label="Account" onClick={() => navigate('/login')}>
+            <User size={18} />
+          </button>
           <button className="hover:text-blue-600 p-1" aria-label="Search">
             <Search size={18} />
           </button>
