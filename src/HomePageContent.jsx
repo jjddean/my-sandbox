@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal, User } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const HomePageContent = () => {
   const navigate = useNavigate();
@@ -189,6 +189,21 @@ const HomePageContent = () => {
             </div>
           </div>
         )}
+      </div>
+    );
+  }
+
+  // Category Placeholder for unbuilt category pages
+  function CategoryPlaceholder() {
+    const { category } = useParams();
+    // Format category name for display
+    const displayName = category
+      ? category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+      : 'Category';
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+        <h1 className="text-3xl font-bold mb-4">{displayName}</h1>
+        <p className="text-lg text-gray-600">This page is under construction. Coming soon!</p>
       </div>
     );
   }
@@ -462,4 +477,5 @@ const HomePageContent = () => {
   );
 };
 
+export { HealthWellbeingProducts, CategoryPlaceholder };
 export default HomePageContent; 
