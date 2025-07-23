@@ -156,7 +156,7 @@ const HomePageContent = () => {
     <div className="min-h-screen bg-gray-100 font-sans text-gray-800">
       {/* Top Navigation Bar */}
       <nav className="w-full bg-white border-b border-gray-200 py-3 flex items-center justify-between">
-        <div className="flex items-center space-x-2 ml-0">
+        <div className="flex items-center space-x-2 ml-2"> {/* Changed ml-0 to ml-2 for slight indent */}
           {/* World/Globe SVG Icon */}
           <span className="h-8 w-8 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-8 w-8 text-black">
@@ -164,7 +164,7 @@ const HomePageContent = () => {
               <path stroke="currentColor" strokeWidth="1.5" d="M2 12h20M12 2c2.5 3.5 2.5 16.5 0 20M12 2c-2.5 3.5-2.5 16.5 0 20" />
             </svg>
           </span>
-          <span className="font-bold text-xl text-black">1MarketLive®</span>
+          <span className="font-bold text-xl text-black">1MarketLive®</span> {/* Removed space between 1 and MarketLive */}
         </div>
         <div className="flex items-center space-x-6 text-gray-700 text-base font-medium">
           <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">📖</span> Resources</a>
