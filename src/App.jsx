@@ -297,7 +297,7 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/explore" element={<ExplorePageContent />} />
                         <Route path="/finance" element={<FinancePageContent />} />
                         <Route path="/category/health-wellbeing" element={<HealthWellbeingProducts />} />
-                        <Route path="/category/:category" element={<CategoryPlaceholder />} />
+                        <Route path="/category/:category" element={<CategoryPlaceholder key={window.location.pathname} />} />
                         {/* Add a fallback route for unmatched paths */}
                         <Route path="*" element={<HomePageContent />} />
                     </Routes>
