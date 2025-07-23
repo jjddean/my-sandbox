@@ -6,88 +6,30 @@ const HomePageContent = () => {
   const navigate = useNavigate();
   const [modalCard, setModalCard] = useState(null);
 
-  const newsCardsData = [
-    {
-      type: 'article',
-      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+1',
-      headline: 'Dame Prue Leith sets record on Great British Bake Off exit after quitting celebrity...',
-      source: 'Mirror',
-      time: '20h ago',
-      likes: 6,
-      comments: 3,
-      shares: 0,
-    },
-    {
-      type: 'article',
-      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+2',
-      headline: 'Josie Gibson lands primetime ITV series with dream home makeover',
-      source: 'Prima UK',
-      time: '18h ago',
-      likes: 1,
-      comments: 0,
-      shares: 0,
-    },
-    {
-      type: 'sponsored',
-      image: 'https://placehold.co/400x250/FFD700/000000?text=LV+Ring',
-      headline: 'Pre-loved Louis Vuitton Gold Louis Vuitton Monogram Ring - AB',
-      source: 'BrandAlley.co.uk',
-      time: 'Sponsored',
-      likes: 0,
-      comments: 0,
-      shares: 0,
-    },
-    {
-      type: 'article',
-      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+4',
-      headline: 'Trump calls Fed chair \'a numbskull\' who \'makes it difficult for people to buy a...',
-      source: 'The Guardian',
-      time: '19h ago',
-      likes: 8,
-      comments: 11,
-      shares: 0,
-    },
-    {
-      type: 'article',
-      image: 'https://placehold.co/400x250/B22222/FFFFFF?text=Stock+Market',
-      headline: 'Get ready for a US stock market crash?',
-      source: 'The Motley Fool',
-      time: '48m ago',
-      likes: 0,
-      comments: 0,
-      shares: 0,
-    },
-    {
-      type: 'article',
-      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+6',
-      headline: 'End Of Season Sale Now Live - Up To 50% Off Selected Lines',
-      source: 'crewclothing.co.uk',
-      time: 'Sponsored',
-      likes: 0,
-      comments: 0,
-      shares: 0,
-    },
-    {
-      type: 'article',
-      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+7',
-      headline: '\'Still not sure\': Shane Lowry casts doubt over two-shot penalty decision at Open',
-      source: 'The Guardian',
-      time: '9h ago',
-      likes: 0,
-      comments: 0,
-      shares: 0,
-    },
-    {
-      type: 'article',
-      image: 'https://placehold.co/400x250/808080/FFFFFF?text=News+Image+8',
-      headline: 'Call the Midwife icon recalls \'uncomfortable\' experience on BBC Strictly',
-      source: 'Daily Express',
-      time: '5h ago',
-      likes: 0,
-      comments: 0,
-      shares: 0,
-    },
+  const categories = [
+    'Electronics',
+    'Fashion',
+    'Beauty',
+    'Health & Wellbeing',
+    'Home & Kitchen',
+    'Toys & Games',
+    'Sports & Outdoors',
+    'Automotive',
+    'Tools & DIY',
+    'Office & Tech',
   ];
+
+  // Use the first 8 categories for the media cards
+  const newsCardsData = categories.slice(0, 8).map((cat, i) => ({
+    type: 'category',
+    image: `https://placehold.co/400x250?text=${encodeURIComponent(cat)}`,
+    headline: cat,
+    source: '',
+    time: '',
+    likes: 0,
+    comments: 0,
+    shares: 0,
+  }));
 
   const newMediaCardsData = [
     {
@@ -169,7 +111,18 @@ const HomePageContent = () => {
         <div className="flex items-center space-x-6 text-gray-700 text-base font-medium">
           <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">📖</span> Resources</a>
           <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">⚙️</span> Solutions</a>
-          <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">🛍️</span> Marketplace</a>
+          <div className="relative group">
+            <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">🛍️</span> Marketplace</a>
+            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-opacity duration-200 z-50">
+              <ul className="py-2">
+                {categories.map((cat, idx) => (
+                  <li key={cat}>
+                    <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">{cat}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
           <a href="#" onClick={() => navigate('/finance')} className="flex items-center hover:text-blue-600"><span className="mr-1">💸</span> Finance</a>
           <a href="#" className="flex items-center hover:text-blue-600"><span className="mr-1">ℹ️</span> About</a>
         </div>
