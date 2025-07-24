@@ -113,6 +113,15 @@ function CategoryPlaceholder() {
   );
 }
 
+function slugifyCategory(cat) {
+  return cat
+    .toLowerCase()
+    .replace(/\s*&\s*/g, '-') // replace ' & ' with '-'
+    .replace(/\s+/g, '-')      // replace spaces with '-'
+    .replace(/-+/g, '-')        // collapse multiple dashes
+    .replace(/[^a-z0-9-]/g, ''); // remove non-alphanumeric except dash
+}
+
 const HomePageContent = () => {
   const navigate = useNavigate();
   const [modalCard, setModalCard] = useState(null);
@@ -237,7 +246,7 @@ const HomePageContent = () => {
                   {categories.map((cat, idx) => (
                     <li key={cat}>
                       <Link
-                        to={`/category/${cat.toLowerCase().replace(/\s|&/g, '-')}`}
+                        to={`/category/${slugifyCategory(cat)}`}
                         className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                         onClick={() => setMarketplaceOpen(false)}
                       >
