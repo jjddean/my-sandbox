@@ -326,11 +326,44 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
 // The actual App component that main.jsx renders
 // This component simply wraps MainAppLayout inside a Router context
 export default function App() {
-    const location = useLocation();
-    if (location.pathname === '/') {
-        // Render home page with no sidebar
-        return <HomePageContent />;
-    }
-    // Render internal app layout (with sidebar) for all other routes
+  const location = useLocation();
+  // List of finance-related routes that should use MainAppLayout
+  const financeRoutes = [
+    '/finance',
+    '/stocks',
+    '/currencies',
+    '/markets',
+    '/crypto',
+    '/portfolio',
+    '/performance',
+    '/analysis',
+    '/headlines',
+    '/weather',
+    '/shopping',
+    '/explore',
+    '/dashboard',
+  ];
+  // If the current path is a finance route, use MainAppLayout
+  if (financeRoutes.includes(location.pathname)) {
     return <MainAppLayout />;
+  }
+  // If home or any category/product page, render plain
+  if (
+    location.pathname === '/' ||
+    location.pathname.startsWith('/category/')
+  ) {
+    if (location.pathname === '/') {
+      return <HomePageContent />;
+    }
+    if (location.pathname === '/category/health-wellbeing') {
+      return <HealthWellbeingProducts />;
+    }
+    if (location.pathname === '/category/beauty') {
+      return <BeautyProducts />;
+    }
+    // fallback for other categories
+    return <CategoryPlaceholder key={location.pathname} />;
+  }
+  // Default to MainAppLayout for any other route
+  return <MainAppLayout />;
 }
