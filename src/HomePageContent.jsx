@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal, User } from 'lucide-react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
@@ -66,37 +66,138 @@ const healthProducts = [
   }
 ];
 
-function HealthWellbeingProducts() {
+function CategoryProductPage({ title, products }) {
   const [modalProduct, setModalProduct] = useState(null);
+  const [search, setSearch] = useState('');
+  const filteredProducts = products.filter(p =>
+    p.name.toLowerCase().includes(search.toLowerCase())
+  );
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Health & Wellbeing Products</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-        {healthProducts.map((product, i) => (
-          <div key={i} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center cursor-pointer hover:shadow-lg transition" onClick={() => setModalProduct(product)}>
-            <img src={product.image} alt={product.name} className="w-full h-40 object-cover rounded mb-3" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
-            <h2 className="text-lg font-semibold mb-2 text-center">{product.name}</h2>
-            <button className="mt-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={e => {e.stopPropagation(); window.open(product.url, '_blank');}}>Buy on Amazon</button>
-          </div>
-        ))}
-      </div>
-      {modalProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalProduct(null)}>
-          <div
-            className="rounded-lg shadow-lg max-w-md w-full p-6 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-modalIn"
-            style={{ background: 'rgba(243,243,243,0.85)', backdropFilter: 'blur(16px)' }}
-            onClick={e => e.stopPropagation()}
-          >
-            <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl" onClick={() => setModalProduct(null)}>&times;</button>
-            <img src={modalProduct.image} alt={modalProduct.name} className="w-full rounded mb-4" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
-            <h2 className="text-2xl font-bold mb-2">{modalProduct.name}</h2>
-            <p className="text-gray-700 mb-4">{modalProduct.description}</p>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 w-full" onClick={() => window.open(modalProduct.url, '_blank')}>Buy on Amazon</button>
-          </div>
+    <div className="min-h-screen bg-gray-100">
+      {/* Top Navbar */}
+      <nav className="w-full bg-white border-b border-gray-200 py-2 px-4 flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <span className="font-bold text-lg text-blue-700">MLN</span>
+          <span className="text-base font-semibold text-gray-700">{title}</span>
         </div>
-      )}
+        <div className="flex-1 flex justify-center">
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search products..."
+            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring"
+          />
+        </div>
+        <div className="flex items-center space-x-4">
+          <button className="hover:text-blue-600" aria-label="Cart">
+            <ShoppingCart size={22} />
+          </button>
+          <button className="hover:text-blue-600" aria-label="Shop">
+            <span className="font-semibold">Shop</span>
+          </button>
+        </div>
+      </nav>
+      {/* Product Grid */}
+      <div className="py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {filteredProducts.map((product, i) => (
+            <div key={i} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center cursor-pointer hover:shadow-lg transition" onClick={() => setModalProduct(product)}>
+              <img src={product.image} alt={product.name} className="w-full h-40 object-cover rounded mb-3" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
+              <h2 className="text-base font-semibold mb-2 text-center">{product.name}</h2>
+              <button className="mt-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={e => {e.stopPropagation(); window.open(product.url, '_blank');}}>Buy on Amazon</button>
+            </div>
+          ))}
+        </div>
+        {modalProduct && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalProduct(null)}>
+            <div
+              className="rounded-lg shadow-lg max-w-md w-full p-6 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-modalIn"
+              style={{ background: 'rgba(243,243,243,0.85)', backdropFilter: 'blur(16px)' }}
+              onClick={e => e.stopPropagation()}
+            >
+              <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl" onClick={() => setModalProduct(null)}>&times;</button>
+              <img src={modalProduct.image} alt={modalProduct.name} className="w-full rounded mb-4" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
+              <h2 className="text-2xl font-bold mb-2">{modalProduct.name}</h2>
+              <p className="text-gray-700 mb-4">{modalProduct.description}</p>
+              <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 w-full" onClick={() => window.open(modalProduct.url, '_blank')}>Buy on Amazon</button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
+}
+
+const beautyProducts = [
+  {
+    name: "Medicube One Day Exosome Shot 2000 Serum",
+    url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Medicube+Exosome+Shot+2000+Serum",
+    description: "Medicube One Day Exosome Shot 2000 Serum."
+  },
+  {
+    name: "BRUUN SD Salmon DNA PDRN Ampoule",
+    url: "https://www.amazon.com/BR%C3%9CUN-SD-Control-Needling-Microneedling/dp/B08ZYXPGZJ?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=BRUUN+SD+Salmon+DNA+PDRN+Ampoule",
+    description: "BRUUN SD Salmon DNA PDRN Ampoule."
+  },
+  {
+    name: "TOSOWOONG Pink Peptide 12 PDRN Serum",
+    url: "https://www.amazon.com/TOSOWOONG-Peptides-Niacinamide-Hydrating-Moisturizing/dp/B0DRJX22GS?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=TOSOWOONG+Pink+Peptide+12+PDRN+Serum",
+    description: "TOSOWOONG Pink Peptide 12 PDRN Serum."
+  },
+  {
+    name: "Medicube Collagen Overnight Wrapping Mask",
+    url: "https://www.amazon.com/Medicube-Collagen-Wrapping-Elasticity-Hydration/dp/B0BRMYHMS5?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Medicube+Collagen+Overnight+Wrapping+Mask",
+    description: "Medicube Collagen Overnight Wrapping Mask."
+  },
+  {
+    name: "100 Dalton Ultra-Low Bio Collagen Gel Mask",
+    url: "https://www.amazon.com/Korean-Collagen-Face-Mask-Overnight/dp/B0DWFYGN33?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=100+Dalton+Ultra-Low+Bio+Collagen+Gel+Mask",
+    description: "100 Dalton Ultra-Low Bio Collagen Gel Mask."
+  },
+  {
+    name: "Medicube Zero Exosome Shot Duo",
+    url: "https://www.amazon.com/medicube-Zero-Exosome-Shot-2000/dp/B0DM4Y4HFF?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Medicube+Zero+Exosome+Shot+Duo",
+    description: "Medicube Zero Exosome Shot Duo."
+  },
+  {
+    name: "Fastaid 7-in-1 LED Face & Neck Massager",
+    url: "https://www.amazon.com/Fastaid-Red-Light-Therapy-Face-Therapy-Massager/dp/B0C46HHJJZ?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Fastaid+7-in-1+LED+Face+%26+Neck+Massager",
+    description: "Fastaid 7-in-1 LED Face & Neck Massager."
+  },
+  {
+    name: "Anyork LED Facial Roller Massager",
+    url: "https://www.amazon.com/Facial-Massage-Dual-Head-Therapy-Electric/dp/B0DTFBSP1S?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Anyork+LED+Facial+Roller+Massager",
+    description: "Anyork LED Facial Roller Massager."
+  },
+  {
+    name: "Medicube Salmon DNA PDRN Pink One Day Serum",
+    url: "https://www.amazon.com/medicube-Intensive-Collagen-Glutathione-Hyaluronic/dp/B0DBF65JYY?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Medicube+Salmon+DNA+PDRN+Pink+One+Day+Serum",
+    description: "Medicube Salmon DNA PDRN Pink One Day Serum."
+  },
+  {
+    name: "Medicube Kojic Acid Turmeric Wrapping Mask",
+    url: "https://www.amazon.com/medicube-Kojic-Turmeric-Overnight-Wrapping/dp/B0DRNR67MJ?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Medicube+Kojic+Acid+Turmeric+Wrapping+Mask",
+    description: "Medicube Kojic Acid Turmeric Wrapping Mask."
+  }
+];
+
+function BeautyProducts() {
+  return <CategoryProductPage title="Beauty Products" products={beautyProducts} />;
+}
+
+function HealthWellbeingProducts() {
+  return <CategoryProductPage title="Health & Wellbeing Products" products={healthProducts} />;
 }
 
 function CategoryPlaceholder() {
@@ -120,6 +221,78 @@ function slugifyCategory(cat) {
     .replace(/\s+/g, '-')      // replace spaces with '-'
     .replace(/-+/g, '-')        // collapse multiple dashes
     .replace(/[^a-z0-9-]/g, ''); // remove non-alphanumeric except dash
+}
+
+// Example: ProductDetailPage for a single product (use first beauty product for now)
+function ProductDetailPage({ product }) {
+  // Example fallback product if none provided
+  product = product || {
+    name: "Medicube One Day Exosome Shot 2000 Serum",
+    url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Medicube+Exosome+Shot+2000+Serum",
+    description: "Medicube One Day Exosome Shot 2000 Serum. High-absorption exosome serum for beauty and skincare.",
+    price: 49.99,
+    currency: 'USD',
+  };
+
+  // Stripe/PayPal placeholder handlers
+  function handleStripeCheckout() {
+    alert('Stripe Checkout would be triggered here.');
+  }
+  function handlePayPalCheckout() {
+    alert('PayPal Checkout would be triggered here.');
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Top Navbar */}
+      <nav className="w-full bg-white border-b border-gray-200 py-2 px-4 flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <span className="font-bold text-lg text-blue-700">MLN</span>
+          <span className="text-base font-semibold text-gray-700">{product.name}</span>
+        </div>
+        <div className="flex-1 flex justify-center">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring"
+          />
+        </div>
+        <div className="flex items-center space-x-4">
+          <button className="hover:text-blue-600" aria-label="Cart">
+            <ShoppingCart size={22} />
+          </button>
+          <button className="hover:text-blue-600" aria-label="Shop">
+            <span className="font-semibold">Shop</span>
+          </button>
+        </div>
+      </nav>
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Product Image */}
+          <div className="flex flex-col items-center">
+            <img src={product.image} alt={product.name} className="w-full max-w-xs rounded-lg shadow mb-4" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
+          </div>
+          {/* Product Details */}
+          <div className="space-y-6">
+            <h1 className="text-2xl font-bold text-black mb-2">{product.name}</h1>
+            <p className="text-gray-600 mb-4">{product.description}</p>
+            <p className="text-xl font-bold mb-4">${product.price} {product.currency}</p>
+            <div className="space-y-3 flex flex-col sm:flex-row sm:space-y-0 sm:space-x-2">
+              <button className="flex-1 bg-blue-600 text-white py-2 rounded text-sm font-medium hover:bg-blue-700" onClick={() => window.open(product.url, '_blank')}>Buy on Amazon</button>
+              <button className="flex-1 bg-black text-white py-2 rounded text-sm font-medium hover:bg-gray-800" onClick={handleStripeCheckout}>Stripe</button>
+              <button className="flex-1 bg-yellow-400 text-black py-2 rounded text-sm font-medium hover:bg-yellow-500" onClick={handlePayPalCheckout}>PayPal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const HomePageContent = () => {
@@ -497,5 +670,5 @@ const HomePageContent = () => {
   );
 };
 
-export { HealthWellbeingProducts, CategoryPlaceholder };
+export { HealthWellbeingProducts, CategoryPlaceholder, BeautyProducts, CategoryProductPage, ProductDetailPage };
 export default HomePageContent; 

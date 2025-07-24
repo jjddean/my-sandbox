@@ -33,11 +33,11 @@
 // ---------------------------------------------------
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'; // Import routing hooks and components
+import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'; // Import routing hooks and components
 import { Search, Bell, Settings, ChevronDown, ChevronRight, Star, Plus, Menu, LayoutDashboard, TrendingUp, BarChart, DollarSign, Globe, Briefcase, Activity, LineChart, SlidersHorizontal, Cloud, Newspaper, ShoppingCart, Sun, CloudRain, Wind, Droplet, Thermometer, Eye, Gauge, Sunrise, Sunset } from 'lucide-react'; // All necessary icons
 import HomePageContent from './HomePageContent';
 // Import HealthWellbeingProducts from HomePageContent
-import { HealthWellbeingProducts, CategoryPlaceholder, BeautyProducts } from './HomePageContent';
+import { HealthWellbeingProducts, CategoryPlaceholder, BeautyProducts, CategoryProductPage, ProductDetailPage } from './HomePageContent';
 
 // --- PAGE COMPONENTS ---
 
@@ -299,6 +299,7 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/category/health-wellbeing" element={<HealthWellbeingProducts />} />
                         <Route path="/category/beauty" element={<BeautyProducts />} />
                         <Route path="/category/:category" element={<CategoryPlaceholder key={window.location.pathname} />} />
+                        <Route path="/product/:slug" element={<ProductDetailRoute />} />
                         {/* Add a fallback route for unmatched paths */}
                         <Route path="*" element={<HomePageContent />} />
                     </Routes>
@@ -322,6 +323,20 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
         </div>
     );
 };
+
+function ProductDetailRoute() {
+  const { slug } = useParams();
+  // Example: use the first beauty product for now
+  const product = {
+    name: "Medicube One Day Exosome Shot 2000 Serum",
+    url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
+    image: "https://placehold.co/400x250?text=Medicube+Exosome+Shot+2000+Serum",
+    description: "Medicube One Day Exosome Shot 2000 Serum. High-absorption exosome serum for beauty and skincare.",
+    price: 49.99,
+    currency: 'USD',
+  };
+  return <ProductDetailPage product={product} />;
+}
 
 // The actual App component that main.jsx renders
 // This component simply wraps MainAppLayout inside a Router context
