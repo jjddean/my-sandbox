@@ -299,7 +299,7 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/category/health-wellbeing" element={<HealthWellbeingProducts />} />
                         <Route path="/category/beauty" element={<BeautyProducts />} />
                         <Route path="/category/:category" element={<CategoryPlaceholder key={window.location.pathname} />} />
-                        <Route path="/product/:slug" element={<ProductDetailRoute />} />
+                        <Route path="/product/:slug" element={<ProductDetailPage />} />
                         {/* Add a fallback route for unmatched paths */}
                         <Route path="*" element={<HomePageContent />} />
                     </Routes>
@@ -362,10 +362,11 @@ export default function App() {
   if (financeRoutes.includes(location.pathname)) {
     return <MainAppLayout />;
   }
-  // If home or any category/product page, render plain
+  // If home, category, or product page, render plain
   if (
     location.pathname === '/' ||
-    location.pathname.startsWith('/category/')
+    location.pathname.startsWith('/category/') ||
+    location.pathname.startsWith('/product/')
   ) {
     if (location.pathname === '/') {
       return <HomePageContent />;
@@ -375,6 +376,9 @@ export default function App() {
     }
     if (location.pathname === '/category/beauty') {
       return <BeautyProducts />;
+    }
+    if (location.pathname.startsWith('/product/')) {
+      return <ProductDetailRoute />;
     }
     // fallback for other categories
     return <CategoryPlaceholder key={location.pathname} />;
