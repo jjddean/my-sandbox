@@ -38,6 +38,7 @@ import { Search, Bell, Settings, ChevronDown, ChevronRight, Star, Plus, Menu, La
 import HomePageContent from './HomePageContent';
 // Import HealthWellbeingProducts from HomePageContent
 import { HealthWellbeingProducts, CategoryPlaceholder, BeautyProducts, CategoryProductPage, ProductDetailPage } from './HomePageContent';
+import CategoriesPageContent from './CategoriesPageContent';
 
 // --- PAGE COMPONENTS ---
 
@@ -296,6 +297,7 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/shopping" element={<ShoppingPageContent />} />
                         <Route path="/explore" element={<ExplorePageContent />} />
                         <Route path="/finance" element={<FinancePageContent />} />
+                        <Route path="/categories" element={<CategoriesPageContent />} />
                         <Route path="/category/health-wellbeing" element={<HealthWellbeingProducts />} />
                         <Route path="/category/beauty" element={<BeautyProducts />} />
                         <Route path="/category/:category" element={<CategoryPlaceholder key={window.location.pathname} />} />
