@@ -323,9 +323,9 @@ const HomePageContent = () => {
     headline: cat,
     source: '',
     time: '',
-    likes: 0,
-    comments: 0,
-    shares: 0,
+      likes: 0,
+      comments: 0,
+      shares: 0,
   }));
 
   const newMediaCardsData = [
@@ -396,14 +396,11 @@ const HomePageContent = () => {
       {/* Top Navigation Bar */}
       <nav className="w-full bg-white border-b border-gray-200 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-1 ml-2"> {/* Reduced space-x-2 to space-x-1 for closer spacing */}
-          {/* World/Globe SVG Icon */}
-          <span className="h-8 w-8 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-8 w-8 text-black">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" fill="#fff" />
-              <path stroke="currentColor" strokeWidth="1.5" d="M2 12h20M12 2c2.5 3.5 2.5 16.5 0 20M12 2c-2.5 3.5-2.5 16.5 0 20" />
-            </svg>
-          </span>
-          <span className="font-bold text-xl text-black">1MarketLive®</span> {/* Removed space between 1 and MarketLive */}
+          {/* Replace SVG Globe with Emoji and reduce text size */}
+          <span className="text-2xl align-middle">🌍</span>
+          <div className="text-xl font-bold text-black tracking-tighter">
+            <span className="mr-[-2px]">1</span>Marketlive
+          </div>
         </div>
         <div className="flex items-center space-x-6 text-gray-700 text-sm font-medium">
           <a href="#" className="hover:text-blue-600">Resources</a>
