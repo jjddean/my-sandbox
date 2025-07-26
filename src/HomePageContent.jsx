@@ -1011,18 +1011,79 @@ const HomePageContent = () => {
               <span>Search MLN...</span>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
-            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-              <Cloud size={16} className="mr-1" /> Weather
+          <div className="flex items-center space-x-6 text-gray-700 text-sm font-medium">
+            <a href="#" className="hover:text-blue-600 transition-colors duration-200">Resources</a>
+            <a href="#" className="hover:text-blue-600 transition-colors duration-200">Solutions</a>
+            <div className="relative"
+              onMouseEnter={() => { clearTimeout(marketplaceTimeout); setMarketplaceOpen(true); }}
+              onMouseLeave={() => { marketplaceTimeout = setTimeout(() => setMarketplaceOpen(false), 150); }}
+            >
+              <button className="hover:text-blue-600 focus:outline-none transition-colors duration-200">Marketplace</button>
+              {marketplaceOpen && (
+                <div className="absolute left-0 mt-2 w-48 backdrop-blur-xl bg-white/90 border border-white/30 rounded-xl shadow-lg z-50">
+                  <ul className="py-2">
+                    <li>
+                      <Link
+                        to="/categories"
+                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-white/50 cursor-pointer transition-colors duration-200 font-semibold border-b border-gray-200"
+                        onClick={() => setMarketplaceOpen(false)}
+                      >
+                        All Categories
+                      </Link>
+                    </li>
+                    {categories.map((cat, idx) => (
+                      <li key={cat}>
+                        <Link
+                          to={`/category/${slugifyCategory(cat)}`}
+                          className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-white/50 cursor-pointer transition-colors duration-200"
+                          onClick={() => setMarketplaceOpen(false)}
+                        >
+                          {cat}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <div className="relative"
+              onMouseEnter={() => { clearTimeout(financeTimeout); setFinanceOpen(true); }}
+              onMouseLeave={() => { financeTimeout = setTimeout(() => setFinanceOpen(false), 150); }}
+            >
+              <button className="hover:text-blue-600 focus:outline-none transition-colors duration-200">Finance</button>
+              {financeOpen && (
+                <div className="absolute left-0 mt-2 w-48 backdrop-blur-xl bg-white/90 border border-white/30 rounded-xl shadow-lg z-50">
+                  <ul className="py-2">
+                    {[
+                      { name: 'Dashboard', route: '/dashboard' },
+                      { name: 'Stocks', route: '/stocks' },
+                      { name: 'Currencies', route: '/currencies' },
+                      { name: 'Markets', route: '/markets' },
+                      { name: 'Crypto', route: '/crypto' },
+                      { name: 'Portfolio', route: '/portfolio' },
+                      { name: 'Performance', route: '/performance' },
+                      { name: 'Analysis', route: '/analysis' },
+                    ].map((item) => (
+                      <li key={item.name}>
+                        <Link
+                          to={item.route}
+                          className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-white/50 cursor-pointer transition-colors duration-200"
+                          onClick={() => setFinanceOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <a href="#" className="hover:text-blue-600 transition-colors duration-200">About</a>
+            <button className="hover:text-blue-600 transition-colors duration-200 p-1" aria-label="Account" onClick={() => navigate('/login')}>
+              <User size={18} />
             </button>
-            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-              <Newspaper size={16} className="mr-1" /> Finance
-            </button>
-            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
-              <ShoppingCart size={16} className="mr-1" /> Shopping
-            </button>
-            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200">
-              <User size={16} />
+            <button className="hover:text-blue-600 transition-colors duration-200 p-1" aria-label="Search">
+              <Search size={18} />
             </button>
           </div>
         </div>
@@ -1245,5 +1306,5 @@ const HomePageContent = () => {
   );
 };
 
-export { CategoryPlaceholder, BeautyProducts, CategoryProductPage, ProductDetailPage, ElectronicsProducts };
+export { CategoryPlaceholder, BeautyProducts, CategoryProductPage, ElectronicsProducts };
 export default HomePageContent; 

@@ -36,7 +36,8 @@ import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router
 import { Search, Bell, Settings, ChevronDown, ChevronRight, Star, Plus, Menu, LayoutDashboard, TrendingUp, BarChart, DollarSign, Globe, Briefcase, Activity, LineChart, SlidersHorizontal, Cloud, Newspaper, ShoppingCart, Sun, CloudRain, Wind, Droplet, Thermometer, Eye, Gauge, Sunrise, Sunset } from 'lucide-react'; // All necessary icons
 import HomePageContent from './HomePageContent';
 // Import HealthWellbeingProducts from HomePageContent
-import { CategoryPlaceholder, BeautyProducts, CategoryProductPage, ProductDetailPage, ElectronicsProducts } from './HomePageContent';
+import { CategoryPlaceholder, BeautyProducts, CategoryProductPage, ElectronicsProducts } from './HomePageContent';
+import ProductDetailPage from './ProductDetailPage';
 import CategoriesPageContent from './CategoriesPageContent';
 
 // --- PAGE COMPONENTS ---
@@ -813,7 +814,7 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/category/beauty" element={<BeautyProducts />} />
                         <Route path="/category/electronics" element={<ElectronicsProducts />} />
                         <Route path="/category/:category" element={<CategoryPlaceholder key={window.location.pathname} />} />
-                        <Route path="/product/:slug" element={<ProductDetailPage />} />
+                        <Route path="/product/:slug" element={<ProductDetailRoute />} />
                         {/* Add a fallback route for unmatched paths */}
                         <Route path="*" element={<HomePageContent />} />
                     </Routes>
@@ -841,13 +842,56 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
 function ProductDetailRoute() {
   const { slug } = useParams();
   
-  const product = {
-    name: "Test Product",
+  // Import the electronics products data
+  const electronicsProducts = [
+    {
+      name: "iPhone 15 Pro Max",
+      url: "https://www.amazon.com/Apple-iPhone-15-Pro-Max/dp/B0CM5J8HQQ?tag=1mlaffiliates-20",
+      image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+      description: "Latest iPhone with A17 Pro chip, titanium design, and advanced camera system.",
+      price: 1199.99,
+      rating: 4.8,
+      reviews: 1247,
+      category: "Smartphones"
+    },
+    {
+      name: "MacBook Air M2",
+      url: "https://www.amazon.com/Apple-MacBook-Laptop-12%E2%80%91core-30%E2%80%91core/dp/B0B3C5T6M8?tag=1mlaffiliates-20",
+      image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+      description: "Ultra-thin laptop with M2 chip, all-day battery life, and stunning Retina display.",
+      price: 1099.99,
+      rating: 4.9,
+      reviews: 892,
+      category: "Laptops"
+    },
+    {
+      name: "Samsung Galaxy S24 Ultra",
+      url: "https://www.amazon.com/Samsung-Electronics-Unlocked-Smartphone-Titanium/dp/B0CSJZ8Q8L?tag=1mlaffiliates-20",
+      image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+      description: "Premium Android flagship with S Pen, advanced AI features, and titanium frame.",
+      price: 1299.99,
+      rating: 4.7,
+      reviews: 567,
+      category: "Smartphones"
+    }
+  ];
+  
+  // Find the product by slug
+  const product = electronicsProducts.find(p => 
+    p.name.toLowerCase().replace(/\s+/g, '-') === slug
+  ) || {
+    name: "Product Not Found",
     url: "https://example.com",
-    image: "https://placehold.co/400x250/4F46E5/FFFFFF?text=Test+Product",
-    description: "This is a test product to verify the component works.",
-    price: 99.99,
+    image: "https://placehold.co/400x250/4F46E5/FFFFFF?text=Product+Not+Found",
+    description: "This product could not be found.",
+    price: 0,
     currency: 'USD',
+    rating: 0,
+    reviews: 0,
+    category: "Unknown",
+    brand: "Unknown",
+    availability: "Out of Stock",
+    shipping: "N/A"
   };
   
   return <ProductDetailPage product={product} />;
