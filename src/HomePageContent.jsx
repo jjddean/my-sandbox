@@ -1,70 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal, User } from 'lucide-react';
+import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal, User, Star } from 'lucide-react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
-// Health & Wellbeing Products Data
-const healthProducts = [
-  {
-    name: "Ashwagandha & Magnesium",
-    url: "https://www.amazon.com/New-Chapter-Ashwagandha-Supplement-Absorption/dp/B085V62B83?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Vb6FQwQwL._AC_SL1500_.jpg",
-    description: "High-absorption ashwagandha and magnesium for stress relief and relaxation."
-  },
-  {
-    name: "Mushroom Coffee Blend",
-    url: "https://www.amazon.com/RYZE-Mushroom-Adaptogenic-Mushrooms-Digestion/dp/B0DJWV4BQ1?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/71Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "Adaptogenic mushroom coffee blend for energy and digestion."
-  },
-  {
-    name: "Adaptogenic Energy Supplement",
-    url: "https://www.amazon.com/plnt-Adaptogen-Ingredients-Vitality-Vegetarian/dp/B01N9H8KY6?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/71Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "Plant-based adaptogen supplement for vitality and energy."
-  },
-  {
-    name: "Stress Relief Herbal Tea",
-    url: "https://www.amazon.com/Yogi-Tea-Tension-Promotes-Relaxation/dp/B0009F3QKW?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "Herbal tea blend to promote relaxation and relieve tension."
-  },
-  {
-    name: "Sleep Support Melatonin",
-    url: "https://www.amazon.com/Natrol-Melatonin-10Mg-Gummy-Count/dp/B079TD7HG2?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "Melatonin gummies for natural sleep support."
-  },
-  {
-    name: "CBD-Infused Massage Oil",
-    url: "https://www.amazon.com/Provocatife-Infused-Massage-fl-oz-Bottle/dp/B0D2PH1GVB?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "CBD-infused massage oil for relaxation and muscle relief."
-  },
-  {
-    name: "Infrared Sauna Blanket",
-    url: "https://www.amazon.com/infrared-sauna-blanket/s?k=infrared+sauna+blanket&tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "Infrared sauna blanket for detox and wellness."
-  },
-  {
-    name: "CBD Gummies for Stress",
-    url: "https://www.amazon.com/Gummies-Stress-Relaxation-Anxiety-Relaxing/dp/B08CKF6DQC?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "CBD gummies to help with stress and relaxation."
-  },
-  {
-    name: "Essential Oil Diffuser",
-    url: "https://www.amazon.com/Ultimate-Aromatherapy-Diffuser-Essential-Oil/dp/B07JD2GDKN?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "Aromatherapy essential oil diffuser for home wellness."
-  },
-  {
-    name: "Aromatherapy Massage Set",
-    url: "https://www.amazon.com/Massage-Oil-Kit-Set-Eucalyptus/dp/B0D2XHCYJ5?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81Q1Iu4suGL._AC_SL1500_.jpg",
-    description: "Aromatherapy massage oil kit for relaxation and stress relief."
-  }
-];
+
 
 function CategoryProductPage({ title, products }) {
   const [modalProduct, setModalProduct] = useState(null);
@@ -196,10 +134,6 @@ function BeautyProducts() {
   return <CategoryProductPage title="Beauty Products" products={beautyProducts} />;
 }
 
-function HealthWellbeingProducts() {
-  return <CategoryProductPage title="Health & Wellbeing Products" products={healthProducts} />;
-}
-
 function CategoryPlaceholder() {
   const { category } = useParams();
   // Format category name for display
@@ -223,76 +157,742 @@ function slugifyCategory(cat) {
     .replace(/[^a-z0-9-]/g, ''); // remove non-alphanumeric except dash
 }
 
-// Example: ProductDetailPage for a single product (use first beauty product for now)
 function ProductDetailPage({ product }) {
-  // Example fallback product if none provided
-  product = product || {
-    name: "Medicube One Day Exosome Shot 2000 Serum",
-    url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Medicube+Exosome+Shot+2000+Serum",
-    description: "Medicube One Day Exosome Shot 2000 Serum. High-absorption exosome serum for beauty and skincare.",
-    price: 49.99,
+  const [selectedImage, setSelectedImage] = useState(0)
+  const [activeTab, setActiveTab] = useState('details')
+  const navigate = useNavigate()
+
+  // Enhanced product data with defaults
+  const productData = product || {
+    name: "Test Product",
+    url: "https://example.com",
+    image: "https://placehold.co/400x250/4F46E5/FFFFFF?text=Test+Product",
+    description: "This is a test product to verify the component works.",
+    price: 99.99,
     currency: 'USD',
-  };
-
-  // Stripe/PayPal placeholder handlers
-  function handleStripeCheckout() {
-    alert('Stripe Checkout would be triggered here.');
+    rating: 4.8,
+    reviews: 1247,
+    category: "Test Category",
+    brand: "Test Brand",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    features: [
+      "High-quality materials",
+      "Durable construction",
+      "Easy to use",
+      "Great value for money",
+      "Customer satisfaction guaranteed"
+    ],
+    specifications: {
+      "Material": "Premium quality",
+      "Weight": "2.5 lbs",
+      "Dimensions": "10 x 8 x 4 inches",
+      "Warranty": "1 year",
+      "Origin": "Made in USA"
+    }
   }
-  function handlePayPalCheckout() {
-    alert('PayPal Checkout would be triggered here.');
-  }
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const productImages = [
+    productData.image,
+    "https://placehold.co/400x400/4F46E5/FFFFFF?text=Product+Image+2",
+    "https://placehold.co/400x400/7C3AED/FFFFFF?text=Product+Image+3",
+    "https://placehold.co/400x400/EC4899/FFFFFF?text=Product+Image+4"
+  ]
+
+  const reviews = [
+    {
+      id: 1,
+      user: "Sarah M.",
+      rating: 5,
+      date: "2 days ago",
+      title: "Excellent product!",
+      comment: "This product exceeded my expectations. Great quality and fast shipping."
+    },
+    {
+      id: 2,
+      user: "John D.",
+      rating: 4,
+      date: "1 week ago",
+      title: "Good value",
+      comment: "Solid product for the price. Would recommend to others."
+    },
+    {
+      id: 3,
+      user: "Emma L.",
+      rating: 5,
+      date: "3 weeks ago",
+      title: "Perfect!",
+      comment: "Exactly what I was looking for. Very satisfied with my purchase."
+    }
+  ]
+
+  const relatedProducts = [
+    {
+      name: "Related Product 1",
+      price: 79.99,
+      image: "https://placehold.co/200x200/4F46E5/FFFFFF?text=Related+1",
+      rating: 4.6,
+      reviews: 892
+    },
+    {
+      name: "Related Product 2",
+      price: 89.99,
+      image: "https://placehold.co/200x200/7C3AED/FFFFFF?text=Related+2",
+      rating: 4.7,
+      reviews: 567
+    },
+    {
+      name: "Related Product 3",
+      price: 69.99,
+      image: "https://placehold.co/200x200/EC4899/FFFFFF?text=Related+3",
+      rating: 4.5,
+      reviews: 423
+    }
+  ]
+
+  const renderStars = (rating) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <Star
+        key={i}
+        size={14}
+        className={`${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+      />
+    ))
+  }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Top Navbar */}
-      <nav className="w-full bg-white border-b border-gray-200 py-2 px-4 flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <span className="font-bold text-lg text-blue-700">MLN</span>
-          <span className="text-base font-semibold text-gray-700">{product.name}</span>
-        </div>
-        <div className="flex-1 flex justify-center">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring"
-          />
-        </div>
-        <div className="flex items-center space-x-4">
-          <button className="hover:text-blue-600" aria-label="Cart">
-            <ShoppingCart size={22} />
-          </button>
-          <button className="hover:text-blue-600" aria-label="Shop">
-            <span className="font-semibold">Shop</span>
-          </button>
-        </div>
-      </nav>
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Product Image */}
-          <div className="flex flex-col items-center">
-            <img src={product.image} alt={product.name} className="w-full max-w-xs rounded-lg shadow mb-4" onError={e => {e.target.onerror=null; e.target.src='https://placehold.co/400x250?text=No+Image';}} />
-          </div>
-          {/* Product Details */}
-          <div className="space-y-6">
-            <h1 className="text-2xl font-bold text-black mb-2">{product.name}</h1>
-            <p className="text-gray-600 mb-4">{product.description}</p>
-            <p className="text-xl font-bold mb-4">${product.price} {product.currency}</p>
-            <div className="space-y-3 flex flex-col sm:flex-row sm:space-y-0 sm:space-x-2">
-              <button className="flex-1 bg-blue-600 text-white py-2 rounded text-sm font-medium hover:bg-blue-700" onClick={() => window.open(product.url, '_blank')}>Buy on Amazon</button>
-              <button className="flex-1 bg-black text-white py-2 rounded text-sm font-medium hover:bg-gray-800" onClick={handleStripeCheckout}>Stripe</button>
-              <button className="flex-1 bg-yellow-400 text-black py-2 rounded text-sm font-medium hover:bg-yellow-500" onClick={handlePayPalCheckout}>PayPal</button>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-3 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button 
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-xl">🌍</span>
+              <div className="text-lg font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs text-gray-600 w-56 md:w-80 border border-white/30">
+              <Search size={14} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
             </div>
           </div>
         </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-6">
+          <button 
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-xs transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400 text-xs">/</span>
+          <span className="text-gray-600 text-xs">{productData.category}</span>
+          <span className="text-gray-400 text-xs">/</span>
+          <span className="text-gray-600 text-xs truncate">{productData.name}</span>
+        </div>
+
+        {/* Product Main Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Image Gallery */}
+          <div className="space-y-3">
+            <div className="backdrop-blur-xl bg-white/50 rounded-xl p-4 border border-white/30 shadow-lg">
+              <div className="aspect-square overflow-hidden rounded-lg mb-3">
+                <img
+                  src={productImages[selectedImage]}
+                  alt={productData.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => { 
+                    e.target.onerror = null
+                    e.target.src = `https://placehold.co/400x400/4F46E5/FFFFFF?text=${productData.name}`
+                  }}
+                />
+              </div>
+              <div className="flex space-x-2 overflow-x-auto">
+                {productImages.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                      selectedImage === index 
+                        ? 'border-blue-500 shadow-lg' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${productData.name} ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => { 
+                        e.target.onerror = null
+                        e.target.src = `https://placehold.co/64x64/4F46E5/FFFFFF?text=Image+${index + 1}`
+                      }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Product Info */}
+          <div className="space-y-4">
+            <div className="backdrop-blur-xl bg-white/50 rounded-xl p-6 border border-white/30 shadow-lg">
+              <div className="mb-3">
+                <span className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full mb-2">
+                  {productData.brand}
+                </span>
+                <h1 className="text-lg font-bold text-gray-900 mb-1">{productData.name}</h1>
+                <div className="flex items-center space-x-2 mb-2">
+                  <div className="flex items-center">
+                    {renderStars(productData.rating)}
+                  </div>
+                  <span className="text-xs font-medium text-gray-900">{productData.rating}</span>
+                  <span className="text-xs text-gray-500">({productData.reviews} reviews)</span>
+                </div>
+                <div className="text-2xl font-bold text-gray-900 mb-3">${productData.price}</div>
+              </div>
+
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                  <span className="text-xs text-gray-600">{productData.availability}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                  <span className="text-xs text-gray-600">{productData.shipping}</span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex space-x-2">
+                  <a
+                    href={productData.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
+                  >
+                    Buy on Amazon
+                  </a>
+                  <button className="px-3 py-2 border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    <Heart size={16} />
+                  </button>
+                  <button className="px-3 py-2 border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    <Share2 size={16} />
+                  </button>
+                </div>
+                <div className="flex space-x-2">
+                  <button className="flex-1 bg-[#635BFF] text-white text-center py-2 rounded-lg hover:bg-[#5851EC] transition-colors duration-200 text-sm font-medium">
+                    <div className="flex items-center justify-center space-x-2">
+                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.831 3.47 1.426 3.47 2.338 0 .914-.796 1.431-2.127 1.431-1.72 0-4.516-.924-6.378-2.168l-.9 5.555C7.466 22.924 9.848 24 13.164 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h6.147z"/>
+                      </svg>
+                      <span>Pay with Stripe</span>
+                    </div>
+                  </button>
+                  <button className="flex-1 bg-[#FFC439] text-[#003087] text-center py-2 rounded-lg hover:bg-[#F4BB33] transition-colors duration-200 text-sm font-medium">
+                    <div className="flex items-center justify-center space-x-2">
+                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.067 8.478c.492.315.844.825.844 1.478 0 .653-.352 1.163-.844 1.478-.492.315-1.163.478-1.844.478H5.777c-.681 0-1.352-.163-1.844-.478C3.441 12.819 3.089 12.309 3.089 11.656c0-.653.352-1.163.844-1.478.492-.315 1.163-.478 1.844-.478h12.446c.681 0 1.352.163 1.844.478zM7.777 15.656c0-.653.352-1.163.844-1.478.492-.315 1.163-.478 1.844-.478h8.446c.681 0 1.352.163 1.844.478.492.315.844.825.844 1.478 0 .653-.352 1.163-.844 1.478-.492.315-1.163.478-1.844-.478h-8.446c-.681 0-1.352-.163-1.844-.478-.492-.315-.844-.825-.844-1.478z"/>
+                      </svg>
+                      <span>PayPal</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tabs Section */}
+        <div className="mb-6">
+          <div className="flex backdrop-blur-xl bg-white/50 rounded-xl p-1 border border-white/30 shadow-lg w-fit">
+            {[
+              { id: 'details', label: 'Product Details' },
+              { id: 'reviews', label: 'Reviews' },
+              { id: 'related', label: 'Related Products' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 py-2 text-xs font-medium rounded-lg transition-all duration-200 ${
+                  activeTab === tab.id
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'text-gray-600 hover:text-blue-600 hover:bg-white/50'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Tab Content */}
+        <div className="min-h-[400px]">
+          {activeTab === 'details' && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Description */}
+              <div className="backdrop-blur-xl bg-white/50 rounded-xl p-6 border border-white/30 shadow-lg">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Description</h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">{productData.description}</p>
+                
+                <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Features</h4>
+                <ul className="space-y-1">
+                  {productData.features.map((feature, index) => (
+                    <li key={index} className="flex items-start space-x-2">
+                      <div className="w-1 h-1 bg-blue-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                      <span className="text-xs text-gray-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Specifications */}
+              <div className="backdrop-blur-xl bg-white/50 rounded-xl p-6 border border-white/30 shadow-lg">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Specifications</h3>
+                <div className="space-y-2">
+                  {Object.entries(productData.specifications).map(([key, value]) => (
+                    <div key={key} className="flex justify-between py-1 border-b border-gray-100 last:border-b-0">
+                      <span className="text-xs text-gray-600 font-medium">{key}</span>
+                      <span className="text-xs text-gray-900">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'reviews' && (
+            <div className="backdrop-blur-xl bg-white/50 rounded-xl p-6 border border-white/30 shadow-lg">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-base font-bold text-gray-900">Customer Reviews</h3>
+                <div className="flex items-center space-x-2">
+                  <div className="flex items-center">
+                    {renderStars(productData.rating)}
+                  </div>
+                  <span className="text-sm font-bold text-gray-900">{productData.rating}</span>
+                  <span className="text-xs text-gray-500">({productData.reviews} reviews)</span>
+                </div>
+              </div>
+              
+              <div className="space-y-4 max-h-64 overflow-y-auto">
+                {reviews.map((review) => (
+                  <div key={review.id} className="border-b border-gray-100 pb-4 last:border-b-0">
+                    <div className="flex items-start justify-between mb-1">
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900">{review.title}</h4>
+                        <div className="flex items-center space-x-2 mt-1">
+                          <div className="flex items-center">
+                            {renderStars(review.rating)}
+                          </div>
+                          <span className="text-xs text-gray-500">by {review.user}</span>
+                          <span className="text-xs text-gray-400">•</span>
+                          <span className="text-xs text-gray-400">{review.date}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-600 leading-relaxed">{review.comment}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'related' && (
+            <div className="backdrop-blur-xl bg-white/50 rounded-xl p-6 border border-white/30 shadow-lg">
+              <h3 className="text-base font-bold text-gray-900 mb-4">Related Products</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {relatedProducts.map((relatedProduct, index) => (
+                  <div key={index} className="group cursor-pointer">
+                    <div className="backdrop-blur-xl bg-white/30 rounded-lg p-3 border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                      <div className="aspect-square overflow-hidden rounded-lg mb-2">
+                        <img
+                          src={relatedProduct.image}
+                          alt={relatedProduct.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          onError={(e) => { 
+                            e.target.onerror = null
+                            e.target.src = `https://placehold.co/200x200/4F46E5/FFFFFF?text=Related+${index + 1}`
+                          }}
+                        />
+                      </div>
+                      <h4 className="text-xs font-semibold text-gray-900 mb-1 line-clamp-2">{relatedProduct.name}</h4>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-1">
+                          <Star size={10} className="text-yellow-400 fill-current" />
+                          <span className="text-xs text-gray-600">{relatedProduct.rating}</span>
+                          <span className="text-xs text-gray-400">({relatedProduct.reviews})</span>
+                        </div>
+                        <span className="text-xs font-bold text-gray-900">${relatedProduct.price}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  );
+  )
+}
+
+// Electronics Products Data
+const electronicsProducts = [
+  {
+    name: "iPhone 15 Pro Max",
+    url: "https://www.amazon.com/Apple-iPhone-15-Pro-Max/dp/B0CM5J8HQQ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Latest iPhone with A17 Pro chip, titanium design, and advanced camera system.",
+    price: 1199.99,
+    rating: 4.8,
+    reviews: 1247,
+    category: "Smartphones"
+  },
+  {
+    name: "MacBook Air M2",
+    url: "https://www.amazon.com/Apple-MacBook-Laptop-12%E2%80%91core-30%E2%80%91core/dp/B0B3C5T6M8?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "Ultra-thin laptop with M2 chip, all-day battery life, and stunning Retina display.",
+    price: 1099.99,
+    rating: 4.9,
+    reviews: 892,
+    category: "Laptops"
+  },
+  {
+    name: "Samsung Galaxy S24 Ultra",
+    url: "https://www.amazon.com/Samsung-Electronics-Unlocked-Smartphone-Titanium/dp/B0CSJZ8Q8L?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Premium Android flagship with S Pen, advanced AI features, and titanium frame.",
+    price: 1299.99,
+    rating: 4.7,
+    reviews: 567,
+    category: "Smartphones"
+  },
+  {
+    name: "Sony WH-1000XM5",
+    url: "https://www.amazon.com/Sony-WH-1000XM5-Canceling-Headphones-phone-call/dp/B09Y2MYL5C?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Industry-leading noise canceling headphones with exceptional sound quality.",
+    price: 349.99,
+    rating: 4.8,
+    reviews: 2341,
+    category: "Audio"
+  },
+  {
+    name: "iPad Air 5th Generation",
+    url: "https://www.amazon.com/Apple-iPad-Air-10-9-inch-Wi-Fi/dp/B09V3HN1KC?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Powerful tablet with M1 chip, all-screen design, and Apple Pencil support.",
+    price: 599.99,
+    rating: 4.9,
+    reviews: 1567,
+    category: "Tablets"
+  },
+  {
+    name: "Apple Watch Series 9",
+    url: "https://www.amazon.com/Apple-Watch-Series-GPS-45mm/dp/B0CJ7XQ8YH?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Advanced health monitoring, fitness tracking, and seamless iPhone integration.",
+    price: 399.99,
+    rating: 4.8,
+    reviews: 892,
+    category: "Wearables"
+  },
+  {
+    name: "Canon EOS R6 Mark II",
+    url: "https://www.amazon.com/Canon-EOS-R6-Mark-II/dp/B0BL6Y3H8L?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Professional mirrorless camera with 24.2MP sensor and 4K video recording.",
+    price: 2499.99,
+    rating: 4.9,
+    reviews: 234,
+    category: "Cameras"
+  },
+  {
+    name: "DJI Mini 3 Pro",
+    url: "https://www.amazon.com/DJI-Mini-3-Pro-Drone/dp/B09V3HN1KC?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Ultra-lightweight drone with 4K camera and advanced obstacle avoidance.",
+    price: 759.99,
+    rating: 4.7,
+    reviews: 445,
+    category: "Drones"
+  }
+];
+
+function ElectronicsProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Smartphones', 'Laptops', 'Tablets', 'Audio', 'Wearables', 'Cameras', 'Drones']
+
+  const filteredProducts = electronicsProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading product...</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button 
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button 
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Electronics</span>
+        </div>
+
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <span className="text-3xl">💻</span>
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Electronics
+            </h1>
+            <span className="text-3xl">📱</span>
+          </div>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Discover the latest in technology and gadgets from top brands worldwide
+          </p>
+        </div>
+
+        {/* Filters */}
+        <div className="backdrop-blur-xl bg-white/50 rounded-2xl p-6 border border-white/30 shadow-lg mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Search Products</label>
+              <input
+                type="text"
+                placeholder="Search electronics..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm"
+              >
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm"
+              >
+                <option value="name">Name</option>
+                <option value="price">Price: Low to High</option>
+                <option value="rating">Rating</option>
+                <option value="reviews">Most Reviews</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{electronicsProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function ProductCard({ product, onClick }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const [isPressed, setIsPressed] = useState(false)
+
+  const handleMouseDown = () => setIsPressed(true)
+  const handleMouseUp = () => setIsPressed(false)
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    setIsPressed(false)
+  }
+
+  return (
+    <div
+      className={`relative group cursor-pointer transition-all duration-300 ${
+        isPressed ? 'scale-95' : isHovered ? 'scale-105' : 'scale-100'
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onClick={onClick}
+    >
+      {/* Glassmorphism Card */}
+      <div className="relative overflow-hidden rounded-2xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
+        {/* Image Container */}
+        <div className="relative h-48 overflow-hidden">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            onError={(e) => { 
+              e.target.onerror = null
+              e.target.src = `https://placehold.co/400x300/4F46E5/FFFFFF?text=${product.name}`
+            }}
+          />
+          {/* Category Badge */}
+          <div className="absolute top-3 right-3">
+            <div className="backdrop-blur-sm bg-white/90 rounded-full px-3 py-1 text-xs font-medium text-gray-700 border border-white/30">
+              {product.category}
+            </div>
+          </div>
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        </div>
+
+        {/* Content */}
+        <div className="relative p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+            {product.name}
+          </h3>
+          <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+            {product.description}
+          </p>
+          
+          {/* Rating & Price */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-1">
+              <Star size={14} className="text-yellow-400 fill-current" />
+              <span className="text-sm font-medium text-gray-900">{product.rating}</span>
+              <span className="text-xs text-gray-500">({product.reviews})</span>
+            </div>
+            <div className="text-lg font-bold text-gray-900">
+              ${product.price}
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="space-y-3">
+            <div className="flex space-x-2">
+              <button
+                className="flex-1 bg-blue-600 text-white text-center py-2 rounded-xl hover:bg-blue-700 transition-colors duration-200 text-sm font-medium transform hover:scale-105"
+              >
+                View Details
+              </button>
+              <a
+                href={product.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-green-600 text-white text-center py-2 rounded-xl hover:bg-green-700 transition-colors duration-200 text-sm font-medium transform hover:scale-105"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Buy on Amazon
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Hover Effects */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      </div>
+    </div>
+  )
 }
 
 const HomePageContent = () => {
@@ -392,131 +992,91 @@ const HomePageContent = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 font-sans text-gray-800">
-      {/* Top Navigation Bar */}
-      <nav className="w-full bg-white border-b border-gray-200 py-3 flex items-center justify-between">
-        <div className="flex items-center space-x-1 ml-2"> {/* Reduced space-x-2 to space-x-1 for closer spacing */}
-          {/* Replace SVG Globe with Emoji and reduce text size */}
-          <span className="text-2xl align-middle">🌍</span>
-          <div className="text-xl font-bold text-black tracking-tighter">
-            <span className="mr-[-2px]">1</span>Marketlive
-          </div>
-        </div>
-        <div className="flex items-center space-x-6 text-gray-700 text-sm font-medium">
-          <a href="#" className="hover:text-blue-600">Resources</a>
-          <a href="#" className="hover:text-blue-600">Solutions</a>
-          <div className="relative"
-            onMouseEnter={() => { clearTimeout(marketplaceTimeout); setMarketplaceOpen(true); }}
-            onMouseLeave={() => { marketplaceTimeout = setTimeout(() => setMarketplaceOpen(false), 150); }}
-          >
-            <button className="hover:text-blue-600 focus:outline-none">Marketplace</button>
-            {marketplaceOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
-                <ul className="py-2">
-                  {categories.map((cat, idx) => (
-                    <li key={cat}>
-                      <Link
-                        to={`/category/${slugifyCategory(cat)}`}
-                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => setMarketplaceOpen(false)}
-                      >
-                        {cat}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-3 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button 
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-xl">🌍</span>
+              <div className="text-lg font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
               </div>
-            )}
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs text-gray-600 w-56 md:w-80 border border-white/30">
+              <Search size={14} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
           </div>
-          <div className="relative"
-            onMouseEnter={() => { clearTimeout(financeTimeout); setFinanceOpen(true); }}
-            onMouseLeave={() => { financeTimeout = setTimeout(() => setFinanceOpen(false), 150); }}
-          >
-            <button className="hover:text-blue-600 focus:outline-none">Finance</button>
-            {financeOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50">
-                <ul className="py-2">
-                  {[
-                    { name: 'Stocks', route: '/stocks' },
-                    { name: 'Currencies', route: '/currencies' },
-                    { name: 'Markets', route: '/markets' },
-                    { name: 'Crypto', route: '/crypto' },
-                    { name: 'Portfolio', route: '/portfolio' },
-                    { name: 'Performance', route: '/performance' },
-                    { name: 'Analysis', route: '/analysis' },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        to={item.route}
-                        className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => setFinanceOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div className="flex items-center space-x-4">
+            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
+              <Cloud size={16} className="mr-1" /> Weather
+            </button>
+            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
+              <Newspaper size={16} className="mr-1" /> Finance
+            </button>
+            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm">
+              <ShoppingCart size={16} className="mr-1" /> Shopping
+            </button>
+            <button className="text-gray-600 hover:text-blue-600 transition-colors duration-200">
+              <User size={16} />
+            </button>
           </div>
-          <a href="#" className="hover:text-blue-600">About</a>
-          <button className="hover:text-blue-600 p-1" aria-label="Account" onClick={() => navigate('/login')}>
-            <User size={18} />
-          </button>
-          <button className="hover:text-blue-600 p-1" aria-label="Search">
-            <Search size={18} />
-          </button>
         </div>
       </nav>
 
-      {/* Full-width Video Hero/Header Section */}
-      <div className="w-full bg-black relative">
-        <video
-          src="https://www.w3schools.com/html/mov_bbb.mp4" // Replace with your hero video URL
-          className="w-full h-[400px] md:h-[600px] object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white text-center drop-shadow-lg">
-            Featured Content
-          </h1>
+      {/* Hero Section */}
+      <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative h-full flex items-center justify-center">
+          <div className="text-center text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+              Welcome to 1MarketLive
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 drop-shadow-lg opacity-90">
+              Discover the world's finest products and insights
+            </p>
+            <button 
+              onClick={() => navigate('/categories')}
+              className="backdrop-blur-xl bg-white/20 text-white px-8 py-3 rounded-xl border border-white/30 hover:bg-white/30 transition-all duration-300 font-medium"
+            >
+              Explore Categories
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Full-width 4-Card Row with Modal Expand */}
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-0 mt-8">
-        {newsCardsData.map((card, i) => (
-          <div
-            key={i}
-            className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 cursor-pointer h-72 flex flex-col justify-end"
-            onClick={() => setModalCard(card)}
-          >
-            {card.type === 'video' ? (
-              <video src={card.video} className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted />
-            ) : (
-              <img
-                src={card.image}
-                alt={card.headline}
-                className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x250/CCCCCC/555555?text=Image+Error"; }}
-              />
-            )}
-            <div className="absolute inset-0 bg-black/40"></div>
-            <div className="relative p-4 text-white z-10">
-              <h3 className="text-lg font-bold mb-2 leading-snug">{card.headline}</h3>
-              <div className="flex items-center justify-between text-xs text-gray-300">
-                <div className="flex items-center space-x-1">
-                  {card.source && <span className="font-medium">{card.source}</span>}
-                  {card.time && <span className="text-gray-400">• {card.time}</span>}
-                  {card.type === 'sponsored' && <span className="text-blue-300 ml-1">Sponsored</span>}
+      {/* Categories Grid */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {newsCardsData.map((card, i) => (
+            <div
+              key={i}
+              className="group cursor-pointer relative"
+              onClick={() => navigate(`/category/${slugifyCategory(card.headline)}`)}
+            >
+              <div className="backdrop-blur-xl bg-white/50 rounded-xl overflow-hidden border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="aspect-square overflow-hidden relative">
+                  <img
+                    src={card.image}
+                    alt={card.headline}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x400/4F46E5/FFFFFF?text=Category"; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <h3 className="text-lg font-semibold mb-2">{card.headline}</h3>
+                    <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Modal for Expanded Card */}
@@ -543,49 +1103,72 @@ const HomePageContent = () => {
         </div>
       )}
 
-      {/* More Top Stories Section */}
-      <div className="w-full mt-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 px-4">More Top Stories</h2>
+      {/* Featured Articles Section */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        
         {/* First row: 2 large cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {newMediaCardsData.slice(0, 2).map((card, i) => (
-            <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 h-64 cursor-pointer flex flex-col justify-end">
-              <img
-                src={card.image}
-                alt={card.headline}
-                className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/800x300/CCCCCC/555555?text=Image+Error'; }}
-              />
-              <div className="absolute inset-0 bg-black/40"></div>
-              <div className="relative p-6 text-white z-10">
-                <h3 className="text-2xl font-bold mb-2 leading-snug">{card.headline}</h3>
-                <div className="flex items-center justify-between text-xs text-gray-300">
-                  <div className="flex items-center space-x-1">
-                    {card.source && <span className="font-medium">{card.source}</span>}
-                    {card.time && <span className="text-gray-400">• {card.time}</span>}
+            <div key={i} className="group cursor-pointer">
+              <div className="backdrop-blur-xl bg-white/50 rounded-xl overflow-hidden border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="aspect-video overflow-hidden relative">
+                  <img
+                    src={card.image}
+                    alt={card.headline}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/800x400/4F46E5/FFFFFF?text=Article'; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-xl font-bold mb-3 leading-snug">{card.headline}</h3>
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center space-x-2">
+                        {card.source && <span className="font-medium">{card.source}</span>}
+                        {card.time && <span className="text-gray-300">• {card.time}</span>}
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-1">
+                          <ThumbsUp size={14} className="text-gray-300" />
+                          <span className="text-xs">{card.likes}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <MessageSquare size={14} className="text-gray-300" />
+                          <span className="text-xs">{card.comments}</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+        
         {/* Second row: 4 smaller cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {newMediaCardsData.slice(2, 6).map((card, i) => (
-            <div key={i} className="relative rounded-lg shadow-md overflow-hidden border border-gray-200 h-48 cursor-pointer flex flex-col justify-end">
-              <img
-                src={card.image}
-                alt={card.headline}
-                className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x250/CCCCCC/555555?text=Image+Error'; }}
-              />
-              <div className="absolute inset-0 bg-black/40"></div>
-              <div className="relative p-4 text-white z-10">
-                <h3 className="text-lg font-bold mb-2 leading-snug">{card.headline}</h3>
-                <div className="flex items-center justify-between text-xs text-gray-300">
-                  <div className="flex items-center space-x-1">
-                    {card.source && <span className="font-medium">{card.source}</span>}
-                    {card.time && <span className="text-gray-400">• {card.time}</span>}
+            <div key={i} className="group cursor-pointer">
+              <div className="backdrop-blur-xl bg-white/50 rounded-xl overflow-hidden border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="aspect-square overflow-hidden relative">
+                  <img
+                    src={card.image}
+                    alt={card.headline}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x400/4F46E5/FFFFFF?text=Article'; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <h3 className="text-base font-bold mb-2 leading-snug line-clamp-2">{card.headline}</h3>
+                    <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center space-x-1">
+                        {card.source && <span className="font-medium">{card.source}</span>}
+                        {card.time && <span className="text-gray-300">• {card.time}</span>}
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <ThumbsUp size={12} className="text-gray-300" />
+                        <span>{card.likes}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -594,66 +1177,61 @@ const HomePageContent = () => {
         </div>
       </div>
 
-      {/* Expanded Company Footer */}
-      <footer className="w-full bg-gradient-to-b from-gray-900 to-gray-800 text-gray-200 pt-10 pb-4 mt-12">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center mb-2">
-              <span className="font-bold text-xl text-purple-400">MLN</span>
+      {/* Footer */}
+      <footer className="backdrop-blur-xl bg-white/50 border-t border-white/30 mt-12">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div>
+              <div className="flex items-center mb-4">
+                <span className="text-xl">🌍</span>
+                <div className="text-lg font-bold tracking-tighter ml-2">
+                  <span className="mr-[-2px]">1</span>MarketLive
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 mb-4">Smart Finance Starts Here. Discover the best products, news, and tools for your financial journey.</p>
             </div>
-            <p className="text-sm mb-4">Smart Finance Starts Here. Discover the best products, news, and tools for your financial journey.</p>
+            {/* Quick Links */}
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-3">Quick Links</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Reviews</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Deals</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">AI Tools</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Solutions</a></li>
+              </ul>
+            </div>
+            {/* Categories */}
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-3">Categories</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Tech</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Home</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Fashion</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Coupons</a></li>
+              </ul>
+            </div>
+            {/* Contact */}
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-3">Contact</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="mailto:hello@mln.app" className="text-gray-600 hover:text-blue-600 transition-colors">hello@mln.app</a></li>
+                <li><a href="tel:+15551234567" className="text-gray-600 hover:text-blue-600 transition-colors">+1 (555) 123-4567</a></li>
+                <li className="text-gray-600">London, UK</li>
+              </ul>
+            </div>
           </div>
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold mb-2">Quick Links</h3>
-            <ul className="space-y-1 text-sm">
-              <li><a href="#" className="hover:underline">Reviews</a></li>
-              <li><a href="#" className="hover:underline">Deals</a></li>
-              <li><a href="#" className="hover:underline">AI Tools</a></li>
-              <li><a href="#" className="hover:underline">Solutions</a></li>
-            </ul>
+          <div className="border-t border-white/30 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+            <div>&copy; {new Date().getFullYear()} 1MarketLive. All rights reserved. Smart Finance Starts Here.</div>
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              <a href="#" className="hover:text-blue-600 transition-colors">Privacy & Cookies</a>
+              <a href="#" className="hover:text-blue-600 transition-colors">Terms of Use</a>
+              <a href="#" className="hover:text-blue-600 transition-colors">Advertise</a>
+              <a href="#" className="hover:text-blue-600 transition-colors">Data Providers</a>
+            </div>
           </div>
-          {/* Categories */}
-          <div>
-            <h3 className="font-semibold mb-2">Categories</h3>
-            <ul className="space-y-1 text-sm">
-              <li><a href="#" className="hover:underline">Tech</a></li>
-              <li><a href="#" className="hover:underline">Home</a></li>
-              <li><a href="#" className="hover:underline">Fashion</a></li>
-              <li><a href="#" className="hover:underline">Coupons</a></li>
-            </ul>
-          </div>
-          {/* Contact */}
-          <div>
-            <h3 className="font-semibold mb-2">Contact</h3>
-            <ul className="space-y-1 text-sm">
-              <li><a href="mailto:hello@mln.app" className="hover:underline">hello@mln.app</a></li>
-              <li><a href="tel:+15551234567" className="hover:underline">+1 (555) 123-4567</a></li>
-              <li>London, UK</li>
-            </ul>
-          </div>
-        </div>
-        <div className="container mx-auto px-4 mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
-          <div>&copy; {new Date().getFullYear()} MLN. All rights reserved. Smart Finance Starts Here.</div>
         </div>
       </footer>
-
-      {/* Footer Section */}
-      <div className="bg-white border-t border-gray-200 py-4 px-4 md:px-6 flex flex-wrap justify-between items-center text-gray-500 text-xs">
-          <p>© 2025 MLN</p>
-          <div className="flex space-x-3 md:space-x-4 mt-2 md:mt-0">
-            <a href="#" className="hover:underline">Privacy & Cookies</a>
-            <a href="#" className="hover:underline">Terms of Use</a>
-            <a href="#" className="hover:underline">Advertise</a>
-            <a href="#" className="hover://www.google.com/search?q=Advertise&oq=Advertise&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRhA0gEIMzU4OWowajE1qAIAsAIA&sourceid=chrome&ie=UTF-8" target="_blank" rel="noopener noreferrer">Advertise</a>
-            <a href="#" className="hover:underline">Data Providers</a>
-            <div className="flex items-center cursor-pointer hover:underline">
-              <img src="https://placehold.co/16x16/E0E0E0/555555?text=FB" alt="Feedback Icon" className="mr-1" />
-              Feedback
-            </div>
-          </div>
-      </div>
       <style jsx>{`
 @keyframes modalIn {
   0% { opacity: 0; transform: scale(0.95); }
@@ -667,5 +1245,5 @@ const HomePageContent = () => {
   );
 };
 
-export { HealthWellbeingProducts, CategoryPlaceholder, BeautyProducts, CategoryProductPage, ProductDetailPage };
+export { CategoryPlaceholder, BeautyProducts, CategoryProductPage, ProductDetailPage, ElectronicsProducts };
 export default HomePageContent; 
