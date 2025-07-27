@@ -45,6 +45,26 @@ const categoriesData = [
     icon: '✨'
   },
   {
+    id: 9,
+    name: 'Health & Wellbeing',
+    description: 'Fitness trackers, Supplements, Recovery tools.',
+    imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
+    link: '/category/health-wellbeing',
+    productCount: 567,
+    color: 'from-green-500/20 to-emerald-600/20',
+    icon: '🏃‍♂️'
+  },
+  {
+    id: 10,
+    name: 'AI Tools',
+    description: 'AI assistants, Content creation, Development tools.',
+    imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
+    link: '/category/ai-tools',
+    productCount: 234,
+    color: 'from-purple-500/20 to-pink-600/20',
+    icon: '🤖'
+  },
+  {
     id: 5,
     name: 'Sports & Outdoors',
     description: 'Fitness equipment, Camping gear, Apparel.',

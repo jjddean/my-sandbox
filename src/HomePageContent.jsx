@@ -67,71 +67,1504 @@ function CategoryProductPage({ title, products }) {
   );
 }
 
-const beautyProducts = [
+
+
+// Update beauty products with better data structure
+const updatedBeautyProducts = [
   {
-    name: "Medicube One Day Exosome Shot 2000 Serum",
-    url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Medicube+Exosome+Shot+2000+Serum",
-    description: "Medicube One Day Exosome Shot 2000 Serum."
+    name: "Fenty Beauty Gloss Bomb Universal Lip Luminizer",
+    url: "https://www.amazon.com/Fenty-Beauty-Universal-Luminizer-Fenty/dp/B075FDQZPX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Universal lip gloss that enhances your natural lip color with explosive shine.",
+    price: 19.00,
+    rating: 4.6,
+    reviews: 8765,
+    category: "Lip Care"
   },
   {
-    name: "BRUUN SD Salmon DNA PDRN Ampoule",
-    url: "https://www.amazon.com/BR%C3%9CUN-SD-Control-Needling-Microneedling/dp/B08ZYXPGZJ?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=BRUUN+SD+Salmon+DNA+PDRN+Ampoule",
-    description: "BRUUN SD Salmon DNA PDRN Ampoule."
+    name: "The Ordinary Niacinamide 10% + Zinc 1%",
+    url: "https://www.amazon.com/Ordinary-Niacinamide-Zinc-Reduces-Appearance/dp/B06ZXZB7G3?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "High-strength vitamin and mineral blemish formula for clearer skin.",
+    price: 7.90,
+    rating: 4.4,
+    reviews: 23456,
+    category: "Skincare"
   },
   {
-    name: "TOSOWOONG Pink Peptide 12 PDRN Serum",
-    url: "https://www.amazon.com/TOSOWOONG-Peptides-Niacinamide-Hydrating-Moisturizing/dp/B0DRJX22GS?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=TOSOWOONG+Pink+Peptide+12+PDRN+Serum",
-    description: "TOSOWOONG Pink Peptide 12 PDRN Serum."
+    name: "Rare Beauty Soft Pinch Liquid Blush",
+    url: "https://www.amazon.com/Rare-Beauty-Selena-Gomez-Liquid/dp/B08HVZB8YR?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81VvXGBdgJL._AC_SL1500_.jpg",
+    description: "Weightless liquid blush that blends seamlessly for a natural flush.",
+    price: 23.00,
+    rating: 4.7,
+    reviews: 12890,
+    category: "Makeup"
   },
   {
-    name: "Medicube Collagen Overnight Wrapping Mask",
-    url: "https://www.amazon.com/Medicube-Collagen-Wrapping-Elasticity-Hydration/dp/B0BRMYHMS5?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Medicube+Collagen+Overnight+Wrapping+Mask",
-    description: "Medicube Collagen Overnight Wrapping Mask."
+    name: "Olaplex No. 3 Hair Perfector",
+    url: "https://www.amazon.com/Olaplex-Hair-Perfector-No-3/dp/B00SNM5US4?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Iq2JTjVyL._AC_SL1500_.jpg",
+    description: "At-home treatment that reduces breakage and strengthens all hair types.",
+    price: 28.00,
+    rating: 4.5,
+    reviews: 15678,
+    category: "Hair Care"
   },
   {
-    name: "100 Dalton Ultra-Low Bio Collagen Gel Mask",
-    url: "https://www.amazon.com/Korean-Collagen-Face-Mask-Overnight/dp/B0DWFYGN33?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=100+Dalton+Ultra-Low+Bio+Collagen+Gel+Mask",
-    description: "100 Dalton Ultra-Low Bio Collagen Gel Mask."
+    name: "Drunk Elephant C-Firma Day Serum",
+    url: "https://www.amazon.com/Drunk-Elephant-C-Firma-Fresh-Serum/dp/B01M8G39OW?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Potent vitamin C day serum that firms, brightens, and improves signs of photoaging.",
+    price: 80.00,
+    rating: 4.3,
+    reviews: 6789,
+    category: "Skincare"
   },
   {
-    name: "Medicube Zero Exosome Shot Duo",
-    url: "https://www.amazon.com/medicube-Zero-Exosome-Shot-2000/dp/B0DM4Y4HFF?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Medicube+Zero+Exosome+Shot+Duo",
-    description: "Medicube Zero Exosome Shot Duo."
-  },
-  {
-    name: "Fastaid 7-in-1 LED Face & Neck Massager",
-    url: "https://www.amazon.com/Fastaid-Red-Light-Therapy-Face-Therapy-Massager/dp/B0C46HHJJZ?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Fastaid+7-in-1+LED+Face+%26+Neck+Massager",
-    description: "Fastaid 7-in-1 LED Face & Neck Massager."
-  },
-  {
-    name: "Anyork LED Facial Roller Massager",
-    url: "https://www.amazon.com/Facial-Massage-Dual-Head-Therapy-Electric/dp/B0DTFBSP1S?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Anyork+LED+Facial+Roller+Massager",
-    description: "Anyork LED Facial Roller Massager."
-  },
-  {
-    name: "Medicube Salmon DNA PDRN Pink One Day Serum",
-    url: "https://www.amazon.com/medicube-Intensive-Collagen-Glutathione-Hyaluronic/dp/B0DBF65JYY?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Medicube+Salmon+DNA+PDRN+Pink+One+Day+Serum",
-    description: "Medicube Salmon DNA PDRN Pink One Day Serum."
-  },
-  {
-    name: "Medicube Kojic Acid Turmeric Wrapping Mask",
-    url: "https://www.amazon.com/medicube-Kojic-Turmeric-Overnight-Wrapping/dp/B0DRNR67MJ?tag=1mlaffiliates-20",
-    image: "https://placehold.co/400x250?text=Medicube+Kojic+Acid+Turmeric+Wrapping+Mask",
-    description: "Medicube Kojic Acid Turmeric Wrapping Mask."
+    name: "Charlotte Tilbury Pillow Talk Lipstick",
+    url: "https://www.amazon.com/Charlotte-Tilbury-Matte-Revolution-Lipstick/dp/B07GVJJ5VZ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81cpDaCJJCL._AC_SL1500_.jpg",
+    description: "Iconic matte lipstick in the universally flattering Pillow Talk shade.",
+    price: 38.00,
+    rating: 4.8,
+    reviews: 9876,
+    category: "Makeup"
   }
 ];
 
 function BeautyProducts() {
-  return <CategoryProductPage title="Beauty Products" products={beautyProducts} />;
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Skincare', 'Makeup', 'Hair Care', 'Lip Care']
+
+  const filteredProducts = updatedBeautyProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Health & Beauty</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Health & Beauty</h1>
+          <p className="text-gray-600">Discover premium skincare, makeup, and beauty essentials</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search beauty products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{updatedBeautyProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Fashion & Apparel Products Data
+const fashionProducts = [
+  {
+    name: "Levi's 501 Original Fit Jeans",
+    url: "https://www.amazon.com/Levis-Original-Stonewash-34Wx32L/dp/B0000DIWUA?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_UL1500_.jpg",
+    description: "Classic straight-leg jeans with authentic styling and premium denim.",
+    price: 59.99,
+    rating: 4.4,
+    reviews: 15420,
+    category: "Jeans"
+  },
+  {
+    name: "Nike Air Force 1 '07 Sneakers",
+    url: "https://www.amazon.com/Nike-Force-White-White-Size/dp/B077S2JPZX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/51+P9uAvb1L._AC_UY695_.jpg",
+    description: "Iconic basketball-inspired sneakers with classic white leather design.",
+    price: 90.00,
+    rating: 4.6,
+    reviews: 8934,
+    category: "Footwear"
+  },
+  {
+    name: "Champion Powerblend Fleece Hoodie",
+    url: "https://www.amazon.com/Champion-Powerblend-Pullover-Hoodie-Sweatshirt/dp/B07BQJBQZX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71VvXGBdgJL._AC_UX679_.jpg",
+    description: "Comfortable fleece hoodie with reduced pilling and shrinkage.",
+    price: 35.00,
+    rating: 4.5,
+    reviews: 12567,
+    category: "Hoodies"
+  },
+  {
+    name: "Ray-Ban Aviator Classic Sunglasses",
+    url: "https://www.amazon.com/Ray-Ban-Aviator-Classic-Sunglasses-RB3025/dp/B001GNBJQ4?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY879_.jpg",
+    description: "Timeless aviator sunglasses with crystal lenses and gold frame.",
+    price: 154.00,
+    rating: 4.7,
+    reviews: 6789,
+    category: "Accessories"
+  },
+  {
+    name: "Adidas Originals Trefoil T-Shirt",
+    url: "https://www.amazon.com/adidas-Originals-Trefoil-T-Shirt-Medium/dp/B01N4NQZK1?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_UX679_.jpg",
+    description: "Classic cotton t-shirt featuring the iconic Adidas trefoil logo.",
+    price: 25.00,
+    rating: 4.3,
+    reviews: 9876,
+    category: "T-Shirts"
+  },
+  {
+    name: "Kate Spade New York Crossbody Bag",
+    url: "https://www.amazon.com/Kate-Spade-York-Cameron-Crossbody/dp/B07QMXVZPX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81fPTYH9PwL._AC_UY695_.jpg",
+    description: "Elegant leather crossbody bag with adjustable strap and gold hardware.",
+    price: 128.00,
+    rating: 4.8,
+    reviews: 3456,
+    category: "Handbags"
+  }
+];
+
+function FashionProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Jeans', 'Footwear', 'Hoodies', 'Accessories', 'T-Shirts', 'Handbags']
+
+  const filteredProducts = fashionProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Fashion & Apparel</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Fashion & Apparel</h1>
+          <p className="text-gray-600">Discover the latest trends in clothing and accessories</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search fashion products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{fashionProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Home & Kitchen Products Data
+const homeKitchenProducts = [
+  {
+    name: "Instant Pot Duo 7-in-1 Electric Pressure Cooker",
+    url: "https://www.amazon.com/Instant-Pot-Multi-Use-Programmable-Pressure/dp/B00FLYWNYQ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71V9uEMVlJL._AC_SL1500_.jpg",
+    description: "7-in-1 multi-cooker: pressure cooker, slow cooker, rice cooker, steamer, sauté, yogurt maker, and warmer.",
+    price: 79.95,
+    rating: 4.6,
+    reviews: 89456,
+    category: "Kitchen Appliances"
+  },
+  {
+    name: "KitchenAid Stand Mixer",
+    url: "https://www.amazon.com/KitchenAid-KSM150PSER-Artisan-Pouring-Shield/dp/B00063ULMI?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81CvxjUzgxL._AC_SL1500_.jpg",
+    description: "5-quart tilt-head stand mixer with 10 speeds and multiple attachments for versatile cooking.",
+    price: 379.99,
+    rating: 4.7,
+    reviews: 12890,
+    category: "Kitchen Appliances"
+  },
+  {
+    name: "Ninja Foodi Personal Blender",
+    url: "https://www.amazon.com/Ninja-BN401-Nutrient-Extraction-Personal/dp/B07GVJJ5VZ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Iq2JTjVyL._AC_SL1500_.jpg",
+    description: "Personal blender with nutrient extraction technology and to-go cups.",
+    price: 79.99,
+    rating: 4.5,
+    reviews: 8765,
+    category: "Small Appliances"
+  },
+  {
+    name: "Pyrex Glass Mixing Bowl Set",
+    url: "https://www.amazon.com/Pyrex-Smart-Essentials-Mixing-Clear/dp/B01MXBTYQX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81VvXGBdgJL._AC_SL1500_.jpg",
+    description: "Set of 3 glass mixing bowls with measurement markings and pour spouts.",
+    price: 24.99,
+    rating: 4.8,
+    reviews: 15678,
+    category: "Cookware"
+  },
+  {
+    name: "Calphalon Nonstick Cookware Set",
+    url: "https://www.amazon.com/Calphalon-Classic-Nonstick-Cookware-10-piece/dp/B01MXBTYQX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "10-piece nonstick cookware set with dual-layer coating and stay-cool handles.",
+    price: 199.99,
+    rating: 4.4,
+    reviews: 6543,
+    category: "Cookware"
+  },
+  {
+    name: "Dyson V15 Detect Cordless Vacuum",
+    url: "https://www.amazon.com/Dyson-Detect-Cordless-Vacuum-Cleaner/dp/B08TWQZXPX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Powerful cordless vacuum with laser dust detection and intelligent suction.",
+    price: 649.99,
+    rating: 4.6,
+    reviews: 4321,
+    category: "Cleaning"
+  }
+];
+
+function HomeKitchenProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Kitchen Appliances', 'Small Appliances', 'Cookware', 'Cleaning']
+
+  const filteredProducts = homeKitchenProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Home & Kitchen</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Home & Kitchen</h1>
+          <p className="text-gray-600">Everything you need for your home and kitchen</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search home & kitchen products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-emerald-600">{sortedProducts.length}</span> of <span className="font-semibold">{homeKitchenProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Sports & Outdoors Products Data
+const sportsOutdoorsProducts = [
+  {
+    name: "YETI Rambler 20 oz Tumbler",
+    url: "https://www.amazon.com/YETI-Rambler-Tumbler-Stainless-MagSlider/dp/B073WJ8Q8X?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Double-wall vacuum insulated tumbler with MagSlider lid for hot and cold beverages.",
+    price: 35.00,
+    rating: 4.8,
+    reviews: 23456,
+    category: "Drinkware"
+  },
+  {
+    name: "Hydro Flask Water Bottle 32 oz",
+    url: "https://www.amazon.com/Hydro-Flask-Water-Bottle-Stainless/dp/B077S2JPZX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "Insulated stainless steel water bottle that keeps drinks cold for 24 hours or hot for 12 hours.",
+    price: 44.95,
+    rating: 4.7,
+    reviews: 18765,
+    category: "Drinkware"
+  },
+  {
+    name: "Coleman Sundome Camping Tent",
+    url: "https://www.amazon.com/Coleman-Sundome-Tent-4-Person/dp/B004J2GUOU?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81VvXGBdgJL._AC_SL1500_.jpg",
+    description: "4-person dome tent with WeatherTec system and easy setup for camping adventures.",
+    price: 89.99,
+    rating: 4.3,
+    reviews: 12890,
+    category: "Camping"
+  },
+  {
+    name: "Resistance Bands Set with Handles",
+    url: "https://www.amazon.com/Resistance-Bands-Set-Exercise-Workout/dp/B07GVJJ5VZ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Iq2JTjVyL._AC_SL1500_.jpg",
+    description: "Complete resistance band set with handles, door anchor, and ankle straps for full-body workouts.",
+    price: 29.99,
+    rating: 4.5,
+    reviews: 15432,
+    category: "Fitness"
+  },
+  {
+    name: "Nike Dri-FIT Running Shorts",
+    url: "https://www.amazon.com/Nike-Dri-FIT-Running-Shorts-Men/dp/B08TWQZXPX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Lightweight running shorts with Dri-FIT technology and built-in brief for comfort.",
+    price: 35.00,
+    rating: 4.6,
+    reviews: 8765,
+    category: "Athletic Wear"
+  },
+  {
+    name: "Patagonia Houdini Windbreaker Jacket",
+    url: "https://www.amazon.com/Patagonia-Houdini-Windbreaker-Jacket/dp/B01MXBTYQX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71VvXGBdgJL._AC_SL1500_.jpg",
+    description: "Ultra-lightweight windbreaker that packs into its own pocket, perfect for outdoor activities.",
+    price: 99.00,
+    rating: 4.7,
+    reviews: 5432,
+    category: "Outdoor Clothing"
+  }
+];
+
+function SportsOutdoorsProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Drinkware', 'Camping', 'Fitness', 'Athletic Wear', 'Outdoor Clothing']
+
+  const filteredProducts = sportsOutdoorsProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Sports & Outdoors</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Sports & Outdoors</h1>
+          <p className="text-gray-600">Gear up for your next adventure</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search sports & outdoor products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-orange-600">{sortedProducts.length}</span> of <span className="font-semibold">{sportsOutdoorsProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Books & Media Products Data
+const booksMediaProducts = [
+  {
+    name: "Atomic Habits by James Clear",
+    url: "https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UY327_FMwebp_QL65_.jpg",
+    description: "A proven framework for improving every day with tiny changes that deliver remarkable results.",
+    price: 13.49,
+    rating: 4.8,
+    reviews: 89456,
+    category: "Self-Help"
+  },
+  {
+    name: "The Seven Husbands of Evelyn Hugo",
+    url: "https://www.amazon.com/Seven-Husbands-Evelyn-Hugo-Novel/dp/1501161938?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Qs0CKQJPL._AC_UY327_FMwebp_QL65_.jpg",
+    description: "A captivating novel about a reclusive Hollywood icon who finally decides to tell her story.",
+    price: 12.99,
+    rating: 4.7,
+    reviews: 67890,
+    category: "Fiction"
+  },
+  {
+    name: "Educated: A Memoir by Tara Westover",
+    url: "https://www.amazon.com/Educated-Memoir-Tara-Westover/dp/0399590501?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81NbDxJHFdL._AC_UY327_FMwebp_QL65_.jpg",
+    description: "A powerful memoir about education, family, and the struggle between loyalty and independence.",
+    price: 14.99,
+    rating: 4.6,
+    reviews: 45678,
+    category: "Biography"
+  },
+  {
+    name: "The Psychology of Money by Morgan Housel",
+    url: "https://www.amazon.com/Psychology-Money-Timeless-lessons-happiness/dp/0857197681?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81cpDaCJJCL._AC_UY327_FMwebp_QL65_.jpg",
+    description: "Timeless lessons on wealth, greed, and happiness from behavioral psychology.",
+    price: 15.99,
+    rating: 4.7,
+    reviews: 34567,
+    category: "Business"
+  },
+  {
+    name: "Where the Crawdads Sing by Delia Owens",
+    url: "https://www.amazon.com/Where-Crawdads-Sing-Delia-Owens/dp/0735219095?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81O2ZjVoiIL._AC_UY327_FMwebp_QL65_.jpg",
+    description: "A coming-of-age mystery novel set in the marshlands of North Carolina.",
+    price: 13.99,
+    rating: 4.5,
+    reviews: 78901,
+    category: "Fiction"
+  },
+  {
+    name: "Kindle Paperwhite E-reader",
+    url: "https://www.amazon.com/Kindle-Paperwhite-adjustable-Ad-Supported/dp/B08KTZ8249?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61SVPf8Jl7L._AC_SL1000_.jpg",
+    description: "Waterproof e-reader with 6.8\" display and adjustable warm light for comfortable reading.",
+    price: 139.99,
+    rating: 4.6,
+    reviews: 23456,
+    category: "E-readers"
+  }
+];
+
+function BooksMediaProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Self-Help', 'Fiction', 'Biography', 'Business', 'E-readers']
+
+  const filteredProducts = booksMediaProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Books & Media</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Books & Media</h1>
+          <p className="text-gray-600">Discover your next great read</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search books & media..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-amber-600">{sortedProducts.length}</span> of <span className="font-semibold">{booksMediaProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Toys & Games Products Data
+const toysGamesProducts = [
+  {
+    name: "LEGO Creator 3-in-1 Deep Sea Creatures",
+    url: "https://www.amazon.com/LEGO-Creator-Deep-Sea-Creatures/dp/B08HVZB8YR?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_SL1500_.jpg",
+    description: "Build a shark, squid, or angler fish with this creative 3-in-1 LEGO set.",
+    price: 15.99,
+    rating: 4.8,
+    reviews: 12345,
+    category: "Building Sets"
+  },
+  {
+    name: "Monopoly Classic Board Game",
+    url: "https://www.amazon.com/Monopoly-Classic-Board-Game/dp/B00CV5PN2W?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81Qs0CKQJPL._AC_SL1500_.jpg",
+    description: "The classic property trading game that brings families together for hours of fun.",
+    price: 19.99,
+    rating: 4.6,
+    reviews: 23456,
+    category: "Board Games"
+  },
+  {
+    name: "Hot Wheels 20-Car Gift Pack",
+    url: "https://www.amazon.com/Hot-Wheels-20-Car-Gift-Pack/dp/B07GVJJ5VZ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81NbDxJHFdL._AC_SL1500_.jpg",
+    description: "Collection of 20 Hot Wheels die-cast cars with authentic details and decorations.",
+    price: 19.97,
+    rating: 4.7,
+    reviews: 8765,
+    category: "Die-Cast Cars"
+  },
+  {
+    name: "Rubik's Cube 3x3 Puzzle",
+    url: "https://www.amazon.com/Rubiks-Cube-3x3-Puzzle-Original/dp/B0040GQNTO?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "The original 3x3 color-matching puzzle that's a great mental challenge for all ages.",
+    price: 9.99,
+    rating: 4.5,
+    reviews: 15678,
+    category: "Puzzles"
+  },
+  {
+    name: "Nerf Elite 2.0 Commander Blaster",
+    url: "https://www.amazon.com/Nerf-Elite-Commander-Blaster-Official/dp/B084DQZR8X?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81VvXGBdgJL._AC_SL1500_.jpg",
+    description: "Motorized blaster with 6-dart rotating drum and includes 12 Official Nerf darts.",
+    price: 24.99,
+    rating: 4.4,
+    reviews: 6789,
+    category: "Action Toys"
+  },
+  {
+    name: "Play-Doh Modeling Compound 10-Pack",
+    url: "https://www.amazon.com/Play-Doh-Modeling-Compound-10-Pack/dp/B00JM5GW10?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81cpDaCJJCL._AC_SL1500_.jpg",
+    description: "Classic modeling compound in 10 bright colors for endless creative possibilities.",
+    price: 9.99,
+    rating: 4.8,
+    reviews: 34567,
+    category: "Arts & Crafts"
+  }
+];
+
+function ToysGamesProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Building Sets', 'Board Games', 'Die-Cast Cars', 'Puzzles', 'Action Toys', 'Arts & Crafts']
+
+  const filteredProducts = toysGamesProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Toys & Games</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Toys & Games</h1>
+          <p className="text-gray-600">Fun and educational toys for all ages</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search toys & games..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-red-600">{sortedProducts.length}</span> of <span className="font-semibold">{toysGamesProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Automotive Products Data
+const automotiveProducts = [
+  {
+    name: "Chemical Guys Car Wash Kit",
+    url: "https://www.amazon.com/Chemical-Guys-HOL126-Complete-Wash/dp/B00FQMGZIK?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_SL1500_.jpg",
+    description: "Complete car wash and detailing kit with premium soaps, microfiber towels, and accessories.",
+    price: 49.99,
+    rating: 4.6,
+    reviews: 8765,
+    category: "Car Care"
+  },
+  {
+    name: "Armor All Car Interior Cleaner",
+    url: "https://www.amazon.com/Armor-All-Interior-Cleaner-Protectant/dp/B000AL8VD2?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "Multi-surface cleaner and protectant for dashboards, vinyl, plastic, and leather.",
+    price: 12.99,
+    rating: 4.4,
+    reviews: 15432,
+    category: "Car Care"
+  },
+  {
+    name: "Anker Roav DashCam C1",
+    url: "https://www.amazon.com/Roav-DashCam-Recorder-Nighthawk-Vision/dp/B077GFQZPX?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Compact dash camera with 1080p recording, night vision, and wide-angle lens.",
+    price: 89.99,
+    rating: 4.3,
+    reviews: 6789,
+    category: "Electronics"
+  },
+  {
+    name: "WeatherTech All-Weather Floor Mats",
+    url: "https://www.amazon.com/WeatherTech-Custom-All-Weather-Floor/dp/B000BD8KZS?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81VvXGBdgJL._AC_SL1500_.jpg",
+    description: "Custom-fit floor mats designed to protect your vehicle's carpet from mud, snow, and spills.",
+    price: 129.95,
+    rating: 4.7,
+    reviews: 12345,
+    category: "Interior Accessories"
+  },
+  {
+    name: "Bosch ICON Windshield Wipers",
+    url: "https://www.amazon.com/Bosch-ICON-Wiper-Blade-Pack/dp/B000C24F0U?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Iq2JTjVyL._AC_SL1500_.jpg",
+    description: "Premium beam wiper blades with exclusive dual rubber technology for superior performance.",
+    price: 34.99,
+    rating: 4.5,
+    reviews: 9876,
+    category: "Maintenance"
+  },
+  {
+    name: "NOCO Boost Plus GB40 Jump Starter",
+    url: "https://www.amazon.com/NOCO-Boost-UltraSafe-Lithium-Starter/dp/B015TKUPIC?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81cpDaCJJCL._AC_SL1500_.jpg",
+    description: "Portable lithium jump starter for 12V batteries up to 6L gas and 3L diesel engines.",
+    price: 99.95,
+    rating: 4.6,
+    reviews: 23456,
+    category: "Emergency Equipment"
+  }
+];
+
+function AutomotiveProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Car Care', 'Electronics', 'Interior Accessories', 'Maintenance', 'Emergency Equipment']
+
+  const filteredProducts = automotiveProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Automotive</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Automotive</h1>
+          <p className="text-gray-600">Everything you need for your vehicle</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search automotive products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-slate-600">{sortedProducts.length}</span> of <span className="font-semibold">{automotiveProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
 function CategoryPlaceholder() {
@@ -146,6 +1579,434 @@ function CategoryPlaceholder() {
       <p className="text-lg text-gray-600">This page is under construction. Coming soon!</p>
     </div>
   );
+}
+
+// Health & Wellbeing Products Data
+const healthWellbeingProducts = [
+  {
+    name: "Fitbit Charge 5 Fitness Tracker",
+    url: "https://www.amazon.com/Fitbit-Charge-Fitness-Tracker-Management/dp/B09DFCZ6T1?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Advanced fitness tracker with built-in GPS, stress management, and health metrics.",
+    price: 149.95,
+    rating: 4.4,
+    reviews: 12890,
+    category: "Fitness Trackers"
+  },
+  {
+    name: "Theragun Mini Percussive Therapy Device",
+    url: "https://www.amazon.com/Theragun-Mini-Percussive-Therapy-Device/dp/B07GVJJ5VZ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "Portable massage device for muscle recovery and pain relief on-the-go.",
+    price: 179.00,
+    rating: 4.6,
+    reviews: 8765,
+    category: "Recovery Tools"
+  },
+  {
+    name: "Nature Made Multivitamin for Adults",
+    url: "https://www.amazon.com/Nature-Made-Multivitamin-Adults-Tablets/dp/B000NPYY04?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81VvXGBdgJL._AC_SL1500_.jpg",
+    description: "Complete multivitamin with essential nutrients for daily health support.",
+    price: 19.99,
+    rating: 4.5,
+    reviews: 23456,
+    category: "Supplements"
+  },
+  {
+    name: "Philips SmartSleep Wake-up Light",
+    url: "https://www.amazon.com/Philips-SmartSleep-Wake-up-Light-Therapy/dp/B0093162RM?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Iq2JTjVyL._AC_SL1500_.jpg",
+    description: "Sunrise alarm clock with light therapy to improve sleep and wake naturally.",
+    price: 199.95,
+    rating: 4.3,
+    reviews: 6789,
+    category: "Sleep Aids"
+  },
+  {
+    name: "Gaiam Yoga Mat Premium",
+    url: "https://www.amazon.com/Gaiam-Yoga-Mat-Premium-Print/dp/B01M8G39OW?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81cpDaCJJCL._AC_SL1500_.jpg",
+    description: "Non-slip yoga mat with superior cushioning for comfortable practice.",
+    price: 39.98,
+    rating: 4.7,
+    reviews: 15678,
+    category: "Exercise Equipment"
+  },
+  {
+    name: "Himalayan Pink Salt Lamp",
+    url: "https://www.amazon.com/Himalayan-Glow-Natural-Crystal-Lamp/dp/B013T8BSQY?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Natural crystal salt lamp for air purification and ambient lighting.",
+    price: 24.99,
+    rating: 4.4,
+    reviews: 9876,
+    category: "Wellness"
+  }
+];
+
+function HealthWellbeingProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'Fitness Trackers', 'Recovery Tools', 'Supplements', 'Sleep Aids', 'Exercise Equipment', 'Wellness']
+
+  const filteredProducts = healthWellbeingProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">Health & Wellbeing</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Health & Wellbeing</h1>
+          <p className="text-gray-600">Products to support your health, fitness, and overall wellbeing</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search health & wellbeing products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{healthWellbeingProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// AI Tools Products Data
+const aiToolsProducts = [
+  {
+    name: "ChatGPT Plus Subscription",
+    url: "https://openai.com/chatgpt/pricing?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Advanced AI assistant for writing, coding, analysis, and creative tasks with GPT-4 access.",
+    price: 20.00,
+    rating: 4.8,
+    reviews: 45678,
+    category: "AI Assistants"
+  },
+  {
+    name: "Midjourney AI Art Generator",
+    url: "https://midjourney.com/pricing?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "Create stunning AI-generated artwork and images from text descriptions.",
+    price: 10.00,
+    rating: 4.7,
+    reviews: 23456,
+    category: "AI Art"
+  },
+  {
+    name: "GitHub Copilot",
+    url: "https://github.com/features/copilot?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81VvXGBdgJL._AC_SL1500_.jpg",
+    description: "AI-powered code completion and programming assistant for developers.",
+    price: 10.00,
+    rating: 4.6,
+    reviews: 34567,
+    category: "Development Tools"
+  },
+  {
+    name: "Notion AI",
+    url: "https://notion.so/product/ai?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71Iq2JTjVyL._AC_SL1500_.jpg",
+    description: "AI-powered writing assistant integrated into Notion for enhanced productivity.",
+    price: 8.00,
+    rating: 4.5,
+    reviews: 12890,
+    category: "Productivity"
+  },
+  {
+    name: "Jasper AI Writing Assistant",
+    url: "https://jasper.ai/pricing?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/81cpDaCJJCL._AC_SL1500_.jpg",
+    description: "AI content creation platform for marketing copy, blog posts, and social media.",
+    price: 39.00,
+    rating: 4.4,
+    reviews: 8765,
+    category: "Content Creation"
+  },
+  {
+    name: "Runway ML Video Editor",
+    url: "https://runwayml.com/pricing?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "AI-powered video editing and generation tools for creative professionals.",
+    price: 15.00,
+    rating: 4.3,
+    reviews: 6789,
+    category: "Video Tools"
+  }
+];
+
+function AIToolsProducts() {
+  const [search, setSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortBy, setSortBy] = useState('name')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const categories = ['All', 'AI Assistants', 'AI Art', 'Development Tools', 'Productivity', 'Content Creation', 'Video Tools']
+
+  const filteredProducts = aiToolsProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
+                         product.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'name': return a.name.localeCompare(b.name)
+      case 'price': return a.price - b.price
+      case 'rating': return b.rating - a.rating
+      case 'reviews': return b.reviews - a.reviews
+      default: return 0
+    }
+  })
+
+  const handleProductClick = (product) => {
+    setIsLoading(true)
+    setTimeout(() => {
+      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      setIsLoading(false)
+    }, 150)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Translucent Header Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/20 py-4 px-6 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-2 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            >
+              <span className="text-2xl">🌍</span>
+              <div className="text-xl font-bold tracking-tighter">
+                <span className="mr-[-2px]">1</span>MarketLive
+              </div>
+            </button>
+            <div className="relative flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-gray-600 w-64 md:w-96 border border-white/30">
+              <Search size={16} className="mr-2 text-gray-500" />
+              <span>Search MLN...</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-2 mb-8">
+          <button
+            onClick={() => navigate('/categories')}
+            className="text-blue-600 hover:text-blue-700 text-sm transition-colors duration-200"
+          >
+            Categories
+          </button>
+          <span className="text-gray-400">/</span>
+          <span className="text-gray-600 text-sm">AI Tools</span>
+        </div>
+
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">AI Tools</h1>
+          <p className="text-gray-600">Cutting-edge AI tools and services to enhance your productivity</p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search AI tools..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="price">Sort by Price</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="reviews">Sort by Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Count */}
+        <div className="mb-8">
+          <p className="text-sm text-gray-600">
+            Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{aiToolsProducts.length}</span> products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {sortedProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              onClick={() => handleProductClick(product)}
+            />
+          ))}
+        </div>
+
+        {/* No Results */}
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-gray-400 mb-4">
+              <Search size={64} className="mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
 function slugifyCategory(cat) {
@@ -656,7 +2517,23 @@ function ElectronicsProducts() {
   const handleProductClick = (product) => {
     setIsLoading(true)
     setTimeout(() => {
-      navigate(`/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`)
+      // Map specific products to their dedicated routes
+      let productUrl;
+      switch (product.name) {
+        case "MacBook Air M2":
+          productUrl = "/product/macbook-air-m2";
+          break;
+        case "iPhone 15 Pro Max":
+          productUrl = "/product/iphone-15-pro-max";
+          break;
+        case "Samsung Galaxy S24 Ultra":
+          productUrl = "/product/samsung-galaxy-s24-ultra";
+          break;
+        default:
+          // Fallback to slug-based URL for other products
+          productUrl = `/product/${product.name.toLowerCase().replace(/\s+/g, '-')}`;
+      }
+      navigate(productUrl)
       setIsLoading(false)
     }, 150)
   }
@@ -1306,5 +3183,17 @@ const HomePageContent = () => {
   );
 };
 
-export { CategoryPlaceholder, BeautyProducts, CategoryProductPage, ElectronicsProducts };
+export {
+  CategoryPlaceholder,
+  BeautyProducts,
+  ElectronicsProducts,
+  FashionProducts,
+  HomeKitchenProducts,
+  SportsOutdoorsProducts,
+  BooksMediaProducts,
+  ToysGamesProducts,
+  AutomotiveProducts,
+  HealthWellbeingProducts,
+  AIToolsProducts
+};
 export default HomePageContent; 

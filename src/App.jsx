@@ -36,9 +36,161 @@ import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router
 import { Search, Bell, Settings, ChevronDown, ChevronRight, Star, Plus, Menu, LayoutDashboard, TrendingUp, BarChart, DollarSign, Globe, Briefcase, Activity, LineChart, SlidersHorizontal, Cloud, Newspaper, ShoppingCart, Sun, CloudRain, Wind, Droplet, Thermometer, Eye, Gauge, Sunrise, Sunset } from 'lucide-react'; // All necessary icons
 import HomePageContent from './HomePageContent';
 // Import HealthWellbeingProducts from HomePageContent
-import { CategoryPlaceholder, BeautyProducts, CategoryProductPage, ElectronicsProducts } from './HomePageContent';
+import {
+  CategoryPlaceholder,
+  BeautyProducts,
+  ElectronicsProducts,
+  FashionProducts,
+  HomeKitchenProducts,
+  SportsOutdoorsProducts,
+  BooksMediaProducts,
+  ToysGamesProducts,
+  AutomotiveProducts,
+  HealthWellbeingProducts,
+  AIToolsProducts
+} from './HomePageContent';
 import ProductDetailPage from './ProductDetailPage';
 import CategoriesPageContent from './CategoriesPageContent';
+
+// --- PRODUCT PAGE COMPONENTS ---
+
+// MacBook Air M2 Product Page
+const MacBookAirM2Page = () => {
+  const macbookProduct = {
+    name: "MacBook Air M2",
+    url: "https://www.amazon.com/Apple-MacBook-Laptop-12%E2%80%91core-30%E2%80%91core/dp/B0B3C5T6M8?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71TPda7cwUL._AC_SL1500_.jpg",
+    description: "Ultra-thin laptop with M2 chip, all-day battery life, and stunning Retina display.",
+    price: 1099.99,
+    currency: 'USD',
+    rating: 4.9,
+    reviews: 892,
+    category: "Laptops",
+    brand: "Apple",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    features: [
+      "Apple M2 chip with 8-core CPU and up to 10-core GPU",
+      "13.6-inch Liquid Retina display with 500 nits brightness",
+      "Up to 18 hours of battery life",
+      "1080p FaceTime HD camera with advanced image signal processor",
+      "Four-speaker sound system with Spatial Audio",
+      "MagSafe 3 charging port, two Thunderbolt ports, and headphone jack",
+      "Backlit Magic Keyboard and Touch ID",
+      "Fanless design for silent operation",
+      "8GB unified memory, configurable to 16GB or 24GB",
+      "256GB SSD storage, configurable up to 2TB"
+    ],
+    specifications: {
+      "Processor": "Apple M2 chip with 8-core CPU",
+      "Graphics": "8-core GPU (base) or 10-core GPU",
+      "Memory": "8GB unified memory",
+      "Storage": "256GB SSD",
+      "Display": "13.6-inch Liquid Retina",
+      "Resolution": "2560 x 1664 pixels",
+      "Weight": "2.7 pounds (1.24 kg)",
+      "Dimensions": "11.97 x 8.46 x 0.44 inches",
+      "Battery": "Up to 18 hours video playback",
+      "Connectivity": "Wi-Fi 6, Bluetooth 5.0",
+      "Ports": "2x Thunderbolt, MagSafe 3, 3.5mm headphone",
+      "Operating System": "macOS Ventura"
+    }
+  };
+
+  return <ProductDetailPage product={macbookProduct} />;
+};
+
+// iPhone 15 Pro Max Product Page
+const IPhoneProMaxPage = () => {
+  const iphoneProduct = {
+    name: "iPhone 15 Pro Max",
+    url: "https://www.amazon.com/Apple-iPhone-15-Pro-Max/dp/B0CM5J8HQQ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Latest iPhone with A17 Pro chip, titanium design, and advanced camera system.",
+    price: 1199.99,
+    currency: 'USD',
+    rating: 4.8,
+    reviews: 1247,
+    category: "Smartphones",
+    brand: "Apple",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    features: [
+      "A17 Pro chip with 6-core GPU for incredible performance",
+      "6.7-inch Super Retina XDR display with ProMotion",
+      "Titanium design with textured matte glass back",
+      "Pro camera system with 48MP Main, Ultra Wide, and Telephoto",
+      "5x Telephoto zoom and 2x Telephoto (48MP Main)",
+      "Action Button for quick access to favorite features",
+      "USB-C connector with USB 3 for faster transfer speeds",
+      "Face ID for secure authentication",
+      "Up to 29 hours video playback",
+      "Emergency SOS via satellite and Crash Detection"
+    ],
+    specifications: {
+      "Processor": "A17 Pro chip with 6-core CPU",
+      "Graphics": "6-core GPU with hardware-accelerated ray tracing",
+      "Memory": "8GB RAM",
+      "Storage": "256GB, 512GB, or 1TB",
+      "Display": "6.7-inch Super Retina XDR OLED",
+      "Resolution": "2796 x 1290 pixels at 460 ppi",
+      "Weight": "7.81 ounces (221 grams)",
+      "Dimensions": "6.29 x 3.02 x 0.32 inches",
+      "Battery": "Up to 29 hours video playback",
+      "Camera": "48MP Main, 12MP Ultra Wide, 12MP Telephoto",
+      "Connectivity": "5G, Wi-Fi 6E, Bluetooth 5.3",
+      "Operating System": "iOS 17"
+    }
+  };
+
+  return <ProductDetailPage product={iphoneProduct} />;
+};
+
+// Samsung Galaxy S24 Ultra Product Page
+const SamsungGalaxyPage = () => {
+  const samsungProduct = {
+    name: "Samsung Galaxy S24 Ultra",
+    url: "https://www.amazon.com/Samsung-Electronics-Unlocked-Smartphone-Titanium/dp/B0CSJZ8Q8L?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Premium Android flagship with S Pen, advanced AI features, and titanium frame.",
+    price: 1299.99,
+    currency: 'USD',
+    rating: 4.7,
+    reviews: 567,
+    category: "Smartphones",
+    brand: "Samsung",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    features: [
+      "Snapdragon 8 Gen 3 for Galaxy processor",
+      "6.8-inch Dynamic AMOLED 2X display with 120Hz",
+      "Titanium frame with Gorilla Glass Victus 2",
+      "200MP main camera with advanced AI photography",
+      "Built-in S Pen with Air Actions and precision control",
+      "12GB RAM with 256GB/512GB/1TB storage options",
+      "5000mAh battery with 45W fast charging",
+      "Galaxy AI features for enhanced productivity",
+      "IP68 water and dust resistance",
+      "Wireless PowerShare and wireless charging"
+    ],
+    specifications: {
+      "Processor": "Snapdragon 8 Gen 3 for Galaxy",
+      "Graphics": "Adreno 750 GPU",
+      "Memory": "12GB RAM",
+      "Storage": "256GB/512GB/1TB UFS 4.0",
+      "Display": "6.8-inch Dynamic AMOLED 2X",
+      "Resolution": "3120 x 1440 pixels (QHD+)",
+      "Weight": "8.22 ounces (233 grams)",
+      "Dimensions": "6.40 x 3.11 x 0.34 inches",
+      "Battery": "5000mAh with 45W fast charging",
+      "Camera": "200MP Main, 50MP Periscope, 12MP Ultra Wide, 10MP Telephoto",
+      "Connectivity": "5G, Wi-Fi 7, Bluetooth 5.3",
+      "Operating System": "Android 14 with One UI 6.1"
+    }
+  };
+
+  return <ProductDetailPage product={samsungProduct} />;
+};
 
 // --- PAGE COMPONENTS ---
 
@@ -813,7 +965,22 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
 
                         <Route path="/category/beauty" element={<BeautyProducts />} />
                         <Route path="/category/electronics" element={<ElectronicsProducts />} />
+                        <Route path="/category/fashion" element={<FashionProducts />} />
+                        <Route path="/category/home-kitchen" element={<HomeKitchenProducts />} />
+                        <Route path="/category/sports-outdoors" element={<SportsOutdoorsProducts />} />
+                        <Route path="/category/books-media" element={<BooksMediaProducts />} />
+                        <Route path="/category/toys-games" element={<ToysGamesProducts />} />
+                        <Route path="/category/automotive" element={<AutomotiveProducts />} />
+                        <Route path="/category/health-wellbeing" element={<HealthWellbeingProducts />} />
+                        <Route path="/category/ai-tools" element={<AIToolsProducts />} />
                         <Route path="/category/:category" element={<CategoryPlaceholder key={window.location.pathname} />} />
+
+                        {/* Dedicated Product Detail Routes */}
+                        <Route path="/product/macbook-air-m2" element={<MacBookAirM2Page />} />
+                        <Route path="/product/iphone-15-pro-max" element={<IPhoneProMaxPage />} />
+                        <Route path="/product/samsung-galaxy-s24-ultra" element={<SamsungGalaxyPage />} />
+
+                        {/* Fallback for other product slugs */}
                         <Route path="/product/:slug" element={<ProductDetailRoute />} />
                         {/* Add a fallback route for unmatched paths */}
                         <Route path="*" element={<HomePageContent />} />
@@ -941,7 +1108,42 @@ export default function App() {
     if (location.pathname === '/category/electronics') {
       return <ElectronicsProducts />;
     }
+    if (location.pathname === '/category/fashion') {
+      return <FashionProducts />;
+    }
+    if (location.pathname === '/category/home-kitchen') {
+      return <HomeKitchenProducts />;
+    }
+    if (location.pathname === '/category/sports-outdoors') {
+      return <SportsOutdoorsProducts />;
+    }
+    if (location.pathname === '/category/books-media') {
+      return <BooksMediaProducts />;
+    }
+    if (location.pathname === '/category/toys-games') {
+      return <ToysGamesProducts />;
+    }
+    if (location.pathname === '/category/automotive') {
+      return <AutomotiveProducts />;
+    }
+    if (location.pathname === '/category/health-wellbeing') {
+      return <HealthWellbeingProducts />;
+    }
+    if (location.pathname === '/category/ai-tools') {
+      return <AIToolsProducts />;
+    }
     if (location.pathname.startsWith('/product/')) {
+      // Handle specific product routes
+      if (location.pathname === '/product/macbook-air-m2') {
+        return <MacBookAirM2Page />;
+      }
+      if (location.pathname === '/product/iphone-15-pro-max') {
+        return <IPhoneProMaxPage />;
+      }
+      if (location.pathname === '/product/samsung-galaxy-s24-ultra') {
+        return <SamsungGalaxyPage />;
+      }
+      // Fallback to dynamic route
       return <ProductDetailRoute />;
     }
     // fallback for other categories
