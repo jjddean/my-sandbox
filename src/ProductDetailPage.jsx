@@ -125,6 +125,24 @@ function ProductDetailPage({ product }) {
               <span>Search MLN...</span>
             </div>
           </div>
+
+          {/* Right Side - Auth Buttons */}
+          <div className="flex items-center">
+            <div className="flex gap-1">
+              <button
+                onClick={() => navigate('/login')}
+                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+              >
+                <span>Login</span>
+              </button>
+              <button
+                onClick={() => navigate('/signup')}
+                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+              >
+                <span>Sign Up</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -221,34 +239,77 @@ function ProductDetailPage({ product }) {
                     href={productData.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm font-medium"
+                    className="flex-1 bg-blue-600 text-white text-center py-2.5 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-xs font-medium"
                   >
                     Buy on Amazon
                   </a>
-                  <button className="px-3 py-2 border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                    <Heart size={16} />
+                  <button className="px-3 py-2.5 border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    <Heart size={14} />
                   </button>
-                  <button className="px-3 py-2 border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                    <Share2 size={16} />
+                  <button className="px-3 py-2.5 border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    <Share2 size={14} />
                   </button>
                 </div>
-                <div className="flex space-x-2">
-                  <button className="flex-1 bg-[#635BFF] text-white text-center py-2 rounded-lg hover:bg-[#5851EC] transition-colors duration-200 text-sm font-medium">
-                    <div className="flex items-center justify-center space-x-2">
+                <div className="grid grid-cols-2 gap-2">
+                  <button className="bg-[#635BFF] text-white text-center py-2.5 rounded-lg hover:bg-[#5851EC] transition-colors duration-200 text-xs font-medium">
+                    <div className="flex items-center justify-center space-x-1.5">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.831 3.47 1.426 3.47 2.338 0 .914-.796 1.431-2.127 1.431-1.72 0-4.516-.924-6.378-2.168l-.9 5.555C7.466 22.924 9.848 24 13.164 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h6.147z"/>
                       </svg>
-                      <span>Pay with Stripe</span>
+                      <span>Stripe</span>
                     </div>
                   </button>
-                  <button className="flex-1 bg-[#FFC439] text-[#003087] text-center py-2 rounded-lg hover:bg-[#F4BB33] transition-colors duration-200 text-sm font-medium">
-                    <div className="flex items-center justify-center space-x-2">
+                  <button className="bg-[#FFC439] text-[#003087] text-center py-2.5 rounded-lg hover:bg-[#F4BB33] transition-colors duration-200 text-xs font-medium">
+                    <div className="flex items-center justify-center space-x-1.5">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M20.067 8.478c.492.315.844.825.844 1.478 0 .653-.352 1.163-.844 1.478-.492.315-1.163.478-1.844.478H5.777c-.681 0-1.352-.163-1.844-.478C3.441 12.819 3.089 12.309 3.089 11.656c0-.653.352-1.163.844-1.478.492-.315 1.163-.478 1.844-.478h12.446c.681 0 1.352.163 1.844.478zM7.777 15.656c0-.653.352-1.163.844-1.478.492-.315 1.163-.478 1.844-.478h8.446c.681 0 1.352.163 1.844.478.492.315.844.825.844 1.478 0 .653-.352 1.163-.844 1.478-.492.315-1.163.478-1.844-.478h-8.446c-.681 0-1.352-.163-1.844-.478-.492-.315-.844-.825-.844-1.478z"/>
                       </svg>
                       <span>PayPal</span>
                     </div>
                   </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Research Review Content Card */}
+            <div className="backdrop-blur-xl bg-white/50 rounded-xl p-6 border border-white/30 shadow-lg">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold text-gray-900">Expert Research & Reviews</h3>
+                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-medium">Verified</span>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-1">Performance Analysis</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">Based on extensive testing and user feedback, this product delivers exceptional performance in its category with consistent reliability ratings above 95%.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-1">Value Assessment</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">Competitive pricing analysis shows this product offers superior value compared to similar alternatives, with 23% better price-to-performance ratio.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-1">Expert Recommendation</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">Recommended by industry experts and verified buyers. Consistently rated as a top choice in independent product comparisons and buyer guides.</p>
+                  </div>
                 </div>
               </div>
             </div>

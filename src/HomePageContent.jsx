@@ -138,6 +138,7 @@ function BeautyProducts() {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('name')
   const [isLoading, setIsLoading] = useState(false)
+
   const navigate = useNavigate()
 
   const categories = ['All', 'Skincare', 'Makeup', 'Hair Care', 'Lip Care']
@@ -187,6 +188,24 @@ function BeautyProducts() {
               <span>Search MLN...</span>
             </div>
           </div>
+
+          {/* Right Side - Auth Buttons */}
+          <div className="flex items-center">
+            <div className="flex gap-1">
+              <button
+                onClick={() => navigate('/login')}
+                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+              >
+                <span>Login</span>
+              </button>
+              <button
+                onClick={() => navigate('/signup')}
+                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+              >
+                <span>Sign Up</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -204,10 +223,20 @@ function BeautyProducts() {
           <span className="text-gray-600 text-sm">Health & Beauty</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Health & Beauty</h1>
-          <p className="text-gray-600">Discover premium skincare, makeup, and beauty essentials</p>
+        {/* Health & Beauty Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&h=300&fit=crop"
+            alt="Health & Beauty Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Health & Beauty</h1>
+              <p className="text-white/90 text-lg">Premium skincare • Luxury makeup • Beauty essentials</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -258,7 +287,7 @@ function BeautyProducts() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {sortedProducts.map((product, index) => (
             <ProductCard
               key={index}
@@ -279,6 +308,8 @@ function BeautyProducts() {
           </div>
         )}
       </div>
+
+
     </div>
   )
 }
@@ -401,6 +432,24 @@ function FashionProducts() {
               <span>Search MLN...</span>
             </div>
           </div>
+
+          {/* Right Side - Auth Buttons */}
+          <div className="flex items-center">
+            <div className="flex gap-1">
+              <button
+                onClick={() => navigate('/login')}
+                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+              >
+                <span>Login</span>
+              </button>
+              <button
+                onClick={() => navigate('/signup')}
+                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+              >
+                <span>Sign Up</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -418,24 +467,36 @@ function FashionProducts() {
           <span className="text-gray-600 text-sm">Fashion & Apparel</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Fashion & Apparel</h1>
-          <p className="text-gray-600">Discover the latest trends in clothing and accessories</p>
+        {/* Fashion Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=300&fit=crop"
+            alt="Fashion Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Fashion & Apparel</h1>
+              <p className="text-white/90 text-lg">Discover the latest trends • Premium quality • Express delivery</p>
+            </div>
+          </div>
         </div>
 
+
+
         {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
+        <div className="mb-8 space-y-6">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
               <input
                 type="text"
                 placeholder="Search fashion products..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+                className="w-full pl-12 pr-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm placeholder-gray-500"
               />
             </div>
 
@@ -443,7 +504,7 @@ function FashionProducts() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -454,7 +515,7 @@ function FashionProducts() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
             >
               <option value="name">Sort by Name</option>
               <option value="price">Sort by Price</option>
@@ -464,15 +525,23 @@ function FashionProducts() {
           </div>
         </div>
 
-        {/* Results Count */}
-        <div className="mb-8">
-          <p className="text-sm text-gray-600">
-            Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{fashionProducts.length}</span> products
-          </p>
+        {/* Content Card Header */}
+        <div className="mb-8 p-6 rounded-2xl backdrop-blur-xl bg-white/70 shadow-sm border border-white/20">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Fashion Collection</h2>
+              <p className="text-gray-600">Discover the latest trends and timeless classics</p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-600">
+                Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{fashionProducts.length}</span> products
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {sortedProducts.map((product, index) => (
             <ProductCard
               key={index}
@@ -615,6 +684,24 @@ function HomeKitchenProducts() {
               <span>Search MLN...</span>
             </div>
           </div>
+
+          {/* Right Side - Auth Buttons */}
+          <div className="flex items-center">
+            <div className="flex gap-1">
+              <button
+                onClick={() => navigate('/login')}
+                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+              >
+                <span>Login</span>
+              </button>
+              <button
+                onClick={() => navigate('/signup')}
+                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+              >
+                <span>Sign Up</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -632,24 +719,34 @@ function HomeKitchenProducts() {
           <span className="text-gray-600 text-sm">Home & Kitchen</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Home & Kitchen</h1>
-          <p className="text-gray-600">Everything you need for your home and kitchen</p>
+        {/* Home & Kitchen Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=300&fit=crop"
+            alt="Home & Kitchen Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Home & Kitchen</h1>
+              <p className="text-white/90 text-lg">Essential items for your home • Premium appliances • Fast shipping</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
+        <div className="mb-8 space-y-6">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
               <input
                 type="text"
                 placeholder="Search home & kitchen products..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+                className="w-full pl-12 pr-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm placeholder-gray-500"
               />
             </div>
 
@@ -657,7 +754,7 @@ function HomeKitchenProducts() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -668,7 +765,7 @@ function HomeKitchenProducts() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
             >
               <option value="name">Sort by Name</option>
               <option value="price">Sort by Price</option>
@@ -678,15 +775,23 @@ function HomeKitchenProducts() {
           </div>
         </div>
 
-        {/* Results Count */}
-        <div className="mb-8">
-          <p className="text-sm text-gray-600">
-            Showing <span className="font-semibold text-emerald-600">{sortedProducts.length}</span> of <span className="font-semibold">{homeKitchenProducts.length}</span> products
-          </p>
+        {/* Content Card Header */}
+        <div className="mb-8 p-6 rounded-2xl backdrop-blur-xl bg-white/70 shadow-sm border border-white/20">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Home & Kitchen Collection</h2>
+              <p className="text-gray-600">Essential items for your home and culinary adventures</p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-600">
+                Showing <span className="font-semibold text-emerald-600">{sortedProducts.length}</span> of <span className="font-semibold">{homeKitchenProducts.length}</span> products
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
           {sortedProducts.map((product, index) => (
             <ProductCard
               key={index}
@@ -829,6 +934,24 @@ function SportsOutdoorsProducts() {
               <span>Search MLN...</span>
             </div>
           </div>
+
+          {/* Right Side - Auth Buttons */}
+          <div className="flex items-center">
+            <div className="flex gap-1">
+              <button
+                onClick={() => navigate('/login')}
+                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+              >
+                <span>Login</span>
+              </button>
+              <button
+                onClick={() => navigate('/signup')}
+                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+              >
+                <span>Sign Up</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -846,24 +969,34 @@ function SportsOutdoorsProducts() {
           <span className="text-gray-600 text-sm">Sports & Outdoors</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Sports & Outdoors</h1>
-          <p className="text-gray-600">Gear up for your next adventure</p>
+        {/* Sports & Outdoors Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&h=300&fit=crop"
+            alt="Sports & Outdoors Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Sports & Outdoors</h1>
+              <p className="text-white/90 text-lg">Gear up for adventure • Premium equipment • Ready to ship</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
+        <div className="mb-8 space-y-6">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
               <input
                 type="text"
                 placeholder="Search sports & outdoor products..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+                className="w-full pl-12 pr-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm placeholder-gray-500"
               />
             </div>
 
@@ -871,7 +1004,7 @@ function SportsOutdoorsProducts() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -882,7 +1015,7 @@ function SportsOutdoorsProducts() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent backdrop-blur-xl bg-white/50"
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
             >
               <option value="name">Sort by Name</option>
               <option value="price">Sort by Price</option>
@@ -892,11 +1025,19 @@ function SportsOutdoorsProducts() {
           </div>
         </div>
 
-        {/* Results Count */}
-        <div className="mb-8">
-          <p className="text-sm text-gray-600">
-            Showing <span className="font-semibold text-orange-600">{sortedProducts.length}</span> of <span className="font-semibold">{sportsOutdoorsProducts.length}</span> products
-          </p>
+        {/* Content Card Header */}
+        <div className="mb-8 p-6 rounded-2xl backdrop-blur-xl bg-white/70 shadow-sm border border-white/20">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Sports & Outdoors Collection</h2>
+              <p className="text-gray-600">Gear up for your next adventure with premium outdoor equipment</p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-600">
+                Showing <span className="font-semibold text-orange-600">{sortedProducts.length}</span> of <span className="font-semibold">{sportsOutdoorsProducts.length}</span> products
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Products Grid */}
@@ -1060,10 +1201,20 @@ function BooksMediaProducts() {
           <span className="text-gray-600 text-sm">Books & Media</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Books & Media</h1>
-          <p className="text-gray-600">Discover your next great read</p>
+        {/* Books & Media Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&h=300&fit=crop"
+            alt="Books & Media Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Books & Media</h1>
+              <p className="text-white/90 text-lg">Discover great reads • Digital media • Knowledge delivered</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -1274,10 +1425,20 @@ function ToysGamesProducts() {
           <span className="text-gray-600 text-sm">Toys & Games</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Toys & Games</h1>
-          <p className="text-gray-600">Fun and educational toys for all ages</p>
+        {/* Toys & Games Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=300&fit=crop"
+            alt="Toys & Games Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Toys & Games</h1>
+              <p className="text-white/90 text-lg">Fun for all ages • Educational toys • Play and learn</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -1488,10 +1649,20 @@ function AutomotiveProducts() {
           <span className="text-gray-600 text-sm">Automotive</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Automotive</h1>
-          <p className="text-gray-600">Everything you need for your vehicle</p>
+        {/* Automotive Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&h=300&fit=crop"
+            alt="Automotive Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Automotive</h1>
+              <p className="text-white/90 text-lg">Vehicle essentials • Quality parts • Performance upgrades</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -1716,10 +1887,20 @@ function HealthWellbeingProducts() {
           <span className="text-gray-600 text-sm">Health & Wellbeing</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Health & Wellbeing</h1>
-          <p className="text-gray-600">Products to support your health, fitness, and overall wellbeing</p>
+        {/* Health & Wellbeing Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=300&fit=crop"
+            alt="Health & Wellbeing Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Health & Wellbeing</h1>
+              <p className="text-white/90 text-lg">Wellness essentials • Fitness gear • Healthy living</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -1930,10 +2111,20 @@ function AIToolsProducts() {
           <span className="text-gray-600 text-sm">AI Tools</span>
         </div>
 
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">AI Tools</h1>
-          <p className="text-gray-600">Cutting-edge AI tools and services to enhance your productivity</p>
+        {/* AI Tools Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=300&fit=crop"
+            alt="AI Tools Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">AI Tools</h1>
+              <p className="text-white/90 text-lg">Cutting-edge AI • Productivity tools • Future technology</p>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -2586,70 +2777,79 @@ function ElectronicsProducts() {
           <span className="text-gray-600 text-sm">Electronics</span>
         </div>
 
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <span className="text-3xl">💻</span>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Electronics
-            </h1>
-            <span className="text-3xl">📱</span>
+        {/* Electronics Banner Card */}
+        <div className="relative mb-8 h-32 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1200&h=300&fit=crop"
+            alt="Electronics Collection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex items-center">
+            <div className="px-8">
+              <h1 className="text-3xl font-bold text-white mb-2">Electronics</h1>
+              <p className="text-white/90 text-lg">Latest technology • Top brands • Innovation delivered</p>
+            </div>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover the latest in technology and gadgets from top brands worldwide
-          </p>
         </div>
 
-        {/* Filters */}
-        <div className="backdrop-blur-xl bg-white/50 rounded-2xl p-6 border border-white/30 shadow-lg mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Search Products</label>
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-6">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
               <input
                 type="text"
                 placeholder="Search electronics..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm"
+                className="w-full pl-12 pr-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm placeholder-gray-500"
               />
             </div>
+
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-3 border-0 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none backdrop-blur-xl bg-white/70 shadow-sm"
+            >
+              <option value="name">Name</option>
+              <option value="price">Price: Low to High</option>
+              <option value="rating">Rating</option>
+              <option value="reviews">Most Reviews</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Content Card Header */}
+        <div className="mb-8 p-6 rounded-2xl backdrop-blur-xl bg-white/70 shadow-sm border border-white/20">
+          <div className="flex items-center justify-between">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm"
-              >
-                {categories.map(category => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
-              </select>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Electronics Collection</h2>
+              <p className="text-gray-600">Cutting-edge technology and innovative gadgets from leading brands</p>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm"
-              >
-                <option value="name">Name</option>
-                <option value="price">Price: Low to High</option>
-                <option value="rating">Rating</option>
-                <option value="reviews">Most Reviews</option>
-              </select>
+            <div className="text-right">
+              <p className="text-sm text-gray-600">
+                Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{electronicsProducts.length}</span> products
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Results Count */}
-        <div className="mb-8">
-          <p className="text-sm text-gray-600">
-            Showing <span className="font-semibold text-blue-600">{sortedProducts.length}</span> of <span className="font-semibold">{electronicsProducts.length}</span> products
-          </p>
-        </div>
-
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {sortedProducts.map((product, index) => (
             <ProductCard
               key={index}
@@ -2687,7 +2887,7 @@ function ProductCard({ product, onClick }) {
 
   return (
     <div
-      className={`relative group cursor-pointer transition-all duration-300 ${
+      className={`group relative cursor-pointer transition-all duration-300 ${
         isPressed ? 'scale-95' : isHovered ? 'scale-105' : 'scale-100'
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -2696,11 +2896,8 @@ function ProductCard({ product, onClick }) {
       onMouseUp={handleMouseUp}
       onClick={onClick}
     >
-      {/* Glassmorphism Card */}
-      <div className="relative overflow-hidden rounded-2xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
+      {/* Clean Card Design */}
+      <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
         {/* Image Container */}
         <div className="relative h-48 overflow-hidden">
           <img
@@ -2708,30 +2905,28 @@ function ProductCard({ product, onClick }) {
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             loading="lazy"
-            onError={(e) => { 
+            onError={(e) => {
               e.target.onerror = null
               e.target.src = `https://placehold.co/400x300/4F46E5/FFFFFF?text=${product.name}`
             }}
           />
           {/* Category Badge */}
           <div className="absolute top-3 right-3">
-            <div className="backdrop-blur-sm bg-white/90 rounded-full px-3 py-1 text-xs font-medium text-gray-700 border border-white/30">
+            <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-gray-700 shadow-sm">
               {product.category}
             </div>
           </div>
-          {/* Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         </div>
 
         {/* Content */}
-        <div className="relative p-6">
+        <div className="p-4">
           <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
             {product.name}
           </h3>
-          <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
             {product.description}
           </p>
-          
+
           {/* Rating & Price */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-1">
@@ -2744,29 +2939,11 @@ function ProductCard({ product, onClick }) {
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="space-y-3">
-            <div className="flex space-x-2">
-              <button
-                className="flex-1 bg-blue-600 text-white text-center py-2 rounded-xl hover:bg-blue-700 transition-colors duration-200 text-sm font-medium transform hover:scale-105"
-              >
-                View Details
-              </button>
-              <a
-                href={product.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 bg-green-600 text-white text-center py-2 rounded-xl hover:bg-green-700 transition-colors duration-200 text-sm font-medium transform hover:scale-105"
-                onClick={(e) => e.stopPropagation()}
-              >
-                Buy on Amazon
-              </a>
-            </div>
-          </div>
+          {/* Action Button */}
+          <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-xl font-medium hover:bg-blue-700 transition-colors duration-200">
+            View Details
+          </button>
         </div>
-
-        {/* Hover Effects */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       </div>
     </div>
   )
@@ -2777,6 +2954,8 @@ const HomePageContent = () => {
   const [modalCard, setModalCard] = useState(null);
   const [marketplaceOpen, setMarketplaceOpen] = useState(false);
   const [financeOpen, setFinanceOpen] = useState(false);
+
+
   let marketplaceTimeout = null;
   let financeTimeout = null;
 
@@ -2932,6 +3111,7 @@ const HomePageContent = () => {
                 <div className="absolute left-0 mt-2 w-48 backdrop-blur-xl bg-white/90 border border-white/30 rounded-xl shadow-lg z-50">
                   <ul className="py-2">
                     {[
+                      { name: 'News', route: '/news' },
                       { name: 'Dashboard', route: '/dashboard' },
                       { name: 'Stocks', route: '/stocks' },
                       { name: 'Currencies', route: '/currencies' },
@@ -2956,12 +3136,20 @@ const HomePageContent = () => {
               )}
             </div>
             <a href="#" className="hover:text-blue-600 transition-colors duration-200">About</a>
-            <button className="hover:text-blue-600 transition-colors duration-200 p-1" aria-label="Account" onClick={() => navigate('/login')}>
-              <User size={18} />
-            </button>
-            <button className="hover:text-blue-600 transition-colors duration-200 p-1" aria-label="Search">
-              <Search size={18} />
-            </button>
+            <div className="flex gap-1">
+              <button
+                onClick={() => navigate('/login')}
+                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+              >
+                <span>Login</span>
+              </button>
+              <button
+                onClick={() => navigate('/signup')}
+                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+              >
+                <span>Sign Up</span>
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -3179,6 +3367,9 @@ const HomePageContent = () => {
   animation: modalIn 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
 }
 `}</style>
+
+
+
     </div>
   );
 };
