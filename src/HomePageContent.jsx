@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Search, Settings, Cloud, Newspaper, ShoppingCart, ThumbsUp, Bookmark, PlayCircle, Heart, Share2, MessageSquare, Briefcase, SlidersHorizontal, User, Star } from 'lucide-react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
+// Temporary fallback components
+const SignedIn = ({ children }) => null; // Always show as signed out for now
+const SignedOut = ({ children }) => children; // Always show signed out content
+const UserButton = () => null;
+
 
 
 function CategoryProductPage({ title, products }) {
@@ -191,20 +196,33 @@ function BeautyProducts() {
 
           {/* Right Side - Auth Buttons */}
           <div className="flex items-center">
-            <div className="flex gap-1">
-              <button
-                onClick={() => navigate('/login')}
-                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
-              >
-                <span>Login</span>
-              </button>
-              <button
-                onClick={() => navigate('/signup')}
-                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
-              >
-                <span>Sign Up</span>
-              </button>
-            </div>
+            <SignedOut>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => navigate('/login')}
+                  className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+                >
+                  <span>Login</span>
+                </button>
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+                >
+                  <span>Sign Up</span>
+                </button>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8",
+                    userButtonPopoverCard: "backdrop-blur-xl bg-white/90 border border-white/30 shadow-lg",
+                    userButtonPopoverActionButton: "hover:bg-gray-50"
+                  }
+                }}
+              />
+            </SignedIn>
           </div>
         </div>
       </nav>
@@ -435,20 +453,33 @@ function FashionProducts() {
 
           {/* Right Side - Auth Buttons */}
           <div className="flex items-center">
-            <div className="flex gap-1">
-              <button
-                onClick={() => navigate('/login')}
-                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
-              >
-                <span>Login</span>
-              </button>
-              <button
-                onClick={() => navigate('/signup')}
-                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
-              >
-                <span>Sign Up</span>
-              </button>
-            </div>
+            <SignedOut>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => navigate('/login')}
+                  className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+                >
+                  <span>Login</span>
+                </button>
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+                >
+                  <span>Sign Up</span>
+                </button>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8",
+                    userButtonPopoverCard: "backdrop-blur-xl bg-white/90 border border-white/30 shadow-lg",
+                    userButtonPopoverActionButton: "hover:bg-gray-50"
+                  }
+                }}
+              />
+            </SignedIn>
           </div>
         </div>
       </nav>
@@ -687,20 +718,33 @@ function HomeKitchenProducts() {
 
           {/* Right Side - Auth Buttons */}
           <div className="flex items-center">
-            <div className="flex gap-1">
-              <button
-                onClick={() => navigate('/login')}
-                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
-              >
-                <span>Login</span>
-              </button>
-              <button
-                onClick={() => navigate('/signup')}
-                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
-              >
-                <span>Sign Up</span>
-              </button>
-            </div>
+            <SignedOut>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => navigate('/login')}
+                  className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+                >
+                  <span>Login</span>
+                </button>
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+                >
+                  <span>Sign Up</span>
+                </button>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8",
+                    userButtonPopoverCard: "backdrop-blur-xl bg-white/90 border border-white/30 shadow-lg",
+                    userButtonPopoverActionButton: "hover:bg-gray-50"
+                  }
+                }}
+              />
+            </SignedIn>
           </div>
         </div>
       </nav>
@@ -937,20 +981,33 @@ function SportsOutdoorsProducts() {
 
           {/* Right Side - Auth Buttons */}
           <div className="flex items-center">
-            <div className="flex gap-1">
-              <button
-                onClick={() => navigate('/login')}
-                className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
-              >
-                <span>Login</span>
-              </button>
-              <button
-                onClick={() => navigate('/signup')}
-                className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
-              >
-                <span>Sign Up</span>
-              </button>
-            </div>
+            <SignedOut>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => navigate('/login')}
+                  className="backdrop-blur-xl bg-white/50 border border-white/30 rounded-lg px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white/70 transition-all duration-200"
+                >
+                  <span>Login</span>
+                </button>
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="backdrop-blur-xl bg-black/80 border border-black/30 rounded-lg px-2 py-1 text-xs font-medium text-white hover:bg-black/90 transition-all duration-200"
+                >
+                  <span>Sign Up</span>
+                </button>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8",
+                    userButtonPopoverCard: "backdrop-blur-xl bg-white/90 border border-white/30 shadow-lg",
+                    userButtonPopoverActionButton: "hover:bg-gray-50"
+                  }
+                }}
+              />
+            </SignedIn>
           </div>
         </div>
       </nav>

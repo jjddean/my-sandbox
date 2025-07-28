@@ -52,7 +52,9 @@ import {
 import ProductDetailPage from './ProductDetailPage';
 import CategoriesPageContent from './CategoriesPageContent';
 import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
 import ForgotPasswordPage from './ForgotPasswordPage';
+import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/clerk-react';
 
 // --- PRODUCT PAGE COMPONENTS ---
 
@@ -2270,6 +2272,10 @@ export default function App() {
   // If login page, render login page
   if (location.pathname === '/login') {
     return <LoginPage />;
+  }
+  // If signup page, render signup page
+  if (location.pathname === '/signup') {
+    return <SignUpPage />;
   }
   // If forgot password page, render forgot password page
   if (location.pathname === '/forgot-password') {
