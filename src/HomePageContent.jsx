@@ -74,8 +74,230 @@ function CategoryProductPage({ title, products }) {
 
 
 
+// Load products from Product Management System
+const loadProductsFromManager = () => {
+  try {
+    const products = localStorage.getItem('1marketlive-products');
+    return products ? JSON.parse(products) : [];
+  } catch (error) {
+    console.log('No products from manager, using default');
+    return [];
+  }
+};
+
 // Update beauty products with better data structure
-const updatedBeautyProducts = [
+const managedProducts = loadProductsFromManager();
+const updatedBeautyProducts = managedProducts.length > 0 ? managedProducts : [
+  {
+    name: "Medicube One Day Exosome Shot 2000 Serum",
+    url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_SL1500_.jpg",
+    description: "Revolutionary K-beauty serum with 2000ppm exosomes for intensive skin regeneration and anti-aging.",
+    price: 89.99,
+    rating: 4.8,
+    reviews: 2847,
+    category: "K-Beauty",
+    brand: "Medicube",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Skin aging, dullness, fine lines",
+      trendingOn: ["TikTok", "Reddit r/SkincareAddiction"],
+      markupPotential: "8x",
+      arbitrageOpportunity: "Strong on Amazon, weak on TikTok Shop",
+      keyBenefits: ["Exosome technology", "Visible results in 7 days", "K-beauty innovation"]
+    }
+  },
+  {
+    name: "BRUUN SD Salmon DNA PDRN Ampoule",
+    url: "https://www.amazon.com/BR%C3%9CUN-SD-Control-Needling-Microneedling/dp/B08ZYXPGZJ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Advanced salmon DNA PDRN ampoule for skin repair, regeneration, and anti-inflammatory benefits.",
+    price: 79.99,
+    rating: 4.7,
+    reviews: 1923,
+    category: "K-Beauty",
+    brand: "BRUUN SD",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Acne scars, skin damage, inflammation",
+      trendingOn: ["Instagram", "Reddit r/Dermatology"],
+      markupPotential: "7x",
+      arbitrageOpportunity: "Popular on Amazon, untapped on Pinterest",
+      keyBenefits: ["Salmon DNA technology", "Clinical-grade formula", "Professional results"]
+    }
+  },
+  {
+    name: "TOSOWOONG Pink Peptide 12 PDRN Serum",
+    url: "https://www.amazon.com/TOSOWOONG-Peptides-Niacinamide-Hydrating-Moisturizing/dp/B0DRJX22GS?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "12-peptide complex with PDRN and niacinamide for comprehensive anti-aging and skin barrier repair.",
+    price: 69.99,
+    rating: 4.6,
+    reviews: 1456,
+    category: "K-Beauty",
+    brand: "TOSOWOONG",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Fine lines, uneven skin tone, dehydration",
+      trendingOn: ["TikTok", "YouTube beauty gurus"],
+      markupPotential: "9x",
+      arbitrageOpportunity: "Growing on TikTok, weak Google Ads presence",
+      keyBenefits: ["12 peptides", "Barrier repair", "Instant hydration"]
+    }
+  },
+  {
+    name: "Medicube Collagen Overnight Wrapping Mask",
+    url: "https://www.amazon.com/Medicube-Collagen-Wrapping-Elasticity-Hydration/dp/B0BRMYHMS5?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Overnight collagen mask that wraps skin in intensive hydration and anti-aging benefits while you sleep.",
+    price: 59.99,
+    rating: 4.9,
+    reviews: 3421,
+    category: "Skincare",
+    brand: "Medicube",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Overnight skin repair, dehydration, aging",
+      trendingOn: ["TikTok", "Instagram Reels"],
+      markupPotential: "6x",
+      arbitrageOpportunity: "Viral on TikTok, underutilized on Facebook",
+      keyBenefits: ["Overnight treatment", "Collagen boost", "Wake up glowing"]
+    }
+  },
+  {
+    name: "100 Dalton Ultra-Low Bio Collagen Gel Mask",
+    url: "https://www.amazon.com/Korean-Collagen-Face-Mask-Overnight/dp/B0DWFYGN33?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_SL1500_.jpg",
+    description: "Ultra-low molecular weight collagen gel mask for deep penetration and maximum anti-aging results.",
+    price: 49.99,
+    rating: 4.5,
+    reviews: 987,
+    category: "Skincare",
+    brand: "K-Beauty Lab",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Collagen loss, sagging skin, fine lines",
+      trendingOn: ["Reddit r/30PlusSkinCare", "Pinterest"],
+      markupPotential: "8x",
+      arbitrageOpportunity: "Strong Pinterest, weak TikTok presence",
+      keyBenefits: ["100 Dalton molecules", "Deep penetration", "Instant plumping"]
+    }
+  },
+  {
+    name: "Medicube Zero Exosome Shot Duo",
+    url: "https://www.amazon.com/medicube-Zero-Exosome-Shot-2000/dp/B0DM4Y4HFF?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_SL1500_.jpg",
+    description: "Dual-action exosome treatment combining regenerative and brightening benefits for complete skin transformation.",
+    price: 119.99,
+    rating: 4.9,
+    reviews: 1876,
+    category: "Skincare",
+    brand: "Medicube",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Multiple skin concerns, uneven tone, aging",
+      trendingOn: ["TikTok", "Instagram", "Reddit r/SkincareAddiction"],
+      markupPotential: "7x",
+      arbitrageOpportunity: "Dominating TikTok, weak on Google Shopping",
+      keyBenefits: ["Dual exosome formula", "Complete skin transformation", "Professional results"]
+    }
+  },
+  {
+    name: "Fastaid 7-in-1 LED Face & Neck Massager",
+    url: "https://www.amazon.com/Fastaid-Red-Light-Therapy-Face-Therapy-Massager/dp/B0C46HHJJZ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Advanced LED light therapy device with 7 treatment modes for face and neck rejuvenation.",
+    price: 199.99,
+    rating: 4.6,
+    reviews: 2341,
+    category: "Wellness",
+    brand: "Fastaid",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Aging, wrinkles, skin texture, muscle tension",
+      trendingOn: ["TikTok", "YouTube", "Reddit r/Biohackers"],
+      markupPotential: "5x",
+      arbitrageOpportunity: "Strong on Amazon, untapped on Meta",
+      keyBenefits: ["7-in-1 technology", "LED therapy", "Professional-grade"]
+    }
+  },
+  {
+    name: "Anyork LED Facial Roller Massager",
+    url: "https://www.amazon.com/Facial-Massage-Dual-Head-Therapy-Electric/dp/B0DTFBSP1S?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+    description: "Dual-head LED facial roller with red light therapy for lymphatic drainage and skin tightening.",
+    price: 89.99,
+    rating: 4.4,
+    reviews: 1567,
+    category: "Wellness",
+    brand: "Anyork",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Puffiness, lymphatic drainage, skin sagging",
+      trendingOn: ["TikTok", "Pinterest", "Instagram Reels"],
+      markupPotential: "6x",
+      arbitrageOpportunity: "Viral on TikTok, weak on traditional ads",
+      keyBenefits: ["LED + massage combo", "Lymphatic drainage", "Instant results"]
+    }
+  },
+  {
+    name: "Medicube Salmon DNA PDRN Pink One Day Serum",
+    url: "https://www.amazon.com/medicube-Intensive-Collagen-Glutathione-Hyaluronic/dp/B0DBF65JYY?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_SL1500_.jpg",
+    description: "Intensive salmon DNA serum with collagen, glutathione, and hyaluronic acid for ultimate skin repair.",
+    price: 94.99,
+    rating: 4.8,
+    reviews: 2156,
+    category: "Skincare",
+    brand: "Medicube",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Severe skin damage, dullness, dehydration",
+      trendingOn: ["Reddit r/30PlusSkinCare", "TikTok", "YouTube"],
+      markupPotential: "8x",
+      arbitrageOpportunity: "Strong on Reddit, weak on Facebook",
+      keyBenefits: ["Salmon DNA + collagen", "Glutathione brightening", "Intensive repair"]
+    }
+  },
+  {
+    name: "Medicube Kojic Acid Turmeric Wrapping Mask",
+    url: "https://www.amazon.com/medicube-Kojic-Turmeric-Overnight-Wrapping/dp/B0DRNR67MJ?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
+    description: "Overnight wrapping mask with kojic acid and turmeric for brightening and evening skin tone.",
+    price: 64.99,
+    rating: 4.7,
+    reviews: 1789,
+    category: "K-Beauty",
+    brand: "Medicube",
+    availability: "In Stock",
+    shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Dark spots, hyperpigmentation, uneven tone",
+      trendingOn: ["TikTok", "Reddit r/SkincareAddiction", "Pinterest"],
+      markupPotential: "7x",
+      arbitrageOpportunity: "Growing on Pinterest, weak on Google Ads",
+      keyBenefits: ["Kojic acid brightening", "Turmeric anti-inflammatory", "Overnight treatment"]
+    }
+  },
   {
     name: "Fenty Beauty Gloss Bomb Universal Lip Luminizer",
     url: "https://www.amazon.com/Fenty-Beauty-Universal-Luminizer-Fenty/dp/B075FDQZPX?tag=1mlaffiliates-20",
@@ -142,13 +364,21 @@ function BeautyProducts() {
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('name')
+  const [syncedProducts, setSyncedProducts] = useState(managedProducts)
+
+  const syncProducts = () => {
+    const products = loadProductsFromManager();
+    setSyncedProducts(products);
+    console.log(`🔄 Synced ${products.length} products from Product Manager`);
+  }
   const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
 
-  const categories = ['All', 'Skincare', 'Makeup', 'Hair Care', 'Lip Care']
+  const categories = ['All', 'Skincare', 'K-Beauty', 'Makeup', 'Hair Care', 'Lip Care', 'Wellness']
 
-  const filteredProducts = updatedBeautyProducts.filter(product => {
+  const currentProducts = syncedProducts.length > 0 ? syncedProducts : updatedBeautyProducts;
+  const filteredProducts = currentProducts.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) ||
                          product.description.toLowerCase().includes(search.toLowerCase())
     const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory
@@ -249,10 +479,18 @@ function BeautyProducts() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
-          <div className="absolute inset-0 flex items-center">
+          <div className="absolute inset-0 flex items-center justify-between">
             <div className="px-8">
               <h1 className="text-3xl font-bold text-white mb-2">Health & Beauty</h1>
               <p className="text-white/90 text-lg">Premium skincare • Luxury makeup • Beauty essentials</p>
+            </div>
+            <div className="px-8">
+              <button
+                onClick={syncProducts}
+                className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors duration-200 text-sm font-medium border border-white/30"
+              >
+                🔄 Sync Products ({syncedProducts.length})
+              </button>
             </div>
           </div>
         </div>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1MarketLive® - Global Affiliate Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div id="app"></div>
+
+    <script>
+        // Your products data - ADD YOUR 1000s OF PRODUCTS HERE
+        let products = [
+            {
+                id: 1,
+                name: "Medicube One Day Exosome Shot 2000 Serum",
+                price: 89.99,
+                image: "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_SL1500_.jpg",
+                url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
+                category: "K-Beauty",
+                rating: 4.8,
+                reviews: 2847,
+                description: "Revolutionary K-beauty serum with 2000ppm exosomes for intensive skin regeneration and anti-aging."
+            },
+            {
+                id: 2,
+                name: "BRUUN SD Salmon DNA PDRN Ampoule",
+                price: 79.99,
+                image: "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+                url: "https://www.amazon.com/BR%C3%9CUN-SD-Control-Needling-Microneedling/dp/B08ZYXPGZJ?tag=1mlaffiliates-20",
+                category: "K-Beauty",
+                rating: 4.7,
+                reviews: 1923,
+                description: "Advanced salmon DNA PDRN ampoule for skin repair, regeneration, and anti-inflammatory benefits."
+            },
+            {
+                id: 3,
+                name: "TOSOWOONG Pink Peptide 12 PDRN Serum",
+                price: 69.99,
+                image: "https://via.placeholder.com/400x400/4F46E5/FFFFFF?text=TOSOWOONG",
+                url: "https://www.amazon.com/TOSOWOONG-Peptides-Niacinamide-Hydrating-Moisturizing/dp/B0DRJX22GS?tag=1mlaffiliates-20",
+                category: "K-Beauty",
+                rating: 4.6,
+                reviews: 1456,
+                description: "12-peptide complex with PDRN and niacinamide for comprehensive anti-aging and skin barrier repair."
+            }
+        ];
+
+        // Save/Load products from localStorage
+        function saveProducts() {
+            localStorage.setItem('1marketlive-products', JSON.stringify(products));
+        }
+
+        function loadProducts() {
+            const saved = localStorage.getItem('1marketlive-products');
+            if (saved) {
+                products = JSON.parse(saved);
+            }
+        }
+
+        // Add new product
+        function addProduct(productData) {
+            const newProduct = {
+                id: Date.now(),
+                name: productData.name,
+                price: parseFloat(productData.price) || 0,
+                image: productData.image || `https://via.placeholder.com/400x400/4F46E5/FFFFFF?text=${encodeURIComponent(productData.name)}`,
+                url: ensureAffiliateTag(productData.url),
+                category: productData.category || 'General',
+                rating: parseFloat(productData.rating) || 4.5,
+                reviews: parseInt(productData.reviews) || 100,
+                description: productData.description || `${productData.name} - Premium quality product`
+            };
+            products.push(newProduct);
+            saveProducts();
+            renderApp();
+        }
+
+        // Ensure affiliate tag
+        function ensureAffiliateTag(url) {
+            if (!url) return url;
+            if (url.includes('amazon.') && !url.includes('tag=')) {
+                const separator = url.includes('?') ? '&' : '?';
+                return `${url}${separator}tag=1mlaffiliates-20`;
+            }
+            return url;
+        }
+
+        // Bulk import from CSV
+        function importCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
+                if (values.length >= 2) {
+                    addProduct({
+                        name: values[0],
+                        url: values[1],
+                        price: values[2],
+                        description: values[3],
+                        category: values[4] || 'General',
+                        rating: values[5],
+                        reviews: values[6]
+                    });
+                }
+            }
+        }
+
+        // Current page state
+        let currentPage = 'home';
+        let currentCategory = 'All';
+        let searchTerm = '';
+
+        // Render functions
+        function renderStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<span class="${i <= rating ? 'text-yellow-400' : 'text-gray-300'}">★</span>`;
+            }
+            return stars;
+        }
+
+        function renderProduct(product) {
+            return `
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2">${product.name}</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex items-center">${renderStars(product.rating)}</div>
+                            <span class="text-sm text-gray-500 ml-2">(${product.reviews})</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-gray-900">$${product.price.toFixed(2)}</span>
+                            <a href="${product.url}" target="_blank" 
+                               class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                                Buy Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderNavigation() {
+            const categories = ['All', ...new Set(products.map(p => p.category))];
+            
+            return `
+                <nav class="bg-white shadow-sm border-b">
+                    <div class="max-w-7xl mx-auto px-4">
+                        <div class="flex justify-between items-center h-16">
+                            <div class="flex items-center space-x-8">
+                                <button onclick="setPage('home')" class="text-2xl font-bold text-blue-600">
+                                    1MarketLive®
+                                </button>
+                                <div class="hidden md:flex space-x-6">
+                                    <button onclick="setPage('home')" class="${currentPage === 'home' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600">
+                                        Home
+                                    </button>
+                                    <button onclick="setPage('products')" class="${currentPage === 'products' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600">
+                                        Products
+                                    </button>
+                                    <button onclick="setPage('admin')" class="${currentPage === 'admin' ? 'text-blue-600' : 'text-gray-700'} hover:text-blue-600">
+                                        Add Products
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <input type="text" placeholder="Search products..." 
+                                       value="${searchTerm}"
+                                       onkeyup="searchProducts(this.value)"
+                                       class="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            `;
+        }
+
+        function renderHomePage() {
+            const featuredProducts = products.slice(0, 6);
+            
+            return `
+                <div class="max-w-7xl mx-auto px-4 py-8">
+                    <!-- Hero Section -->
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg text-white p-8 mb-8">
+                        <h1 class="text-4xl font-bold mb-4">Welcome to 1MarketLive®</h1>
+                        <p class="text-xl mb-6">Your global affiliate marketplace for premium products</p>
+                        <button onclick="setPage('products')" class="bg-white text-blue-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-100">
+                            Shop Now
+                        </button>
+                    </div>
+
+                    <!-- Featured Products -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Featured Products</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${featuredProducts.map(renderProduct).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                            <div class="text-3xl font-bold text-blue-600">${products.length}</div>
+                            <div class="text-gray-600">Total Products</div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                            <div class="text-3xl font-bold text-green-600">${new Set(products.map(p => p.category)).size}</div>
+                            <div class="text-gray-600">Categories</div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                            <div class="text-3xl font-bold text-purple-600">4.7</div>
+                            <div class="text-gray-600">Avg Rating</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProductsPage() {
+            const categories = ['All', ...new Set(products.map(p => p.category))];
+            const filteredProducts = products.filter(product => {
+                const matchesCategory = currentCategory === 'All' || product.category === currentCategory;
+                const matchesSearch = !searchTerm || 
+                    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    product.description.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            return `
+                <div class="max-w-7xl mx-auto px-4 py-8">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900">Products</h1>
+                        <div class="text-gray-600">${filteredProducts.length} products found</div>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="mb-8">
+                        <div class="flex flex-wrap gap-2">
+                            ${categories.map(cat => `
+                                <button onclick="setCategory('${cat}')" 
+                                        class="px-4 py-2 rounded-md ${currentCategory === cat ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 border border-gray-300'} hover:bg-blue-600 hover:text-white">
+                                    ${cat}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        ${filteredProducts.map(renderProduct).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAdminPage() {
+            return `
+                <div class="max-w-4xl mx-auto px-4 py-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Add Products</h1>
+
+                    <!-- Quick Add -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                        <h2 class="text-xl font-semibold mb-4">Quick Add Single Product</h2>
+                        <form onsubmit="handleQuickAdd(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" name="name" placeholder="Product Name" required class="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                                <input type="url" name="url" placeholder="Amazon URL" required class="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                                <input type="number" name="price" step="0.01" placeholder="Price" class="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                                <select name="category" class="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                                    <option value="K-Beauty">K-Beauty</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Fashion">Fashion</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Home">Home</option>
+                                </select>
+                            </div>
+                            <textarea name="description" placeholder="Product Description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"></textarea>
+                            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">Add Product</button>
+                        </form>
+                    </div>
+
+                    <!-- CSV Import -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-semibold mb-4">CSV Bulk Import</h2>
+                        <p class="text-gray-600 mb-4">Format: name,url,price,description,category,rating,reviews</p>
+                        <textarea id="csvInput" placeholder="Paste CSV data here..." rows="8" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 font-mono text-sm"></textarea>
+                        <button onclick="handleCSVImport()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700">Import CSV</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Event handlers
+        function setPage(page) {
+            currentPage = page;
+            renderApp();
+        }
+
+        function setCategory(category) {
+            currentCategory = category;
+            renderApp();
+        }
+
+        function searchProducts(term) {
+            searchTerm = term;
+            renderApp();
+        }
+
+        function handleQuickAdd(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            addProduct({
+                name: formData.get('name'),
+                url: formData.get('url'),
+                price: formData.get('price'),
+                category: formData.get('category'),
+                description: formData.get('description')
+            });
+            event.target.reset();
+            alert('Product added successfully!');
+        }
+
+        function handleCSVImport() {
+            const csvText = document.getElementById('csvInput').value;
+            if (csvText.trim()) {
+                importCSV(csvText);
+                document.getElementById('csvInput').value = '';
+                alert('Products imported successfully!');
+            }
+        }
+
+        // Main render function
+        function renderApp() {
+            let content = '';
+            
+            switch (currentPage) {
+                case 'home':
+                    content = renderHomePage();
+                    break;
+                case 'products':
+                    content = renderProductsPage();
+                    break;
+                case 'admin':
+                    content = renderAdminPage();
+                    break;
+                default:
+                    content = renderHomePage();
+            }
+
+            document.getElementById('app').innerHTML = renderNavigation() + content;
+        }
+
+        // Initialize app
+        loadProducts();
+        renderApp();
+
+        // Add CSS for line-clamp
+        const style = document.createElement('style');
+        style.textContent = `
+            .line-clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

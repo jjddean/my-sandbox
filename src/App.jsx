@@ -35,6 +35,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'; // Import routing hooks and components
 import { Search, Bell, Settings, ChevronDown, ChevronRight, Star, Plus, Menu, LayoutDashboard, TrendingUp, BarChart, DollarSign, Globe, Briefcase, Activity, LineChart, SlidersHorizontal, Cloud, Newspaper, ShoppingCart, Sun, CloudRain, Wind, Droplet, Thermometer, Eye, Gauge, Sunrise, Sunset } from 'lucide-react'; // All necessary icons
 import HomePageContent from './HomePageContent';
+import ProductImporter from './components/ProductImporter';
 // Import HealthWellbeingProducts from HomePageContent
 import {
   CategoryPlaceholder,
@@ -150,50 +151,50 @@ const IPhoneProMaxPage = () => {
   return <ProductDetailPage product={iphoneProduct} />;
 };
 
-// Samsung Galaxy S24 Ultra Product Page
-const SamsungGalaxyPage = () => {
-  const samsungProduct = {
-    name: "Samsung Galaxy S24 Ultra",
-    url: "https://www.amazon.com/Samsung-Electronics-Unlocked-Smartphone-Titanium/dp/B0CSJZ8Q8L?tag=1mlaffiliates-20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/71T5NVOgbpL._AC_SL1500_.jpg",
-    description: "Premium Android flagship with S Pen, advanced AI features, and titanium frame.",
-    price: 1299.99,
+// Medicube Exosome Serum Product Page
+const MedicubeExosomePage = () => {
+  const medicubeProduct = {
+    name: "Medicube One Day Exosome Shot 2000 Serum",
+    url: "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
+    image: "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_SL1500_.jpg",
+    description: "Revolutionary K-beauty serum with 2000ppm exosomes for intensive skin regeneration and anti-aging.",
+    price: 89.99,
     currency: 'USD',
-    rating: 4.7,
-    reviews: 567,
-    category: "Smartphones",
-    brand: "Samsung",
+    rating: 4.8,
+    reviews: 2847,
+    category: "K-Beauty",
+    brand: "Medicube",
     availability: "In Stock",
     shipping: "Free Shipping",
+    trending: true,
+    researchData: {
+      problemSolved: "Skin aging, dullness, fine lines",
+      trendingOn: ["TikTok", "Reddit r/SkincareAddiction"],
+      markupPotential: "8x",
+      arbitrageOpportunity: "Strong on Amazon, weak on TikTok Shop",
+      keyBenefits: ["Exosome technology", "Visible results in 7 days", "K-beauty innovation"]
+    },
     features: [
-      "Snapdragon 8 Gen 3 for Galaxy processor",
-      "6.8-inch Dynamic AMOLED 2X display with 120Hz",
-      "Titanium frame with Gorilla Glass Victus 2",
-      "200MP main camera with advanced AI photography",
-      "Built-in S Pen with Air Actions and precision control",
-      "12GB RAM with 256GB/512GB/1TB storage options",
-      "5000mAh battery with 45W fast charging",
-      "Galaxy AI features for enhanced productivity",
-      "IP68 water and dust resistance",
-      "Wireless PowerShare and wireless charging"
+      "2000ppm exosome concentration",
+      "Advanced skin regeneration technology",
+      "Clinically proven anti-aging results",
+      "Visible results in 7 days",
+      "K-beauty innovation technology",
+      "Suitable for all skin types",
+      "Lightweight, fast-absorbing formula"
     ],
     specifications: {
-      "Processor": "Snapdragon 8 Gen 3 for Galaxy",
-      "Graphics": "Adreno 750 GPU",
-      "Memory": "12GB RAM",
-      "Storage": "256GB/512GB/1TB UFS 4.0",
-      "Display": "6.8-inch Dynamic AMOLED 2X",
-      "Resolution": "3120 x 1440 pixels (QHD+)",
-      "Weight": "8.22 ounces (233 grams)",
-      "Dimensions": "6.40 x 3.11 x 0.34 inches",
-      "Battery": "5000mAh with 45W fast charging",
-      "Camera": "200MP Main, 50MP Periscope, 12MP Ultra Wide, 10MP Telephoto",
-      "Connectivity": "5G, Wi-Fi 7, Bluetooth 5.3",
-      "Operating System": "Android 14 with One UI 6.1"
+      "Volume": "30ml / 1.01 fl oz",
+      "Key Ingredient": "2000ppm Exosomes",
+      "Skin Type": "All skin types",
+      "Usage": "Morning and evening",
+      "Origin": "South Korea",
+      "Shelf Life": "36 months",
+      "Cruelty Free": "Yes"
     }
   };
 
-  return <ProductDetailPage product={samsungProduct} />;
+  return <ProductDetailPage product={medicubeProduct} />;
 };
 
 // --- PAGE COMPONENTS ---
@@ -2153,11 +2154,13 @@ const MainAppLayout = () => { // Renamed App to MainAppLayout
                         <Route path="/category/automotive" element={<AutomotiveProducts />} />
                         <Route path="/category/health-wellbeing" element={<HealthWellbeingProducts />} />
                         <Route path="/category/ai-tools" element={<AIToolsProducts />} />
+                        <Route path="/admin/products" element={<ProductImporter />} />
                         <Route path="/category/:category" element={<CategoryPlaceholder key={window.location.pathname} />} />
 
                         {/* Dedicated Product Detail Routes */}
                         <Route path="/product/macbook-air-m2" element={<MacBookAirM2Page />} />
                         <Route path="/product/iphone-15-pro-max" element={<IPhoneProMaxPage />} />
+                        <Route path="/product/medicube-exosome-serum" element={<MedicubeExosomePage />} />
                         <Route path="/product/samsung-galaxy-s24-ultra" element={<SamsungGalaxyPage />} />
 
                         {/* Fallback for other product slugs */}

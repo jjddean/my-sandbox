@@ -1,0 +1,67 @@
+{
+  "category": "beauty",
+  "lastUpdated": "2025-01-28",
+  "totalProducts": 15,
+  "products": [
+    {
+      "id": "medicube-exosome-2000",
+      "name": "Medicube One Day Exosome Shot 2000 Serum",
+      "url": "https://www.amazon.com/Medicube-One-Day-Exosome-2000/dp/B0D137TMRB?tag=1mlaffiliates-20",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/71YQbVoRIcL._AC_SL1500_.jpg",
+      "description": "Revolutionary K-beauty serum with 2000ppm exosomes for intensive skin regeneration and anti-aging.",
+      "price": 89.99,
+      "rating": 4.8,
+      "reviews": 2847,
+      "category": "K-Beauty",
+      "subcategory": "Serums",
+      "brand": "Medicube",
+      "availability": "In Stock",
+      "shipping": "Free Shipping",
+      "trending": true,
+      "featured": true,
+      "tags": ["anti-aging", "k-beauty", "exosomes", "regeneration"],
+      "researchData": {
+        "problemSolved": "Skin aging, dullness, fine lines",
+        "trendingOn": ["TikTok", "Reddit r/SkincareAddiction"],
+        "markupPotential": "8x",
+        "arbitrageOpportunity": "Strong on Amazon, weak on TikTok Shop",
+        "keyBenefits": ["Exosome technology", "Visible results in 7 days", "K-beauty innovation"]
+      },
+      "seo": {
+        "title": "Medicube Exosome Shot 2000 - Revolutionary K-Beauty Anti-Aging Serum",
+        "metaDescription": "Transform your skin with Medicube's 2000ppm exosome serum. Clinically proven anti-aging results in 7 days.",
+        "keywords": ["medicube", "exosome serum", "k-beauty", "anti-aging", "skin regeneration"]
+      }
+    },
+    {
+      "id": "bruun-salmon-dna",
+      "name": "BRUUN SD Salmon DNA PDRN Ampoule",
+      "url": "https://www.amazon.com/BR%C3%9CUN-SD-Control-Needling-Microneedling/dp/B08ZYXPGZJ?tag=1mlaffiliates-20",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/61HMZTjlSQL._AC_SL1500_.jpg",
+      "description": "Advanced salmon DNA PDRN ampoule for skin repair, regeneration, and anti-inflammatory benefits.",
+      "price": 79.99,
+      "rating": 4.7,
+      "reviews": 1923,
+      "category": "K-Beauty",
+      "subcategory": "Ampoules",
+      "brand": "BRUUN SD",
+      "availability": "In Stock",
+      "shipping": "Free Shipping",
+      "trending": true,
+      "featured": false,
+      "tags": ["salmon-dna", "pdrn", "skin-repair", "anti-inflammatory"],
+      "researchData": {
+        "problemSolved": "Acne scars, skin damage, inflammation",
+        "trendingOn": ["Instagram", "Reddit r/Dermatology"],
+        "markupPotential": "7x",
+        "arbitrageOpportunity": "Popular on Amazon, untapped on Pinterest",
+        "keyBenefits": ["Salmon DNA technology", "Clinical-grade formula", "Professional results"]
+      },
+      "seo": {
+        "title": "BRUUN SD Salmon DNA PDRN Ampoule - Professional Skin Repair Treatment",
+        "metaDescription": "Clinical-grade salmon DNA ampoule for acne scars and skin damage. Professional results at home.",
+        "keywords": ["bruun sd", "salmon dna", "pdrn", "skin repair", "acne scars"]
+      }
+    }
+  ]
+}
